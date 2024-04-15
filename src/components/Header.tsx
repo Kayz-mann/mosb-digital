@@ -1,51 +1,54 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Navigation from "./Navigation";
+import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
+import CustomButton from "./module/CustomButton";
 
-const colors = [
-  // "#ff0000",
-  // "#00ff00",
-  // "#0000ff"
-  "#cecece",
-];
+const colors = ["#ff0000", "#1E07AA", "#15721F", "#721515", "#9747FF"];
 
 const Header = () => {
-  const buttonText1 = `About us`;
+  const aboutUsText = `About us`;
   const buttonText2 = `Services`;
   const bodyText = `Fuelling entrepreneurial success through strategic content managment`;
 
   const [index, setIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const isMobileOrTablet = useMobileOrTablet(768);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % colors.length);
-    }, 2000); // Change color every 2 seconds (2000 milliseconds)
+    }, 5000); // Change color every 2 seconds (2000 milliseconds)
 
     return () => clearInterval(intervalId);
   }, []);
 
+  // plus-20
   return (
     <div
       style={{ backgroundColor: colors[index] }}
-      className="bg-blue-400 h-screen items-center"
+      className="bg-blue-400 h-100  items-center"
     >
-      <div className="w-4/5 mx-auto py-8">
+      <div
+        className={`mx-auto ${isMobileOrTablet ? "py-0" : "py-8"} ${
+          isMobileOrTablet ? "w-full" : "w-4/5"
+        }`}
+      >
         <Navigation />
+        <div className={`${isMobileOrTablet && "px-4"}`}>
+          <div className="justify-left py-8 px-3">
+            <h1
+              className={`text-white font-bold text-8xl  uppercase italic`}
+              style={{ fontSize: isMobileOrTablet ? "38px" : "120px" }}
+            >
+              {bodyText}
+            </h1>
+          </div>
 
-        <div className="justify-left py-8">
-          <h1 className="text-white font-bold text-8xl uppercase italic">
-            {bodyText}
-          </h1>
-        </div>
-
-        <div className="py-8 space-x-4 ">
-          <button className="bg-black rounded-md px-4 py-3 text-white uppercase font-bold text-lg hover:bg-white hover:border-black border-2 hover:text-black">
-            {buttonText1}
-          </button>
-
-          <button className="bg-black rounded-md px-4 py-3 text-white uppercase font-bold text-lg hover:bg-white hover:border-black border-2 hover:text-black">
-            {buttonText2}
-          </button>
+          <div className="py-8 space-x-4 px-4 flex">
+            <CustomButton buttonText1="About us" buttonText2="About us" />
+            <CustomButton buttonText1="Services" buttonText2="Services" />
+          </div>
         </div>
       </div>
     </div>
