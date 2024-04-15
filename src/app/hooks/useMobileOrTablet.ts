@@ -1,4 +1,3 @@
-"use client"
 import { useState, useEffect } from 'react';
 
 const useMobileOrTablet = (breakpoint = 768) => {
@@ -9,14 +8,17 @@ const useMobileOrTablet = (breakpoint = 768) => {
       setIsMobileOrTablet(window.innerWidth <= breakpoint);
     };
 
-    handleResize(); // Initial check
+    // Initial check
+    handleResize();
 
+    // Event listener for window resize
     window.addEventListener('resize', handleResize);
 
+    // Cleanup function
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [breakpoint]);
+  }, [breakpoint]); // Re-run effect if breakpoint changes
 
   return isMobileOrTablet;
 };

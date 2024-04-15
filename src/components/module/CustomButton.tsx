@@ -1,4 +1,5 @@
 "use client";
+import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import React, { useState } from "react";
 
 interface ButtonProps {
@@ -24,6 +25,7 @@ const CustomButton = ({
 }: ButtonProps) => {
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const isMobileOrTablet = useMobileOrTablet(1204);
 
   return (
     <button
@@ -51,10 +53,11 @@ const CustomButton = ({
         </span>
         <span
           className={`absolute left-0 right-0 bottom-4 flex items-center justify-center ${
-            isHovered ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+            isHovered ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0 "
           }`}
           style={{
             animationName: isHovered ? "fadeInUpDown" : "fadeOutDown",
+            // fontSize:
           }}
         >
           {buttonText2}

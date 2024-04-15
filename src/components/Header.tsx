@@ -39,7 +39,7 @@ const Header = () => {
           <div className="justify-left py-8 px-3">
             <h1
               className={`text-white font-bold text-8xl  uppercase italic`}
-              style={{ fontSize: isMobileOrTablet ? "38px" : "120px" }}
+              style={{ fontSize: isMobileOrTablet ? "30px" : "120px" }}
             >
               {bodyText}
             </h1>
