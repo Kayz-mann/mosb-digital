@@ -8,17 +8,19 @@ import ServicePill from "./module/ServicePill";
 const HeaderService = () => {
   const ourServices = `Our Services`;
   const isMobileOrTablet = useMobileOrTablet(1204);
+  const isMdScreen = useMobileOrTablet(1024);
+  const isSmallScreen = useMobileOrTablet(420);
 
   const serviceData = [
     "Social branding and Management",
-    "Content Management",
     "Online Reputation Management",
-    "Copywriting",
-    "Project Management",
     "Insight, foresight & trends",
-    "Virtual Assistant",
     "Graphics & Motion Design",
+    "Project Management",
+    "Content Management",
+    "Virtual Assistant",
     "Web Development",
+    "Copywriting",
   ];
 
   return (
@@ -49,7 +51,7 @@ const HeaderService = () => {
         style={{
           // flexDirection: "column",
           gap: 16,
-          flexDirection: "row",
+          flexDirection: isSmallScreen ? "column" : "row",
           justifyContent: isMobileOrTablet ? "center" : "flex-end",
           width: "100%",
         }}
@@ -65,7 +67,11 @@ const HeaderService = () => {
           </p>
           <button
             className={`bg-white ${
-              isMobileOrTablet ? "px-4 py-2" : "px-4 py-4"
+              isMdScreen
+                ? "px-4 py-4"
+                : isMobileOrTablet
+                ? "px-4 py-2"
+                : "px-4 py-4"
             } flex justify-between text-black items-center rounded-md`}
             style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
           >
@@ -85,7 +91,11 @@ const HeaderService = () => {
           </p>
           <button
             className={`bg-white ${
-              isMobileOrTablet ? "px-4 py-2" : "px-4 py-4"
+              isMdScreen
+                ? "px-4 py-4"
+                : isMobileOrTablet
+                ? "px-4 py-2"
+                : "px-4 py-4"
             } flex justify-between text-black items-center rounded-md`}
             style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
           >

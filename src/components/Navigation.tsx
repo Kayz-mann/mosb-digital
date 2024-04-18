@@ -17,6 +17,7 @@ const items = [
 
 const Navigation = () => {
   const isMobileOrTablet = useMobileOrTablet(768);
+  const isSmallMobile = useMobileOrTablet(380);
   const navItems = items.map((item, index) => ({
     id: index + 1,
     label: item.label,
@@ -37,14 +38,26 @@ const Navigation = () => {
   return (
     <div
       className={`bg-white ${
-        isMobileOrTablet ? "rounded-none flex" : "rounded-full flex"
-      }  items-center h-20 justify-between px-6`}
+        isMobileOrTablet ? "rounded-none flex px-2" : "rounded-full flex px-6"
+      }  items-center h-20 justify-between `}
     >
       {/* logo */}
       <div className="flex items-center">
         <div className="flex items-center cursor-pointer">
-          <LogoIcon />
-          <h2 className="font-bold text-2xl">MOSB DIGITAL</h2>
+          <span className="-mt-2">
+            <LogoIcon />
+          </span>
+          <h2
+            className={`font-bold  ${
+              isSmallMobile
+                ? "text-2xl"
+                : isMobileOrTablet
+                ? "text-3xl"
+                : "text-3xl"
+            } align-baseline `}
+          >
+            MOSB DIGITAL
+          </h2>
         </div>
 
         {/* nav link */}

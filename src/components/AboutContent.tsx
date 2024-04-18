@@ -8,39 +8,53 @@ import Image from "next/image";
 
 const AboutContent = () => {
   const isMobileOrTablet = useMobileOrTablet(900);
+  const isSmallScreen = useMobileOrTablet(500);
   return (
     <div
-      className={`bg-white h-screen/2 justify-between w-full flex pb-60 ${
-        isMobileOrTablet ? "px-10 flex-col text-center items-center" : "px-40"
+      className={`bg-white h-screen/2 justify-between w-full flex pb-10 ${
+        isMobileOrTablet ? "px-6 flex-col" : "px-40"
       }`}
     >
       <div style={{ flex: 0.48 }}>
         <p
-          style={{ fontSize: "24px" }}
-          className="text-24 font-bold text-gray-500 uppercase"
+          style={{ fontSize: isSmallScreen ? "14px" : "24px" }}
+          className={`text-24 font-bold text-gray-500 uppercase`}
         >
           what we're about
         </p>
         <p
-          style={{ fontSize: "32px" }}
+          style={{ fontSize: isSmallScreen ? "20px" : "32px" }}
           className="text-32 font-bold text-black italic"
         >
           Powered by Technology
         </p>
         <p
-          style={{ fontSize: "32px", marginTop: "-5px" }}
+          style={{
+            fontSize: isSmallScreen ? "20px" : "32px",
+            marginTop: "-5px",
+          }}
           className="text-32 font-bold text-[#FA0505] italic"
         >
           Guided By Strategy
         </p>
         <p
-          style={{ fontSize: "32px", marginTop: "-5px" }}
+          style={{
+            fontSize: isSmallScreen ? "20px" : "32px",
+            marginTop: "-5px",
+          }}
           className="text-32 font-bold text-[#1E07AA] italic"
         >
           Inspired by Data.
         </p>
 
-        <p style={{ fontSize: 14, fontWeight: "300" }} className="italic">
+        <p
+          style={{
+            fontSize: 14,
+            fontWeight: "300",
+            marginTop: isSmallScreen ? 10 : 0,
+          }}
+          className="italic"
+        >
           Mosb Digital is an agency specializing in content management. We house
           top-tier managers, writers, designers, researchers, and analysts,
           fostering a collective powerhouse of expertise, innovation, and
@@ -68,7 +82,7 @@ const AboutContent = () => {
             textColorHover={"hover:text-white"}
             buttonText1="Our Services"
             buttonText2="Our Services"
-            borderColor="1px solid-black"
+            borderColor="border-red-500" // Change the border color to red
           />
         </div>
       </div>

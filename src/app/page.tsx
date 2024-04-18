@@ -5,12 +5,12 @@ import Header from "@/components/Header";
 import ImageAdContent from "@/components/ImageAdContent";
 import ServicesContent from "@/components/ServicesContent";
 import SponsorContent from "@/components/SponsorContent";
-import Image from "next/image";
-import { useEffect, useState } from "react";
 import useMobileOrTablet from "./hooks/useMobileOrTablet";
+import SliderContent from "@/components/SliderContent";
 
 export default function Home() {
-  const isMobileOrTablet = useMobileOrTablet();
+  const isMobileOrTablet = useMobileOrTablet(768);
+
   return (
     <main>
       <Header />
@@ -19,6 +19,7 @@ export default function Home() {
       <AboutContent />
       <ImageAdContent />
       <SponsorContent />
+      <SliderContent />
     </main>
   );
 }

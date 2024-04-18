@@ -31,14 +31,15 @@ const CustomButton = ({
     <button
       className={`
       ${bgColor || "bg-black"}
-        px-14 py-6 uppercase rounded-md cursor-pointer transition duration-100
+        ${
+          isMobileOrTablet ? "px-12 py-6" : "px-14 py-6"
+        } uppercase rounded-md cursor-pointer transition duration-100 border-red-500
        ${bgColorHover || "hover:bg-white"}
-       ${borderColor || "border-red"}
-       hover:border-2 
+
        ${textColor || "text-white "}
        ${textColorHover || "hover:text-black"}
        overflow-hidden relative`}
-      style={{ border: borderColor || "1px solid-red" }}
+      // style={{ border: borderColor || "1px solid-red" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

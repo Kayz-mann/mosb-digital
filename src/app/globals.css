@@ -15,6 +15,7 @@
   width: 100%; /* Ensures that the parent container takes up 100% of its parent's width */
   max-width: 1200px; /* Optional: Sets a maximum width for the container */
   margin: 0 auto; /* Optional: Centers the container horizontally */
+  overflow: hidden;
 }
 
 

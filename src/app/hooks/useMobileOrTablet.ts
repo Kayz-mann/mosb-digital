@@ -1,24 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 const useMobileOrTablet = (breakpoint = 768) => {
-  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileOrTablet(window.innerWidth <= breakpoint);
-    };
-
-    // Initial check
-    handleResize();
-
-    // Event listener for window resize
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup function
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [breakpoint]); // Re-run effect if breakpoint changes
+  
+  const isMobileOrTabletQuery = `(max-width: ${breakpoint}px)`;
+  const isMobileOrTablet = useMediaQuery({ query: isMobileOrTabletQuery });
 
   return isMobileOrTablet;
 };

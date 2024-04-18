@@ -1,7 +1,7 @@
 import React from "react";
 
 const FooterService = () => {
-  return <div>FooterService</div>;
+  return <div className="my-8"></div>;
 };
 
 export default FooterService;

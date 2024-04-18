@@ -7,8 +7,9 @@ const SponsorSlider = ({ images }: any) => {
       style={{
         height: "20vh",
         background: "white",
-        justifyContent: "center",
-        alignItems: "center",
+        display: "flex", // Set display to flex
+        justifyContent: "center", // Center horizontally
+        alignItems: "center", // Center vertically
         width: "100vw",
       }}
     >

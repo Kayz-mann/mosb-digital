@@ -7,12 +7,11 @@ import CustomButton from "./module/CustomButton";
 const colors = ["#ff0000", "#1E07AA", "#15721F", "#721515", "#9747FF"];
 
 const Header = () => {
-  const aboutUsText = `About us`;
-  const buttonText2 = `Services`;
+  // const aboutUsText = `About us`;
+  // const buttonText2 = `Services`;
   const bodyText = `Fuelling entrepreneurial success through strategic content managment`;
 
   const [index, setIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const isMobileOrTablet = useMobileOrTablet(768);
 
   useEffect(() => {
@@ -38,14 +37,17 @@ const Header = () => {
         <div className={`${isMobileOrTablet && "px-4"}`}>
           <div className="justify-left py-8 px-3">
             <h1
-              className={`text-white font-bold text-8xl  uppercase italic`}
-              style={{ fontSize: isMobileOrTablet ? "30px" : "120px" }}
+              className={`text-white font-bold text-8xl  uppercase italic line-height-6`}
+              style={{
+                fontSize: isMobileOrTablet ? "30px" : "90px",
+                lineHeight: 1.1,
+              }}
             >
               {bodyText}
             </h1>
           </div>
 
-          <div className="py-8 space-x-4 px-4 flex">
+          <div className="py-4 space-x-4 px-4 flex">
             <CustomButton buttonText1="About us" buttonText2="About us" />
             <CustomButton buttonText1="Services" buttonText2="Services" />
           </div>

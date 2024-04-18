@@ -7,6 +7,7 @@ interface ServicePillProps {
 
 const ServicePill = ({ label }: ServicePillProps) => {
   const isMobileOrTablet = useMobileOrTablet(1204);
+  const isMdScreen = useMobileOrTablet(700);
 
   return (
     <div
@@ -24,7 +25,13 @@ const ServicePill = ({ label }: ServicePillProps) => {
       } border-gray-500 px-6`}
     >
       <p
-        style={{ paddingTop: 15, paddingBottom: 15, maxWidth: "100%" }}
+        style={{
+          paddingTop: 15,
+          paddingBottom: 15,
+          maxWidth: "100%",
+          fontSize: isMdScreen ? "14px" : "20px",
+          fontWeight: isMdScreen ? 200 : "normal",
+        }}
         className="text-white"
       >
         {label}
