@@ -12,12 +12,15 @@ const Header = () => {
   const bodyText = `Fuelling entrepreneurial success through strategic content managment`;
 
   const [index, setIndex] = useState(0);
+  const [showBackground, setShowBackground] = useState(true);
   const isMobileOrTablet = useMobileOrTablet(768);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % colors.length);
-    }, 5000); // Change color every 2 seconds (2000 milliseconds)
+      setShowBackground(false); // Start fade-out animation
+      setTimeout(() => setShowBackground(true), 1000); // After 500ms, start fade-in animation
+    }, 5000); // Change color every 5 seconds (5000 milliseconds)
 
     return () => clearInterval(intervalId);
   }, []);
@@ -25,7 +28,10 @@ const Header = () => {
   // plus-20
   return (
     <div
-      style={{ backgroundColor: colors[index] }}
+      style={{
+        backgroundColor: colors[index],
+        transition: "background-color 1.5s", // Add transition effect to background color
+      }}
       className="bg-blue-400 h-100  items-center"
     >
       <div

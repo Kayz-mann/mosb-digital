@@ -37,7 +37,7 @@ const Navigation = () => {
 
   return (
     <div
-      className={`bg-white ${
+      className={`bg-white sticky top 0 z-50 ${
         isMobileOrTablet ? "rounded-none flex px-2" : "rounded-full flex px-6"
       }  items-center h-20 justify-between `}
     >

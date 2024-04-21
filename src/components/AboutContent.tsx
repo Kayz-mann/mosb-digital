@@ -5,6 +5,7 @@ import React from "react";
 import CustomButton from "./module/CustomButton";
 import aboutImage from "../../public/assets/images/about.png";
 import Image from "next/image";
+import { ArrowRightIcon } from "@heroicons/react/16/solid";
 
 const AboutContent = () => {
   const isMobileOrTablet = useMobileOrTablet(900);
@@ -50,7 +51,7 @@ const AboutContent = () => {
         <p
           style={{
             fontSize: 14,
-            fontWeight: "300",
+            fontWeight: "400",
             marginTop: isSmallScreen ? 10 : 0,
           }}
           className="italic"
@@ -64,27 +65,51 @@ const AboutContent = () => {
           step of the way through strategic content management.
         </p>
 
-        <div
-          style={{ marginTop: "40px", gap: 8 }}
-          className={`flex ${
-            isMobileOrTablet && "items-center w-full justify-center mb-24"
-          }  `}
-        >
-          <CustomButton
-            buttonText1="Learn More"
-            buttonText2="Learn More"
-            borderColor="1px solid-black"
-          />
-          <CustomButton
-            bgColor={"bg-[#fff]"}
-            bgColorHover={"hover:bg-[#FA0505]"}
-            textColor={"text-black"}
-            textColorHover={"hover:text-white"}
-            buttonText1="Our Services"
-            buttonText2="Our Services"
-            borderColor="border-red-500" // Change the border color to red
-          />
-        </div>
+        {!isMobileOrTablet && (
+          <div
+            style={{ marginTop: "40px", gap: 8 }}
+            className={`flex ${
+              isMobileOrTablet && "items-center w-full justify-center mb-24"
+            }  `}
+          >
+            <CustomButton
+              buttonText1="Learn More"
+              buttonText2="Learn More"
+              borderColor="1px solid-black"
+            />
+            <CustomButton
+              bgColor={"bg-[#fff]"}
+              bgColorHover={"hover:bg-[#FA0505]"}
+              textColor={"text-black"}
+              textColorHover={"hover:text-white"}
+              buttonText1="Our Services"
+              buttonText2="Our Services"
+              borderColor="border-red-500" // Change the border color to red
+            />
+          </div>
+        )}
+
+        {isMobileOrTablet && (
+          <div
+            style={{
+              marginTop: isMobileOrTablet ? 15 : 0,
+              alignItems: "left",
+              justifyContent: "flex-start",
+              flex: 1.0,
+              marginBottom: "30px",
+              // width: "80%",
+            }}
+          >
+            <button
+              className={`bg-black ${
+                isMobileOrTablet ? "px-2 py-3" : "px-4 py-4"
+              } flex justify-between text-white items-center rounded-md`}
+            >
+              <p className={`mr-4`}>FIND OUT MORE</p>
+              <ArrowRightIcon height={15} />
+            </button>
+          </div>
+        )}
       </div>
 
       <div style={{ flex: 0.49 }}>

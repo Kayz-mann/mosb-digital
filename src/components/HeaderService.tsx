@@ -56,53 +56,68 @@ const HeaderService = () => {
           width: "100%",
         }}
       >
-        <div
-          style={{ marginTop: isMobileOrTablet ? 34 : 0, textAlign: "center" }}
-        >
-          <p
-            className="text-white mb-2"
-            style={{ fontSize: isMobileOrTablet ? "18px" : "24px" }}
-          >
-            Got a project?
-          </p>
-          <button
-            className={`bg-white ${
-              isMdScreen
-                ? "px-4 py-4"
-                : isMobileOrTablet
-                ? "px-4 py-2"
-                : "px-4 py-4"
-            } flex justify-between text-black items-center rounded-md`}
-            style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
-          >
-            <p className={`mr-2`}>FIND OUT MORE</p>
-            <ArrowRightIcon height={15} />
-          </button>
-        </div>
+        {isMobileOrTablet && (
+          <div className="mt-8 px-2 py-2 bg-white rounded-full items-center justify-center cursor-pointer">
+            <p className="text-black">See More</p>
+          </div>
+        )}
+        {!isMobileOrTablet && (
+          <>
+            <div
+              style={{
+                marginTop: isMobileOrTablet ? 34 : 0,
+                textAlign: "center",
+              }}
+            >
+              <p
+                className="text-white mb-2"
+                style={{ fontSize: isMobileOrTablet ? "18px" : "24px" }}
+              >
+                Got a project?
+              </p>
+              <button
+                className={`bg-white ${
+                  isMdScreen
+                    ? "px-4 py-4"
+                    : isMobileOrTablet
+                    ? "px-4 py-2"
+                    : "px-4 py-4"
+                } flex justify-between text-black items-center rounded-md`}
+                style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
+              >
+                <p className={`mr-2`}>FIND OUT MORE</p>
+                <ArrowRightIcon height={15} />
+              </button>
+            </div>
 
-        <div
-          style={{ marginTop: isMobileOrTablet ? 34 : 0, textAlign: "center" }}
-        >
-          <p
-            className="text-white mb-2"
-            style={{ fontSize: isMobileOrTablet ? "18px" : "24px" }}
-          >
-            Work with us
-          </p>
-          <button
-            className={`bg-white ${
-              isMdScreen
-                ? "px-4 py-4"
-                : isMobileOrTablet
-                ? "px-4 py-2"
-                : "px-4 py-4"
-            } flex justify-between text-black items-center rounded-md`}
-            style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
-          >
-            <p className={`mr-2`}>FIND OUT MORE</p>
-            <ArrowRightIcon height={15} />
-          </button>
-        </div>
+            <div
+              style={{
+                marginTop: isMobileOrTablet ? 34 : 0,
+                textAlign: "center",
+              }}
+            >
+              <p
+                className="text-white mb-2"
+                style={{ fontSize: isMobileOrTablet ? "18px" : "24px" }}
+              >
+                Work with us
+              </p>
+              <button
+                className={`bg-white ${
+                  isMdScreen
+                    ? "px-4 py-4"
+                    : isMobileOrTablet
+                    ? "px-4 py-2"
+                    : "px-4 py-4"
+                } flex justify-between text-black items-center rounded-md`}
+                style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
+              >
+                <p className={`mr-2`}>FIND OUT MORE</p>
+                <ArrowRightIcon height={15} />
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

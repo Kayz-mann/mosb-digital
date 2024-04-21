@@ -13,7 +13,7 @@ const SponsorSlider = ({ images }: any) => {
         width: "100vw",
       }}
     >
-      <Marquee>
+      <Marquee className="justify-evenly">
         {images.map(
           (
             image: string,

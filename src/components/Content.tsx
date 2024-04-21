@@ -35,9 +35,10 @@ const Content = () => {
         >
           {/* Content for the first half */}
           <p
+            style={{ lineHeight: 1.2 }}
             className={`text-black-100 ${
               isMobileOrTablet
-                ? "text-xl justify-left text-left font-semi-bold"
+                ? "text-xl justify-left text-left font-bold"
                 : "text-4xl"
             }`}
           >
@@ -66,7 +67,7 @@ const Content = () => {
           >
             <button
               className={`bg-black ${
-                isMobileOrTablet ? "px-2 py-2" : "px-4 py-4"
+                isMobileOrTablet ? "px-2 py-3" : "px-4 py-4"
               } flex justify-between text-white items-center rounded-md`}
             >
               <p className={`mr-4`}>FIND OUT MORE</p>
@@ -80,12 +81,11 @@ const Content = () => {
       <div className={`h-1/8 bg-white flex items-center justify-center`}>
         <p
           className={`font-bold  text-center ${
-            isMobileOrTablet ? "w-10/14 text-xl" : "w-2/3 text-3xl"
+            isMobileOrTablet ? "w-10/14 text-2xl" : "w-2/3 text-3xl"
           } py-16`}
         >
-          We bring the best minds together to create content that
-          {isMobileOrTablet && <br />}
-          move{" "}
+          We bring the best minds together to create content that move
+          {isMobileOrTablet && <br />}{" "}
           <motion.span
             key={index}
             initial={{ y: "100%" }}

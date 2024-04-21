@@ -28,7 +28,7 @@ const ImageAdContent = () => {
         </p>
 
         <div className="flex items-center justify-center pb-8">
-          <div className="rounded-full border border-[#FAB005] px-4 py-2 mx-2">
+          <div className="rounded-full border border-[#FAB005] px-4 py-2 mx-2 cursor-pointer">
             <p className="text-white uppercase">Let's Talk</p>
           </div>
         </div>
