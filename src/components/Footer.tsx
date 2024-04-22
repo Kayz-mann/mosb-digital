@@ -71,7 +71,11 @@ const Footer = () => {
           />
         </div>
       </div>
-      <div className="w-full border-t-2 border-spcaing-1 border-white mt-20 mb-10 "></div>
+      <div
+        className={`w-full border-t-2 border-spcaing-1 ${
+          isMobileOrTablet ? "border-black" : "border-white"
+        }  mt-20 mb-10 `}
+      ></div>
 
       <div className="flex flex-row justify-between">
         <div>
@@ -79,7 +83,11 @@ const Footer = () => {
             <li>
               <a
                 href="#"
-                className="text-white cursor-pointer underline hover:no-underline hover:text-white"
+                className={`${
+                  isMobileOrTablet
+                    ? " text-black hover:text-black"
+                    : "text-white hover:text-white"
+                } cursor-pointer underline hover:no-underline `}
               >
                 Privacy Policy
               </a>
@@ -87,7 +95,11 @@ const Footer = () => {
             <li>
               <a
                 href="#"
-                className="text-white cursor-pointer underline hover:no-underline hover:text-white"
+                className={`${
+                  isMobileOrTablet
+                    ? " text-black hover:text-black"
+                    : "text-white hover:text-white"
+                } cursor-pointer underline hover:no-underline `}
               >
                 Cookie Notice
               </a>
@@ -95,7 +107,11 @@ const Footer = () => {
             <li>
               <a
                 href="#"
-                className="text-white cursor-pointer underline hover:no-underline hover:text-white"
+                className={`${
+                  isMobileOrTablet
+                    ? " text-black hover:text-black"
+                    : "text-white hover:text-white"
+                } cursor-pointer underline hover:no-underline `}
               >
                 Locations
               </a>
@@ -104,12 +120,22 @@ const Footer = () => {
         </div>
 
         <div>
-          <p className="text-2xl font-semibold text-white">Want to talk?</p>
+          <p
+            className={`text-2xl font-semibold ${
+              isMobileOrTablet ? "text-black" : "text-white"
+            } `}
+          >
+            Want to talk?
+          </p>
 
           <li className="list-none">
             <a
               href="#"
-              className="text-white text-base cursor-pointer underline hover:no-underline hover:text-white list-none"
+              className={`${
+                isMobileOrTablet
+                  ? " text-black hover:text-black"
+                  : "text-white hover:text-white"
+              } cursor-pointer underline hover:no-underline list-none`}
             >
               Get in contact with us
             </a>
