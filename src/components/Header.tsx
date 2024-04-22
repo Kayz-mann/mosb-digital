@@ -54,8 +54,16 @@ const Header = () => {
           </div>
 
           <div className="py-4 space-x-4 px-4 flex">
-            <CustomButton buttonText1="About us" buttonText2="About us" />
-            <CustomButton buttonText1="Services" buttonText2="Services" />
+            <CustomButton
+              buttonText1="About us"
+              buttonText2="About us"
+              borderColor="border-black"
+            />
+            <CustomButton
+              buttonText1="Services"
+              buttonText2="Services"
+              borderColor="border-black"
+            />
           </div>
         </div>
       </div>

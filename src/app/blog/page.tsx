@@ -8,6 +8,7 @@ import blogImage from "../../../public/assets/images/blogImage.png";
 import { TruncatedText } from "@/components/module/TruncatedText";
 import BlogBanner from "@/components/blogs/BlogBanner";
 import CategoryList from "@/components/blogs/CategoryList";
+import Footer from "@/components/Footer";
 
 const Blog = () => {
   const isMobileOrTablet = useMobileOrTablet(900);
@@ -23,10 +24,12 @@ const Blog = () => {
           isMobileOrTablet ? "w-full" : "w-4/5"
         }`}
       >
-        <Navigation bgColor="bg-[#FAB005]" />
+        <Navigation
+          bgColor={`${isMobileOrTablet ? "bg-white" : "bg-[#FAB005]"}`}
+        />
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-6" : "px-48"} mt-24`}>
+      <div className={`${isMobileOrTablet ? "px-2" : "px-32"} mt-24`}>
         <h1 className="text-4xl font-bold">Blog</h1>
 
         <BlogBanner
@@ -40,10 +43,12 @@ const Blog = () => {
           onButtonClick={() => {}}
         />
 
-        <div className="mt-10" style={{ paddingBottom: "1000px" }}>
+        <div className="mt-10" style={{ marginBottom: "40px" }}>
           <CategoryList />
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

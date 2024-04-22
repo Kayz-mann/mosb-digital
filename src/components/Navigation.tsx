@@ -48,7 +48,7 @@ const Navigation = ({ bgColor }: NavProps) => {
     >
       {/* logo */}
       <div className="flex items-center">
-        <div className="flex items-center cursor-pointer">
+        <Link href={"/"} className="flex items-center cursor-pointer">
           <span className="-mt-2">
             <LogoIcon />
           </span>
@@ -63,7 +63,7 @@ const Navigation = ({ bgColor }: NavProps) => {
           >
             MOSB DIGITAL
           </h2>
-        </div>
+        </Link>
 
         {/* nav link */}
         {!isMobileOrTablet && (

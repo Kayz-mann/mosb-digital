@@ -67,10 +67,12 @@ const Content = () => {
           >
             <button
               className={`bg-black ${
-                isMobileOrTablet ? "px-2 py-3" : "px-4 py-4"
+                isMobileOrTablet ? "px-2 py-2" : "px-4 py-3"
               } flex justify-between text-white items-center rounded-md`}
             >
-              <p className={`mr-4`}>FIND OUT MORE</p>
+              <p style={{ fontSize: "14px" }} className={`mr-4 `}>
+                FIND OUT MORE
+              </p>
               <ArrowRightIcon height={15} />
             </button>
           </div>

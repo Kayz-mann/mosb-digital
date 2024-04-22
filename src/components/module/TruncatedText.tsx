@@ -4,11 +4,13 @@ interface TruncatedProps {
   text: string;
   maxLength: number;
   className: string;
+  style?: any;
 }
 export const TruncatedText = ({
   text,
   maxLength,
   className,
+  style,
 }: TruncatedProps) => {
   const [truncatedText, setTruncatedText] = useState(text);
 
@@ -18,5 +20,9 @@ export const TruncatedText = ({
     }
   }, [text, maxLength]);
 
-  return <div className={className}>{truncatedText}</div>;
+  return (
+    <div style={style} className={className}>
+      {truncatedText}
+    </div>
+  );
 };
