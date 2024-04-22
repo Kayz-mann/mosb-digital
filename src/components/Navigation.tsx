@@ -8,6 +8,7 @@ import {
 } from "@heroicons/react/20/solid";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import CustomButton from "./module/CustomButton";
+import Link from "next/link";
 
 const items = [
   { label: "About", path: "/about" },
@@ -15,7 +16,11 @@ const items = [
   { label: "Blog", path: "/blog" },
 ];
 
-const Navigation = () => {
+interface NavProps {
+  bgColor?: string;
+}
+
+const Navigation = ({ bgColor }: NavProps) => {
   const isMobileOrTablet = useMobileOrTablet(768);
   const isSmallMobile = useMobileOrTablet(380);
   const navItems = items.map((item, index) => ({
@@ -37,7 +42,7 @@ const Navigation = () => {
 
   return (
     <div
-      className={`bg-white sticky top 0 z-50 ${
+      className={`${bgColor || "bg-white"} sticky top 0 z-50 ${
         isMobileOrTablet ? "rounded-none flex px-2" : "rounded-full flex px-6"
       }  items-center h-20 justify-between `}
     >
@@ -65,12 +70,12 @@ const Navigation = () => {
           <nav className="flex items-center  space-x-6 capitalize ml-4">
             {navItems.map((item) => (
               <div key={item.id}>
-                <a
+                <Link
                   href={item.url}
                   className="text-gray-600 hover:text-black transition duration-300 uppercase text-xl font-bold"
                 >
                   {item.label}
-                </a>
+                </Link>
               </div>
             ))}
           </nav>

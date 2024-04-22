@@ -11,6 +11,7 @@ interface ButtonProps {
   textColorHover?: string;
   borderColor?: string;
   borderColorHover?: string;
+  onClick?: () => void;
 }
 
 const CustomButton = ({
@@ -22,6 +23,7 @@ const CustomButton = ({
   textColorHover,
   borderColor,
   borderColorHover,
+  onClick,
 }: ButtonProps) => {
   const [index, setIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -29,11 +31,14 @@ const CustomButton = ({
 
   return (
     <button
+      onClick={onClick}
       className={`
       ${bgColor || "bg-black"}
         ${
           isMobileOrTablet ? "px-12 py-6" : "px-14 py-6"
-        } uppercase rounded-md cursor-pointer transition duration-100 border-red-500
+        } uppercase rounded-md cursor-pointer transition duration-100 border ${
+        borderColor || "border-red-500"
+      }
        ${bgColorHover || "hover:bg-white"}
 
        ${textColor || "text-white "}
