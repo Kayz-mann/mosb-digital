@@ -22,7 +22,7 @@ const BlogBanner = ({
 
   return (
     <div
-      className={`bg-white px-4 py-4 rounded-lg w-full flex mt-10 ${
+      className={`bg-white px-4 py-4 rounded-lg w-full flex mt-10 shadow-lg ${
         isMobileOrTablet ? "flex-col" : "flex-row justify-between"
       }`}
     >
@@ -50,17 +50,17 @@ const BlogBanner = ({
       </div>
       <div
         style={{
-          flex: 0.4,
+          flex: 0.5,
           marginTop: isMobileOrTablet ? 40 : 0,
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          justifyContent: isMobileOrTablet ? "center" : "flex-end",
         }}
       >
         <Image
           alt="blog"
           src={image || blogImage}
           width={isMobileOrTablet ? 403 : 300}
+          height={300}
         />
       </div>
     </div>

@@ -7,13 +7,14 @@ import Image from "next/image";
 import blogImage from "../../../public/assets/images/blogImage.png";
 import { TruncatedText } from "@/components/module/TruncatedText";
 import BlogBanner from "@/components/blogs/BlogBanner";
+import CategoryList from "@/components/blogs/CategoryList";
 
 const Blog = () => {
   const isMobileOrTablet = useMobileOrTablet(900);
 
   return (
     <div
-      className={`h-screen w-full bg-[#F3F3F3] 
+      className={`h-full w-full bg-[#F3F3F3] 
 
       `}
     >
@@ -25,7 +26,7 @@ const Blog = () => {
         <Navigation bgColor="bg-[#FAB005]" />
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-6" : "px-32"} mt-24`}>
+      <div className={`${isMobileOrTablet ? "px-6" : "px-48"} mt-24`}>
         <h1 className="text-4xl font-bold">Blog</h1>
 
         <BlogBanner
@@ -38,6 +39,10 @@ const Blog = () => {
           image={blogImage}
           onButtonClick={() => {}}
         />
+
+        <div className="mt-10" style={{ paddingBottom: "1000px" }}>
+          <CategoryList />
+        </div>
       </div>
     </div>
   );
