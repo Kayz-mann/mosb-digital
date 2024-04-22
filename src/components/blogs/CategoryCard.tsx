@@ -7,7 +7,7 @@ const CategoryCard = () => {
   return (
     <div
       style={{ width: "299px" }}
-      className="bg-white px-2 py-2  items-center rounded-md"
+      className="bg-white px-2 py-2 pb-4  items-center rounded-md"
     >
       <Image alt="category" src={categoryImage} height={350} width={285} />
 
@@ -25,12 +25,14 @@ const CategoryCard = () => {
         className="text-8 mt-2 text-gray-500"
       />
 
-      <a
-        href="/"
-        className="px-6 py-2 items-center text-white font-extralight bg-black mt-8"
-      >
-        Read Now
-      </a>
+      <div className="mt-6">
+        <a
+          href="/"
+          className="px-6 py-2 items-center text-white font-extralight bg-black"
+        >
+          Read Now
+        </a>
+      </div>
     </div>
   );
 };
