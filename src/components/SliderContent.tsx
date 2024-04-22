@@ -1,7 +1,8 @@
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import React, { useEffect, useState } from "react";
-import CustomButton from "./module/CustomButton";
-import Image from "next/image";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import sliderImage from "../../public/assets/images/slider-image.png";
 import SliderCard from "./SliderCard";
 
@@ -40,6 +41,19 @@ const SliderContent = () => {
     },
   ];
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    arrows: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000, // Auto-slide every 5 seconds (5000 milliseconds)
+    beforeChange: (current: any, next: React.SetStateAction<number>) =>
+      setCurrentSlide(next),
+  };
+
   return (
     <div
       className={`bg-black h-screen/2 justify-between w-full flex pb-10 py-8 ${
@@ -47,20 +61,22 @@ const SliderContent = () => {
       }`}
     >
       <div className="w-full pb-10 py-8">
-        {sliderData.map((item, index) => (
-          <div
-            key={item.id}
-            className={`${
-              index === currentSlide ? "block" : "hidden"
-            } transition-opacity duration-500`}
-          >
-            <SliderCard
-              image={item.image}
-              title={item.title}
-              description={item.description}
-            />
-          </div>
-        ))}
+        <Slider {...settings}>
+          {sliderData.map((item, index) => (
+            <div
+              key={item.id}
+              className={`${
+                index === currentSlide ? "block" : "hidden"
+              } transition-opacity duration-500`}
+            >
+              <SliderCard
+                image={item.image}
+                title={item.title}
+                description={item.description}
+              />
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );

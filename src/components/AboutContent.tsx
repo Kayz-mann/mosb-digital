@@ -12,7 +12,7 @@ const AboutContent = () => {
   const isSmallScreen = useMobileOrTablet(500);
   return (
     <div
-      className={`bg-white h-screen/2 justify-between w-full flex pb-10 ${
+      className={`bg-white h-screen/2 justify-between w-full flex pb-10 pt-10 ${
         isMobileOrTablet ? "px-6 flex-col" : "px-40"
       }`}
     >
