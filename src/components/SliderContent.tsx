@@ -18,7 +18,7 @@ const SliderContent = () => {
       setCurrentSlide((prevSlide) =>
         prevSlide === sliderData.length - 1 ? 0 : prevSlide + 1
       );
-    }, 5000); // Auto-slide every 5 seconds (5000 milliseconds)
+    }, 10000); // Auto-slide every 5 seconds (5000 milliseconds)
 
     // Clear interval on component unmount
     return () => clearInterval(intervalId);

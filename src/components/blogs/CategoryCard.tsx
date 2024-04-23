@@ -39,6 +39,7 @@ const CategoryCard = ({
           text={title}
           maxLength={95}
           className="justify-start text-left mt-2 text-18 font-bold text-wrap"
+          style={{ lineHeight: 1.1 }}
         />
 
         <TruncatedText

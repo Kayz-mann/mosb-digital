@@ -13,7 +13,7 @@ const ImageAdContent = () => {
     >
       <div>
         <p
-          style={{ fontSize: isMobileOrTablet ? "20px" : "40px" }}
+          style={{ fontSize: isMobileOrTablet ? "16px" : "40px" }}
           className="text-white italic font-bold pt-8"
         >
           What's Your Next Bold Move?
@@ -28,8 +28,10 @@ const ImageAdContent = () => {
         </p>
 
         <div className="flex items-center justify-center pb-8">
-          <div className="rounded-full border border-[#FAB005] px-4 py-2 mx-2 cursor-pointer">
-            <p className="text-white uppercase">Let's Talk</p>
+          <div className="rounded-full border border-[#FAB005] px-4 py-1 mx-2 cursor-pointer">
+            <p style={{ fontSize: "12px" }} className="text-white">
+              Let's Talk
+            </p>
           </div>
         </div>
       </div>

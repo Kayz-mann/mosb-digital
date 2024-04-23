@@ -18,10 +18,10 @@ const Footer = () => {
       }`}
     >
       <div
-        className={`pt-24 flex  justify-between  ${
+        className={` flex  justify-between   ${
           isMobileOrTablet
-            ? "flex-col gap-4 justify-start"
-            : "flex-row items-center"
+            ? "flex-col gap-4 justify-start pt-10"
+            : "flex-row items-center pt-24"
         }`}
       >
         <div className="flex flex-row">
@@ -29,17 +29,15 @@ const Footer = () => {
           <p className="text-xl font-semibold">Mosb Digital</p>
         </div>
 
-        {isMobileOrTablet && (
+        <button className="border-black border-2 rounded-lg px-2 py-2 cursor-pointer ">
+          GET IN CONTACT
+        </button>
+
+        {/* {isMobileOrTablet && (
           <button className="border-black border-2 rounded-lg px-2 py-2 cursor-pointer mb-4">
             GET IN CONTACT
           </button>
-        )}
-
-        <div>
-          <p className="text-base font-semibold text-black">
-            ©2024 Mosb Digital LLC
-          </p>
-        </div>
+        )} */}
 
         <div className="flex flex-row gap-4">
           <a>
@@ -120,7 +118,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <p
+          {/* <p
             className={`text-2xl font-semibold ${
               isMobileOrTablet ? "text-black" : "text-white"
             } `}
@@ -139,7 +137,13 @@ const Footer = () => {
             >
               Get in contact with us
             </a>
-          </li>
+          </li> */}
+
+          <div className="mt-20">
+            <p className="text-base font-semibold text-black">
+              ©2024 Mosb Digital LLC
+            </p>
+          </div>
         </div>
       </div>
     </div>

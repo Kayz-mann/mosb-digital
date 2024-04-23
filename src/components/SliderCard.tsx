@@ -33,17 +33,23 @@ const SliderCard = ({ image, title, description }: SliderProps) => {
         >
           {description}
         </p>
-        <a>
-          <p className="text-white">Read Now</p>
-        </a>
+        <button
+          onClick={() => {}}
+          style={{
+            fontSize: "12px",
+          }}
+          className="px-4 py-1 items-center text-black font-extralight bg-white mt-2"
+        >
+          Read Now
+        </button>
 
-        <div
+        {/* <div
           style={{ marginTop: "40px", gap: 8 }}
           className={`flex ${
             isMobileOrTablet && "items-center w-full justify-start mb-24"
           }  `}
         >
-          <CustomButton
+           <CustomButton
             bgColor={"bg-[#FAB005]"}
             bgColorHover={"hover:bg-[#FA0505]"}
             textColor={"text-black"}
@@ -51,11 +57,11 @@ const SliderCard = ({ image, title, description }: SliderProps) => {
             buttonText1="Our Services"
             buttonText2="Our Services"
             borderColor="border-red-500" // Change the border color to red
-          />
-        </div>
+          /> 
+        </div> */}
       </div>
 
-      <div style={{ flex: 0.49 }}>
+      <div style={{ flex: 0.49, marginTop: isMobileOrTablet ? "20px" : "0px" }}>
         <Image
           alt="mosb-about"
           src={image}

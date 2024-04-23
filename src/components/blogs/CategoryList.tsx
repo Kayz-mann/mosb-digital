@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import CategoryCard from "./CategoryCard";
 import { categoryData } from "./data";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 
 type GroupedCategories = {
   [category: string]: {
@@ -70,9 +71,18 @@ const CategoryList = () => {
       {Object.entries(groupedCategories).map(
         ([category, { items, scrollPosition }]) => (
           <div key={category}>
-            <p className="text-16 font-bold text-black mb-8 mt-8 ">
-              {category}
-            </p>
+            <Link
+              href={{
+                pathname: "/categories",
+                query: {
+                  category,
+                },
+              }}
+            >
+              <p className="text-16 font-bold text-black mb-8 mt-8 ">
+                {category}
+              </p>
+            </Link>
 
             <div style={{ overflowX: "hidden", position: "relative" }}>
               <div style={{ display: "flex", alignItems: "center" }}>

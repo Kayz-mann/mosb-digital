@@ -12,7 +12,7 @@ const HeaderService = () => {
   const isSmallScreen = useMobileOrTablet(420);
 
   const serviceData = [
-    "Social branding and Management",
+    "Social Media branding and Management",
     "Online Reputation Management",
     "Insight, foresight & trends",
     "Graphics & Motion Design",
@@ -36,6 +36,7 @@ const HeaderService = () => {
           isMobileOrTablet ? "mt-5" : "mt-10"
         } flex flex-wrap justify-center w-full`}
       >
+        <div style={{ marginTop: -10 }} className=" w-full border-gray-500  " />
         {serviceData.map((label, index) => (
           <div
             key={index}
@@ -57,8 +58,24 @@ const HeaderService = () => {
         }}
       >
         {isMobileOrTablet && (
-          <div className="mt-8 px-2 py-2 bg-white rounded-full items-center justify-center cursor-pointer">
-            <p className="text-black">See More</p>
+          <div>
+            <div className="mt-8 px-2 py-1 bg-white rounded-full items-center justify-center cursor-pointer">
+              <p
+                style={{ fontSize: "10px", marginLeft: "12px" }}
+                className="text-black"
+              >
+                See More
+              </p>
+            </div>
+
+            <div className="mt-8 px-2 py-1 bg-white rounded-full items-center justify-center cursor-pointer">
+              <div className="flex items-center">
+                <p style={{ fontSize: "10px" }} className="text-black">
+                  Work with us
+                </p>
+                <ArrowRightIcon height={12} />
+              </div>
+            </div>
           </div>
         )}
         {!isMobileOrTablet && (

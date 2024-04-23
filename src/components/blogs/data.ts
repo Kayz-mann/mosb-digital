@@ -1,3 +1,7 @@
+
+import blogImage from "../../../public/assets/images/blogImage.png";
+
+
 export const categoryData = [
     {
       id: 1,
@@ -6,6 +10,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
   
     {
@@ -15,6 +20,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 3,
@@ -23,6 +29,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 4,
@@ -31,6 +38,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 5,
@@ -39,6 +47,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 6,
@@ -47,6 +56,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 7,
@@ -55,6 +65,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 8,
@@ -63,6 +74,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 9,
@@ -71,6 +83,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 10,
@@ -79,6 +92,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 11,
@@ -87,6 +101,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 12,
@@ -95,6 +110,7 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
     {
       id: 13,
@@ -103,5 +119,6 @@ export const categoryData = [
         "Ford cuts prices on electric Mustang as demand softens for premium EVs",
       description:
         "Ford is cutting prices of its all-electric 2023 Mustang Mach-E by has much as $8,100 as the automaker attempts to rid itself of inventory and compete with Tesla and its increasingly cheaper EVs.",
+        image: blogImage,
     },
   ];

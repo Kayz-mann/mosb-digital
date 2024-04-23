@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 
 const Content = () => {
   const [index, setIndex] = useState(0);
-  const words = ["businesses", "people", "the world forward ."];
+  const words = ["businesses", "people", "the world forward."];
 
   const isMobileOrTablet = useMobileOrTablet(900);
+  const isSmallerPhone = useMobileOrTablet(468);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -67,10 +68,20 @@ const Content = () => {
           >
             <button
               className={`bg-black ${
-                isMobileOrTablet ? "px-2 py-2" : "px-4 py-3"
+                isSmallerPhone
+                  ? "px-1 py-2 rounded-0"
+                  : isMobileOrTablet
+                  ? "px-2 py-2 rounded-0"
+                  : "px-4 py-3"
               } flex justify-between text-white items-center rounded-md`}
             >
-              <p style={{ fontSize: "14px" }} className={`mr-4 `}>
+              <p
+                style={{
+                  fontSize: isSmallerPhone ? "8px" : "14px",
+                  paddingLeft: "4px",
+                }}
+                className={`mr-4 `}
+              >
                 FIND OUT MORE
               </p>
               <ArrowRightIcon height={15} />
@@ -82,12 +93,13 @@ const Content = () => {
       {/* Second half */}
       <div className={`h-1/8 bg-white flex items-center justify-center`}>
         <p
-          className={`font-bold  text-center ${
-            isMobileOrTablet ? "w-10/14 text-2xl" : "w-2/3 text-3xl"
+          className={`font-bold   ${
+            isMobileOrTablet
+              ? "w-10/14 text-2xl text-left pl-6 -pt-20"
+              : "w-2/3 text-3xl text-center"
           } py-16`}
         >
-          We bring the best minds together to create content that move
-          {isMobileOrTablet && <br />}{" "}
+          We bring the best minds together to create content that move{" "}
           <motion.span
             key={index}
             initial={{ y: "100%" }}
