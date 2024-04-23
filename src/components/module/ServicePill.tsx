@@ -21,7 +21,7 @@ const ServicePill = ({ label }: ServicePillProps) => {
         // width: "40%",
       }} // Centering and wrapping
       className={`${
-        isMobileOrTablet ? "border-t-0 border-b-2" : "border-t-2 border-b-2 "
+        isMobileOrTablet ? "border-t-2 border-b-1" : "border-t-2 border-b-1 "
       } border-gray-500 px-6`}
     >
       <p

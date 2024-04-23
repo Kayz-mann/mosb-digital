@@ -29,7 +29,7 @@ const Blog = () => {
         />
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-2" : "px-32"} mt-24`}>
+      <div className={`${isMobileOrTablet ? "px-2 mt-10" : "px-32 mt-24"} `}>
         <h1 className="text-4xl font-bold">Blog</h1>
 
         <BlogBanner

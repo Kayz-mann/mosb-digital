@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
+import Divider from "@mui/material/Divider";
 
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import ServicePill from "./module/ServicePill";
@@ -33,14 +34,15 @@ const HeaderService = () => {
 
       <div
         className={`${
-          isMobileOrTablet ? "mt-5" : "mt-10"
+          isMobileOrTablet ? "mt-2" : "mt-5"
         } flex flex-wrap justify-center w-full`}
       >
-        <div style={{ marginTop: -10 }} className=" w-full border-gray-500  " />
         {serviceData.map((label, index) => (
           <div
             key={index}
-            className={`${isMobileOrTablet ? "w-full" : "w-1/3"} px-2 py-2`}
+            className={`${
+              isMobileOrTablet ? "w-full" : "w-1/3"
+            } px-2 pt-2 pb-2`}
           >
             <ServicePill label={label} />
           </div>
