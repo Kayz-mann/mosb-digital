@@ -46,6 +46,7 @@ const Footer = () => {
               width={40}
               alt="instagram"
               src={instagramImage}
+              loading="lazy"
             />
           </a>
 
@@ -54,18 +55,21 @@ const Footer = () => {
             width={40}
             alt="facebook"
             src={facebookImage}
+            loading="lazy"
           />
           <Image
             className="cursor-pointer"
             width={40}
             alt="linkedIn"
             src={linkedInImage}
+            loading="lazy"
           />
           <Image
             className="cursor-pointer"
             width={40}
             alt="twitter"
             src={twitterImage}
+            loading="lazy"
           />
         </div>
       </div>
@@ -139,7 +143,7 @@ const Footer = () => {
             </a>
           </li> */}
 
-          <div className="mt-20">
+          <div className="mt-14">
             <p className="text-base font-semibold text-black">
               ©2024 Mosb Digital LLC
             </p>

@@ -36,7 +36,7 @@ const Categories = ({
         />
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-2" : "px-32"} `}>
+      <div className={`${isMobileOrTablet ? "px-2" : "px-32"} mt-4 `}>
         <Link
           href="/blog"
           className="flex flex-row gap-1 items-center cursor-pointer"
@@ -49,7 +49,7 @@ const Categories = ({
           <h1 style={{ fontSize: "32px" }}>{searchParams?.category} Blog</h1>
         </div>
 
-        <button className="bg-[#C0BCBC] py-2 px-4 rounded-full">
+        <button className="bg-[#C0BCBC] py-2 px-4 rounded-full mt-8">
           <p
             style={{ fontSize: "14px", width: "80px" }}
             className="text-black text-center font-bold"
@@ -57,7 +57,7 @@ const Categories = ({
             All articles
           </p>
         </button>
-        <div className="mb-96 mt-8  gap-4 z-50">
+        <div className="mb-96 mt-8  gap-12 z-50 flex flex-wrap items-center w-full justify-center">
           {categoryData.map((item, id) => (
             <div key={id}>
               <ArticleCard

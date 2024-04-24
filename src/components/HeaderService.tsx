@@ -40,9 +40,7 @@ const HeaderService = () => {
         {serviceData.map((label, index) => (
           <div
             key={index}
-            className={`${
-              isMobileOrTablet ? "w-full" : "w-1/3"
-            } px-2 pt-2 pb-2`}
+            className={`${isMobileOrTablet ? "w-full" : "w-1/3"} px-4  `}
           >
             <ServicePill label={label} />
           </div>

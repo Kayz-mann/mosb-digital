@@ -70,9 +70,16 @@ const SliderContent = () => {
               } transition-opacity duration-500`}
             >
               <SliderCard
+                id={item.id as unknown as string}
                 image={item.image}
                 title={item.title}
                 description={item.description}
+                href={{
+                  pathname: "/view",
+                  query: {
+                    id: item.id,
+                  },
+                }}
               />
             </div>
           ))}

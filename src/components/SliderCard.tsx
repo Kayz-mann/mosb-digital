@@ -2,14 +2,17 @@ import Image from "next/image";
 import React from "react";
 import CustomButton from "./module/CustomButton";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
+import Link from "next/link";
 
 interface SliderProps {
+  id: string;
   image: any;
   title: string;
   description: string;
+  href: any;
 }
 
-const SliderCard = ({ image, title, description }: SliderProps) => {
+const SliderCard = ({ image, title, description, href }: SliderProps) => {
   const isMobileOrTablet = useMobileOrTablet(900);
   const isSmallScreen = useMobileOrTablet(500);
 
@@ -34,13 +37,12 @@ const SliderCard = ({ image, title, description }: SliderProps) => {
           {description}
         </p>
         <button
-          onClick={() => {}}
           style={{
             fontSize: "12px",
           }}
           className="px-4 py-1 items-center text-black font-extralight bg-white mt-2"
         >
-          Read Now
+          <Link href={href}>Read Now</Link>
         </button>
 
         {/* <div

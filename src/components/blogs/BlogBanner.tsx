@@ -23,10 +23,18 @@ const BlogBanner = ({
   return (
     <div
       className={`bg-white px-4 py-4 rounded-lg w-full flex mt-10 shadow-lg ${
-        isMobileOrTablet ? "flex-col-reverse" : "flex-row justify-between"
+        isMobileOrTablet
+          ? "flex-col-reverse"
+          : "flex-row justify-between items-center"
       }`}
     >
-      <div style={{ flex: 0.4, marginLeft: isMobileOrTablet ? 0 : 20 }}>
+      <div
+        style={{
+          // flex: 0.4,
+          marginLeft: isMobileOrTablet ? 20 : 20,
+          width: isMobileOrTablet ? "90%" : "50%",
+        }}
+      >
         <TruncatedText
           text={title}
           className={`${isMobileOrTablet ? "text-xl" : "text-3xl"} font-bold`}
@@ -64,7 +72,8 @@ const BlogBanner = ({
       </div>
       <div
         style={{
-          flex: 0.5,
+          // flex: 0.5,
+          width: "100%",
           marginTop: isMobileOrTablet ? 40 : 0,
           marginBottom: isMobileOrTablet ? 20 : 0,
           display: "flex",
@@ -74,8 +83,10 @@ const BlogBanner = ({
         <Image
           alt="blog"
           src={image || blogImage}
-          width={isMobileOrTablet ? 403 : 300}
+          width={isMobileOrTablet ? 403 : 600}
           height={300}
+          loading="lazy"
+          quality={75}
         />
       </div>
     </div>
