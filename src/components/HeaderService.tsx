@@ -95,10 +95,10 @@ const HeaderService = () => {
               <button
                 className={`bg-white ${
                   isMdScreen
-                    ? "px-4 py-4"
+                    ? "px-4 py-1"
                     : isMobileOrTablet
-                    ? "px-4 py-2"
-                    : "px-4 py-4"
+                    ? "px-4 py-1"
+                    : "px-4 py-1"
                 } flex justify-between text-black items-center rounded-md`}
                 style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
               >
@@ -122,10 +122,10 @@ const HeaderService = () => {
               <button
                 className={`bg-white ${
                   isMdScreen
-                    ? "px-4 py-4"
+                    ? "px-4 py-1"
                     : isMobileOrTablet
-                    ? "px-4 py-2"
-                    : "px-4 py-4"
+                    ? "px-4 py-1"
+                    : "px-4 py-1"
                 } flex justify-between text-black items-center rounded-md`}
                 style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
               >
