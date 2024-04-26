@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import CustomButton from "./module/CustomButton";
+import Link from "next/link";
 
 const colors = ["#ff0000", "#1E07AA", "#15721F", "#721515", "#9747FF"];
 
@@ -14,6 +15,7 @@ const Header = () => {
   const [index, setIndex] = useState(0);
   const [showBackground, setShowBackground] = useState(true);
   const isMobileOrTablet = useMobileOrTablet(768);
+  const isMd = useMobileOrTablet(1024);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -41,29 +43,33 @@ const Header = () => {
       >
         <Navigation />
         <div className={`${isMobileOrTablet && "px-4"}`}>
-          <div className="justify-left py-8 px-3">
+          <div className="justify-left py-4 px-3">
             <h1
               className={`text-white font-bold text-8xl  uppercase italic line-height-6`}
               style={{
-                fontSize: isMobileOrTablet ? "30px" : "90px",
-                lineHeight: 1.1,
+                fontSize: isMobileOrTablet ? "30px" : isMd ? "60px" : "90px",
+                lineHeight: 1.0,
               }}
             >
               {bodyText}
             </h1>
           </div>
 
-          <div className="py-4 space-x-4 px-4 flex">
-            <CustomButton
-              buttonText1="About us"
-              buttonText2="About us"
-              borderColor="border-black"
-            />
-            <CustomButton
-              buttonText1="Services"
-              buttonText2="Services"
-              borderColor="border-black"
-            />
+          <div className="py-2 space-x-4 px-4 flex">
+            <Link href={"/about"}>
+              <CustomButton
+                buttonText1="About us"
+                buttonText2="About us"
+                borderColor="border-black"
+              />
+            </Link>
+            <Link href={"/services"}>
+              <CustomButton
+                buttonText1="Services"
+                buttonText2="Services"
+                borderColor="border-black"
+              />
+            </Link>
           </div>
         </div>
       </div>

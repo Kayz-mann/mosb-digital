@@ -6,6 +6,7 @@ import CustomButton from "./module/CustomButton";
 import aboutImage from "../../public/assets/images/about.png";
 import Image from "next/image";
 import { ArrowRightIcon } from "@heroicons/react/16/solid";
+import Link from "next/link";
 
 const AboutContent = () => {
   const isMobileOrTablet = useMobileOrTablet(900);
@@ -101,26 +102,28 @@ const AboutContent = () => {
               // width: "80%",
             }}
           >
-            <button
-              className={`bg-black ${
-                isSmallerPhone
-                  ? "px-1 py-2 rounded-0"
-                  : isMobileOrTablet
-                  ? "px-2 py-2 rounded-0"
-                  : "px-4 py-3"
-              } flex justify-between text-white items-center rounded-md`}
-            >
-              <p
-                style={{
-                  fontSize: isSmallerPhone ? "8px" : "14px",
-                  paddingLeft: "4px",
-                }}
-                className={`mr-4 `}
+            <Link href={"/about"}>
+              <button
+                className={`bg-black ${
+                  isSmallerPhone
+                    ? "px-1 py-2 rounded-0"
+                    : isMobileOrTablet
+                    ? "px-2 py-2 rounded-0"
+                    : "px-4 py-3"
+                } flex justify-between text-white items-center rounded-md`}
               >
-                FIND OUT MORE
-              </p>
-              <ArrowRightIcon height={15} />
-            </button>
+                <p
+                  style={{
+                    fontSize: isSmallerPhone ? "8px" : "14px",
+                    paddingLeft: "4px",
+                  }}
+                  className={`mr-4 `}
+                >
+                  FIND OUT MORE
+                </p>
+                <ArrowRightIcon height={15} />
+              </button>
+            </Link>
           </div>
         )}
       </div>

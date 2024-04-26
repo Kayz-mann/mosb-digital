@@ -5,6 +5,7 @@ import Divider from "@mui/material/Divider";
 
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import ServicePill from "./module/ServicePill";
+import Link from "next/link";
 
 const HeaderService = () => {
   const ourServices = `Our Services`;
@@ -59,14 +60,16 @@ const HeaderService = () => {
       >
         {isMobileOrTablet && (
           <div>
-            <div className="mt-8 px-2 py-1 bg-white rounded-full items-center justify-center cursor-pointer">
-              <p
-                style={{ fontSize: "10px", marginLeft: "12px" }}
-                className="text-black"
-              >
-                See More
-              </p>
-            </div>
+            <Link href="/services">
+              <div className="mt-8 px-2 py-1 bg-white rounded-full items-center justify-center cursor-pointer">
+                <p
+                  style={{ fontSize: "10px", marginLeft: "12px" }}
+                  className="text-black"
+                >
+                  See More
+                </p>
+              </div>
+            </Link>
 
             <div className="mt-8 px-2 py-1 bg-white rounded-full items-center justify-center cursor-pointer">
               <div className="flex items-center">
@@ -119,19 +122,21 @@ const HeaderService = () => {
               >
                 Work with us
               </p>
-              <button
-                className={`bg-white ${
-                  isMdScreen
-                    ? "px-4 py-1"
-                    : isMobileOrTablet
-                    ? "px-4 py-1"
-                    : "px-4 py-1"
-                } flex justify-between text-black items-center rounded-md`}
-                style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
-              >
-                <p className={`mr-2`}>FIND OUT MORE</p>
-                <ArrowRightIcon height={15} />
-              </button>
+              <Link href={"/services"}>
+                <button
+                  className={`bg-white ${
+                    isMdScreen
+                      ? "px-4 py-1"
+                      : isMobileOrTablet
+                      ? "px-4 py-1"
+                      : "px-4 py-1"
+                  } flex justify-between text-black items-center rounded-md`}
+                  style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
+                >
+                  <p className={`mr-2`}>FIND OUT MORE</p>
+                  <ArrowRightIcon height={15} />
+                </button>
+              </Link>
             </div>
           </>
         )}

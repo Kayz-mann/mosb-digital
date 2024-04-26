@@ -20,14 +20,17 @@ const ImageAdContent = () => {
         </p>
 
         <p
-          style={{ fontSize: isMobileOrTablet ? "14px" : "24px" }}
+          style={{
+            fontSize: isMobileOrTablet ? "14px" : "24px",
+            lineHeight: 1.1,
+          }}
           className="text-white py-2 font-light"
         >
           It takes a bold move to stay ahead of the curve and build a
           spectacular brand
         </p>
 
-        <div className="flex items-center justify-center pb-8">
+        <div className="flex items-center justify-center pt-2 pb-8">
           <div className="rounded-full border border-[#FAB005] px-4 py-1 mx-2 cursor-pointer">
             <p style={{ fontSize: "12px" }} className="text-white">
               Let's Talk

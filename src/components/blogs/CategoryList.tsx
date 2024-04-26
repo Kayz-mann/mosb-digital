@@ -120,11 +120,20 @@ const CategoryList = () => {
                       style={{ flex: "0 0 auto", margin: "0 8px" }}
                       className="mr-4 mb-4"
                     >
-                      <CategoryCard
-                        title={item.title}
-                        description={item.description}
-                        onClick={() => {}}
-                      />
+                      <Link
+                        href={{
+                          pathname: "/view",
+                          query: {
+                            id: item.id,
+                          },
+                        }}
+                      >
+                        <CategoryCard
+                          title={item.title}
+                          description={item.description}
+                          onClick={() => {}}
+                        />
+                      </Link>
                     </div>
                   ))}
                 </div>

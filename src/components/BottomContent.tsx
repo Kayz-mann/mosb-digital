@@ -11,8 +11,9 @@ const BottomContent = ({ bgColor }: BottomProps) => {
   const [index, setIndex] = useState(0);
   const words = ["businesses", "people", "the world forward."];
 
+  const isMd = useMobileOrTablet(768);
   const isMobileOrTablet = useMobileOrTablet(900);
-  const isSmallerPhone = useMobileOrTablet(468);
+  const isSmallerPhone = useMobileOrTablet(340);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,16 +25,19 @@ const BottomContent = ({ bgColor }: BottomProps) => {
   }, []);
   return (
     <div
-      className={`h-1/8 ${
-        bgColor || "bg-white"
-      } flex items-center justify-center`}
+      className={`h-1/8 ${bgColor || "bg-white"} ${
+        isMd ? "items-start justify-start" : "flex items-center justify-center "
+      }`}
     >
       <p
         className={`font-bold   ${
           isMobileOrTablet
-            ? "w-10/14 text-2xl text-left pl-6 -pt-20"
+            ? "w-10/14 text-xl text-left pl-6 -pt-20"
+            : isMd
+            ? "text-left"
             : "w-2/3 text-3xl text-center"
-        } py-16`}
+        } py-10`}
+        style={{ width: isMd ? "80%" : "100%" }}
       >
         We bring the best minds together to create content that move{" "}
         <motion.span

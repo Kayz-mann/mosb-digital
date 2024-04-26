@@ -52,6 +52,7 @@ const Service = ({
       </div>
       <HeaderService />
       <TopContent
+        px="px-44"
         buttonText="ABOUT US"
         href={"/"}
         width={isMobileOrTablet ? "100%" : "65%"}

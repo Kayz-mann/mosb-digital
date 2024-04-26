@@ -7,8 +7,8 @@ import sliderImage from "../../public/assets/images/slider-image.png";
 import SliderCard from "./SliderCard";
 
 const SliderContent = () => {
+  const isMd = useMobileOrTablet(1024);
   const isMobileOrTablet = useMobileOrTablet(900);
-  const isSmallScreen = useMobileOrTablet(500);
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -56,8 +56,8 @@ const SliderContent = () => {
 
   return (
     <div
-      className={`bg-black h-screen/2 justify-between w-full flex pb-10 py-8 ${
-        isMobileOrTablet ? "px-6 flex-col" : "px-40"
+      className={`bg-black h-screen/2 justify-between w-full flex pb-10 py-8 gap-2 ${
+        isMobileOrTablet ? "px-6 flex-col" : isMd ? "px-24" : "px-48 "
       }`}
     >
       <div className="w-full pb-10 py-8">

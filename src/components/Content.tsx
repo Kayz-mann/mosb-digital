@@ -7,9 +7,14 @@ import TopContent from "./TopContent";
 import BottomContent from "./BottomContent";
 
 const Content = () => {
+  const isMd = useMobileOrTablet(1024);
   return (
     <div>
-      <TopContent href={"/"} />
+      <TopContent
+        width={"100%"}
+        px={isMd ? `px-28` : `px-44`}
+        href={"/about"}
+      />
       <BottomContent />
     </div>
   );

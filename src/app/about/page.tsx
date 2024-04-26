@@ -48,6 +48,7 @@ const About = ({
         className="items-center justify-center"
       >
         <TopContent
+          px="px-44"
           bgColor="bg-black"
           color="text-white"
           noButton
@@ -62,6 +63,7 @@ const About = ({
         />
 
         <TopContent
+          px="px-44"
           bgColor="bg-[#D9D9D9]"
           color="text-black"
           noButton
@@ -78,6 +80,7 @@ const About = ({
         />
 
         <TopContent
+          px="px-44"
           bgColor="bg-black"
           color="text-white"
           noButton

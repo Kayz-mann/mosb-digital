@@ -13,6 +13,7 @@ interface SliderProps {
 }
 
 const SliderCard = ({ image, title, description, href }: SliderProps) => {
+  const isMd = useMobileOrTablet(1024);
   const isMobileOrTablet = useMobileOrTablet(900);
   const isSmallScreen = useMobileOrTablet(500);
 
@@ -20,7 +21,10 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
     <div className={`${isMobileOrTablet ? "flex flex-col" : "flex flex-row"} `}>
       <div style={{ flex: 0.48 }}>
         <p
-          style={{ fontSize: isSmallScreen ? "20px" : "32px" }}
+          style={{
+            fontSize: isSmallScreen ? "20px" : isMd ? "24px" : "32px",
+            lineHeight: 1.2,
+          }}
           className="text-32 font-bold text-white"
         >
           {title}
@@ -40,7 +44,7 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
           style={{
             fontSize: "12px",
           }}
-          className="px-4 py-1 items-center text-black font-extralight bg-white mt-2"
+          className="px-4 py-1 items-center text-black font-extralight bg-white mt-4"
         >
           <Link href={href}>Read Now</Link>
         </button>
@@ -63,7 +67,13 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
         </div> */}
       </div>
 
-      <div style={{ flex: 0.49, marginTop: isMobileOrTablet ? "20px" : "0px" }}>
+      <div
+        style={{
+          flex: 0.49,
+          marginTop: isMobileOrTablet ? "20px" : "0px",
+          marginLeft: isMobileOrTablet ? "0px" : "14px",
+        }}
+      >
         <Image
           alt="mosb-about"
           src={image}

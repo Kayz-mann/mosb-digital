@@ -12,6 +12,7 @@ interface TopContentProps {
   noButton?: boolean;
   color?: string;
   bgColor?: string;
+  px?: string;
 }
 
 const TopContent = ({
@@ -23,10 +24,12 @@ const TopContent = ({
   noButton,
   color,
   bgColor,
+  px,
 }: TopContentProps) => {
   const [index, setIndex] = useState(0);
   const words = ["businesses", "people", "the world forward."];
 
+  const isTablet = useMobileOrTablet(1024);
   const isMobileOrTablet = useMobileOrTablet(900);
   const isSmallerPhone = useMobileOrTablet(468);
 
@@ -43,28 +46,33 @@ const TopContent = ({
       className={`h-1/8 ${bgColor || "bg-gray-300"} w-full flex py-8    ${
         isMobileOrTablet
           ? "px-6 flex-col h-1/8 text-left justify-start"
-          : "justify-center px-28 items-center"
+          : `justify-center ${px || "px-22"} items-center`
       }`}
     >
       <div
         className={`${isMobileOrTablet ? "w-screen/2 mb-2" : "w-2/3 mb-10"}`}
-        style={{ flex: isMobileOrTablet ? 1.0 : 0.6 }}
+        style={{
+          flex: isMobileOrTablet ? 1.0 : 0.6,
+          justifyContent: "flex-start",
+        }}
       >
         {/* Content for the first half */}
         <p
-          style={{ lineHeight: 1.2, width: width }}
+          style={{ lineHeight: 1.0, width: width }}
           className={`${color || "text-black-100"} ${
             isMobileOrTablet
-              ? "text-xl justify-left text-left font-bold"
-              : "text-4xl"
+              ? "text-xl justify-left text-left font-semibold"
+              : isTablet
+              ? "text-2xl"
+              : "text-3xl"
           }`}
         >
           {leftContent || `We Are Atlanta’s Leading Content Management Agency.`}
         </p>
       </div>
       <div
-        style={{ flex: isMobileOrTablet ? 1.0 : 0.6 }}
-        className={`flex flex-col ${"items-start"} text-left items-start justify-start`}
+        style={{ flex: isMobileOrTablet ? 1.0 : 0.4 }}
+        className={`flex flex-col text-left items-start justify-end`}
       >
         <p
           className={`${color || "text-black-100"} mb-4 text-base ${
@@ -79,7 +87,7 @@ const TopContent = ({
           <Link
             href={href}
             style={{
-              marginTop: isMobileOrTablet ? 8 : 0,
+              marginTop: isMobileOrTablet ? 0 : 0,
               alignItems: "left",
               justifyContent: "flex-start",
               flex: 1.0,
