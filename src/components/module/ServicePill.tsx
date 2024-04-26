@@ -29,7 +29,7 @@ const ServicePill = ({ label }: ServicePillProps) => {
           paddingTop: 15,
           paddingBottom: 15,
           maxWidth: "100%",
-          fontSize: isMdScreen ? "14px" : "16px",
+          fontSize: isMdScreen ? "14px" : "14px",
           fontWeight: isMdScreen ? 200 : "normal",
         }}
         className="text-white"

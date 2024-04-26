@@ -91,7 +91,7 @@ const HeaderService = () => {
             >
               <p
                 className="text-white mb-2"
-                style={{ fontSize: isMobileOrTablet ? "18px" : "24px" }}
+                style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
               >
                 Got a project?
               </p>
@@ -101,9 +101,9 @@ const HeaderService = () => {
                     ? "px-4 py-1"
                     : isMobileOrTablet
                     ? "px-4 py-1"
-                    : "px-4 py-1"
+                    : "px-4 py-2"
                 } flex justify-between text-black items-center rounded-md`}
-                style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
+                style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
               >
                 <p className={`mr-2`}>FIND OUT MORE</p>
                 <ArrowRightIcon height={15} />
@@ -118,7 +118,7 @@ const HeaderService = () => {
             >
               <p
                 className="text-white mb-2"
-                style={{ fontSize: isMobileOrTablet ? "18px" : "24px" }}
+                style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
               >
                 Work with us
               </p>
@@ -129,9 +129,9 @@ const HeaderService = () => {
                       ? "px-4 py-1"
                       : isMobileOrTablet
                       ? "px-4 py-1"
-                      : "px-4 py-1"
+                      : "px-4 py-2"
                   } flex justify-between text-black items-center rounded-md`}
-                  style={{ fontSize: isMobileOrTablet ? "14px" : "16px" }}
+                  style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
                 >
                   <p className={`mr-2`}>FIND OUT MORE</p>
                   <ArrowRightIcon height={15} />

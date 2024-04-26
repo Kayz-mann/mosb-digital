@@ -4,6 +4,7 @@ import CategoryCard from "./CategoryCard";
 import { categoryData } from "./data";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
+import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 
 type GroupedCategories = {
   [category: string]: {
@@ -21,6 +22,7 @@ type CategoryItem = {
 };
 
 const CategoryList = () => {
+  const isMobile = useMobileOrTablet(768);
   const [groupedCategories, setGroupedCategories] = useState<GroupedCategories>(
     () => {
       const initialGroupedCategories: GroupedCategories = {};
@@ -86,26 +88,28 @@ const CategoryList = () => {
 
             <div style={{ overflowX: "hidden", position: "relative" }}>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <button
-                  onClick={() => handleScroll(-100, category)}
-                  className="bg-black rounded-full p-4 items-center justify-center text-white"
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    lineHeight: "32px",
-                    position: "absolute",
-                    left: 0,
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    marginTop: "2px",
-                  }}
-                >
-                  <ChevronLeftIcon
-                    color="white"
-                    height={24}
-                    style={{ marginTop: -12, marginLeft: -12 }}
-                  />
-                </button>
+                {!isMobile && (
+                  <button
+                    onClick={() => handleScroll(-100, category)}
+                    className="bg-black rounded-full p-4 items-center justify-center text-white"
+                    style={{
+                      width: "32px",
+                      height: "32px",
+                      lineHeight: "32px",
+                      position: "absolute",
+                      left: 0,
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      marginTop: "2px",
+                    }}
+                  >
+                    <ChevronLeftIcon
+                      color="white"
+                      height={24}
+                      style={{ marginTop: -12, marginLeft: -12 }}
+                    />
+                  </button>
+                )}
                 <div
                   ref={containerRefs.current[category]}
                   style={{
@@ -137,26 +141,28 @@ const CategoryList = () => {
                     </div>
                   ))}
                 </div>
-                <button
-                  onClick={() => handleScroll(+100, category)}
-                  className="bg-black rounded-full p-4 items-center justify-center text-white"
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    lineHeight: "32px",
-                    position: "absolute",
-                    right: 0,
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    marginTop: "2px",
-                  }}
-                >
-                  <ChevronRightIcon
-                    color="white"
-                    height={24}
-                    style={{ marginTop: -12, marginLeft: -12 }}
-                  />
-                </button>
+                {!isMobile && (
+                  <button
+                    onClick={() => handleScroll(+100, category)}
+                    className="bg-black rounded-full p-4 items-center justify-center text-white"
+                    style={{
+                      width: "32px",
+                      height: "32px",
+                      lineHeight: "32px",
+                      position: "absolute",
+                      right: 0,
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      marginTop: "2px",
+                    }}
+                  >
+                    <ChevronRightIcon
+                      color="white"
+                      height={24}
+                      style={{ marginTop: -12, marginLeft: -12 }}
+                    />
+                  </button>
+                )}
               </div>
             </div>
             {/* Display dots indicating number of items */}
