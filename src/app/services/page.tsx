@@ -36,6 +36,7 @@ const Service = ({
 
       <div className={`${isMobileOrTablet ? "px-6" : "px-32"} mt-4 `}>
         <p
+          style={{ lineHeight: 1.2 }}
           className={` font-normal text-black mb-10 ${
             isMobileOrTablet
               ? "justify-start items-start text-left text-1xl"

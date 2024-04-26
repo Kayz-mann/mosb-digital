@@ -5,11 +5,21 @@ import { motion } from "framer-motion";
 
 interface BottomProps {
   bgColor?: string;
+  staticText?: string;
+  alternateWords?: string[];
 }
 
-const BottomContent = ({ bgColor }: BottomProps) => {
+const BottomContent = ({
+  bgColor,
+  alternateWords,
+  staticText,
+}: BottomProps) => {
   const [index, setIndex] = useState(0);
-  const words = ["businesses", "people", "the world forward."];
+  const words = alternateWords ?? [
+    "businesses",
+    "people",
+    "the world forward.",
+  ];
 
   const isMd = useMobileOrTablet(768);
   const isMobileOrTablet = useMobileOrTablet(900);
@@ -37,9 +47,10 @@ const BottomContent = ({ bgColor }: BottomProps) => {
             ? "text-left"
             : "w-2/3 text-3xl text-center"
         } py-10`}
-        style={{ width: isMd ? "80%" : "100%" }}
+        style={{ width: isMd ? "80%" : "75%" }}
       >
-        We bring the best minds together to create content that move{" "}
+        {staticText ||
+          " We bring the best minds together to create content that move"}
         <motion.span
           key={index}
           initial={{ y: "100%" }}

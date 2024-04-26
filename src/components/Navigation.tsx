@@ -84,7 +84,7 @@ const Navigation = ({ bgColor }: NavProps) => {
 
       {/* contact button */}
       {!isMobileOrTablet && (
-        <div className="relative">
+        <Link href={"/contact"} className="relative">
           <div
             className="bg-black px-12 py-6 uppercase rounded-full cursor-pointer transition duration-100 hover:bg-white hover:border-2 border-black text-white hover:text-black overflow-hidden relative"
             onMouseEnter={() => setIsHovered(true)}
@@ -130,7 +130,7 @@ const Navigation = ({ bgColor }: NavProps) => {
               height: 48,
             }}
           /> */}
-        </div>
+        </Link>
       )}
 
       {isMobileOrTablet && (
@@ -157,12 +157,12 @@ const Navigation = ({ bgColor }: NavProps) => {
               </a>
             </div>
           ))}
-          <a
+          <Link
             href={"/contact"}
             className="text-gray-600 hover:text-black transition duration-300 uppercase text-xl font-bold mb-4"
           >
             Contact Us
-          </a>
+          </Link>
         </nav>
       )}
     </div>
