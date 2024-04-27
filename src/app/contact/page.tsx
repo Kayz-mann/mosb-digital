@@ -7,7 +7,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
 import ContactLine from "@/components/ContactLine";
-import ListWithButton from "@/components/module/ListWithButton";
+import ListWithButton, { jobData } from "@/components/module/ListWithButton";
 
 const Contact = ({
   searchParams,
@@ -78,7 +78,9 @@ const Contact = ({
         </h2>
 
         <div className="mt-10">
-          <ListWithButton label={"Social Media"} />
+          {jobData.map((item, index) => (
+            <ListWithButton key={index} label={item} />
+          ))}
         </div>
       </div>
 
