@@ -6,9 +6,8 @@ import useMobileOrTablet from "../hooks/useMobileOrTablet";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
-import TopContent from "@/components/TopContent";
-import BottomContent from "@/components/BottomContent";
 import ContactLine from "@/components/ContactLine";
+import ListWithButton from "@/components/module/ListWithButton";
 
 const Contact = ({
   searchParams,
@@ -23,7 +22,9 @@ const Contact = ({
 
   return (
     <div
-      className={`h-full w-full bg-[#000] 
+      className={`h-full w-full ${
+        isMobileOrTablet ? "bg-[#fff] " : "bg-[#000] "
+      }
     `}
     >
       <div
@@ -35,99 +36,50 @@ const Contact = ({
           bgColor={`${isMobileOrTablet ? "bg-white" : "bg-[#FAB005]"}`}
         />
 
-        {/* <div
-          className="flex flex-row justify-between mt-10  "
-          style={{ width: "80%" }}
-        >
-          <p
-            style={{ lineHeight: 1.0 }}
-            className={`${"text-white flex flex-row"} ${
+        <div className={`${isMobileOrTablet ? "px-4" : "px-4"}`}>
+          <ContactLine
+            country={"Atlanta"}
+            firstTitle={"Find Us"}
+            secondTitle="Contact"
+            phoneAddress={"Email: Info@mosbdigital.com\nTel: (1) 404-551-7978"}
+            address={"30 Satelite Blvd\nDurluth, GA. 30096"}
+          />
+
+          <div
+            className={`flex flex-row justify-between  border-b-2 ${
               isMobileOrTablet
-                ? "text-xl justify-left text-left font-semibold"
-                : isTablet
-                ? "text-2xl"
-                : "text-3xl"
-            }`}
-          >
-            Atlanta
-          </p>
+                ? "border-black mt-10 mb-10"
+                : "border-white mt-10"
+            } `}
+          />
 
-          <ul className="space-y-1">
-            <li>
-              <a
-                href="#"
-                className={`${
-                  isMobileOrTablet
-                    ? " text-black hover:text-black"
-                    : "text-white hover:text-white"
-                } cursor-pointer underline hover:no-underline `}
-              >
-                Find Us
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className={`${
-                  isMobileOrTablet
-                    ? " text-black hover:text-black"
-                    : "text-white hover:text-white text-xs"
-                }  `}
-              >
-                30 Satelite Blvd
-                <br />
-                Durluth, GA. 30096
-              </a>
-            </li>
-          </ul>
+          <div className={`${isMobileOrTablet ? " mb-10" : ""}`}>
+            <ContactLine
+              country={"Lagos"}
+              firstTitle={"Find Us"}
+              secondTitle="Contact"
+              phoneAddress={
+                "Email: Info@mosbdigital.com\nTel: +234 810 9333 263"
+              }
+              address={"75b Ogunnusi Rd,\nIsheri 101233"}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="w-full bg-[#D9D9D9] h-screen/2 py-4 px-10">
+        <h2
+          className={`text-center ${
+            isMobileOrTablet ? "text-xl" : "text-4xl"
+          } font-normal`}
+        >
+          Our door is always open for creative
+          <br />
+          minds to join our team.
+        </h2>
 
-          <ul className="space-y-1">
-            <li>
-              <a
-                href="#"
-                className={`${
-                  isMobileOrTablet
-                    ? " text-black hover:text-black"
-                    : "text-white hover:text-white"
-                } cursor-pointer underline hover:no-underline `}
-              >
-                Contact
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className={`${
-                  isMobileOrTablet
-                    ? " text-black hover:text-black"
-                    : "text-white hover:text-white text-xs"
-                }  `}
-              >
-                Email: Info@mosbdigital.com
-                <br />
-                Tel: (1) 404-551-7978
-              </a>
-            </li>
-          </ul>
-        </div> */}
-
-        <ContactLine
-          country={"Atlanta"}
-          firstTitle={"Find Us"}
-          secondTitle="Contact"
-          phoneAddress={"Email: Info@mosbdigital.com\nTel: (1) 404-551-7978"}
-          address={"30 Satelite Blvd\nDurluth, GA. 30096"}
-        />
-
-        <div className="flex flex-row justify-between mt-10 border-b-2 border-white " />
-
-        <ContactLine
-          country={"Lagos"}
-          firstTitle={"Find Us"}
-          secondTitle="Contact"
-          phoneAddress={"Email: Info@mosbdigital.com\nTel: +234 810 9333 263"}
-          address={"75b Ogunnusi Rd,\nIsheri 101233"}
-        />
+        <div className="mt-10">
+          <ListWithButton label={"Social Media"} />
+        </div>
       </div>
 
       <Footer />

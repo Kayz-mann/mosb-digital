@@ -25,42 +25,46 @@ const ContactLine = ({
 
   return (
     <div
-      className="flex flex-row justify-between mt-10  "
+      className={`flex ${
+        isMobileOrTablet ? "flex-col" : "flex-row justify-between"
+      } mt-10  `}
       style={{ width: "80%" }}
     >
       <p
         style={{ lineHeight: 1.0 }}
-        className={`${"text-white flex flex-row"} ${
+        className={`${"flex flex-row"} ${
           isMobileOrTablet
-            ? "text-xl justify-left text-left font-semibold"
+            ? " text-black text-xl justify-left text-left font-semibold"
             : isTablet
-            ? "text-2xl"
-            : "text-3xl"
+            ? "text-2xl text-white text"
+            : "text-3xl text-white "
         }`}
       >
         {country}
       </p>
 
       <ul className="space-y-1">
-        <li>
-          <a
-            href="#"
-            className={`${
-              isMobileOrTablet
-                ? " text-black hover:text-black"
-                : "text-white hover:text-white"
-            } cursor-pointer underline hover:no-underline `}
-          >
-            {firstTitle}
-          </a>
-        </li>
-        <li>
+        {!isMobileOrTablet && (
+          <li>
+            <a
+              href="#"
+              className={`${
+                isMobileOrTablet
+                  ? " text-black hover:text-black"
+                  : "text-white hover:text-white"
+              } cursor-pointer underline hover:no-underline `}
+            >
+              {firstTitle}
+            </a>
+          </li>
+        )}
+        <li className={`${isMobileOrTablet ? "mt-2" : "mt-0"}`}>
           {lines.map((line, index) => (
             <p
               key={index}
               className={`${
                 isMobileOrTablet
-                  ? " text-black hover:text-black"
+                  ? " text-black hover:text-black text-sm font-light"
                   : "text-white hover:text-white text-xs"
               }  `}
             >
@@ -70,26 +74,28 @@ const ContactLine = ({
         </li>
       </ul>
 
-      <ul className="space-y-1">
-        <li>
-          <a
-            href="#"
-            className={`${
-              isMobileOrTablet
-                ? " text-black hover:text-black"
-                : "text-white hover:text-white"
-            } cursor-pointer underline hover:no-underline `}
-          >
-            {secondTitle}
-          </a>
-        </li>
+      <ul>
+        {!isMobileOrTablet && (
+          <li>
+            <a
+              href="#"
+              className={`${
+                isMobileOrTablet
+                  ? " text-black hover:text-black text-sm"
+                  : "text-white hover:text-white"
+              } cursor-pointer underline hover:no-underline `}
+            >
+              {secondTitle}
+            </a>
+          </li>
+        )}
         <li>
           {secondLine.map((line, index) => (
             <p
               key={index}
               className={`${
                 isMobileOrTablet
-                  ? " text-black hover:text-black"
+                  ? " text-black hover:text-black text-sm font-light"
                   : "text-white hover:text-white text-xs"
               }  `}
             >
