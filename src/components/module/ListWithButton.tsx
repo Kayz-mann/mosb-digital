@@ -39,7 +39,7 @@ const ListWithButton = ({ label }: ListProps) => {
       >
         {label}
       </p>
-      <Link href={"/"}>
+      <Link href={"/team"}>
         <button>
           <p
             className={`${
