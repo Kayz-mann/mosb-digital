@@ -1,6 +1,6 @@
 "use client";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
-import React, { useState } from "react";
+import React, { ButtonHTMLAttributes, useState } from "react";
 
 interface ButtonProps {
   buttonText1?: string;
@@ -12,6 +12,8 @@ interface ButtonProps {
   borderColor?: string;
   borderColorHover?: string;
   onClick?: () => void;
+  type?: any;
+  disabled?: boolean;
 }
 
 const CustomButton = ({
@@ -22,7 +24,9 @@ const CustomButton = ({
   textColor,
   textColorHover,
   borderColor,
+  disabled,
   borderColorHover,
+  type,
   onClick,
 }: ButtonProps) => {
   const [index, setIndex] = useState(0);
@@ -31,6 +35,8 @@ const CustomButton = ({
 
   return (
     <button
+      disabled={disabled}
+      type={type ?? "button"}
       onClick={onClick}
       className={`
       ${bgColor || "bg-black"}

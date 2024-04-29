@@ -1,13 +1,14 @@
 "use client";
-import React, { useCallback } from "react";
+import React from "react";
 import * as Yup from "yup";
-
-import { Formik, Form, Field, useFormikContext } from "formik";
+import { Formik, Form, Field } from "formik";
 import useMobileOrTablet from "../hooks/useMobileOrTablet";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import InputField from "@/components/module/Input";
 import AttachOptions from "@/components/AttachOptions";
+import CustomButton from "@/components/module/CustomButton";
+import { emailSender } from "../helper/emailSender";
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("First name is required"),
@@ -15,18 +16,13 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
   phone: Yup.string().required("Phone number is required"),
   location: Yup.string().required("Location is required"),
+  website: Yup.string(),
+  instagram: Yup.string(),
+  linkedIn: Yup.string(),
 });
 
-const Team = ({
-  searchParams,
-}: {
-  searchParams: {
-    id: string;
-  };
-}) => {
-  const isTablet = useMobileOrTablet(1024);
+const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
   const isMobileOrTablet = useMobileOrTablet(900);
-  console.log(searchParams.id);
 
   const initialValues = {
     firstName: "",
@@ -34,10 +30,34 @@ const Team = ({
     email: "",
     phone: "",
     location: "",
+    website: "",
+    instagram: "",
+    linkedIn: "",
   };
 
-  const handleSubmit = (values: any) => {
-    console.log(values); // Handle form submission here
+  const handleSubmit = async (values: any, { setSubmitting }: any) => {
+    try {
+      const response = await fetch("/api/sendEmail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        console.log("Email sent successfully");
+        // Reset form values if needed
+      } else {
+        console.error("Error sending email:", response.statusText);
+        // Handle error
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      // Handle error
+    } finally {
+      setSubmitting(false); // Set submitting to false after form submission
+    }
   };
 
   return (
@@ -52,14 +72,14 @@ const Team = ({
         />
 
         <div className={`${isMobileOrTablet ? "px-4" : "px-4"}`}>
-          <div className="w-[65%]">
+          <div className={`${isMobileOrTablet ? "w-[100%]" : "w-[65%]"}`}>
             <p className="text-3xl text-gray-600 font-medium mt-8">
               Join the team
             </p>
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit} // Using the handleSubmit function
             >
               {({ errors, touched }) => (
                 <Form>
@@ -114,9 +134,55 @@ const Team = ({
                       <div className="text-red-500">{errors.location}</div>
                     )}
 
-                    <AttachOptions />
+                    <div className="my-8">
+                      <div className="flex flex-row gap-4">
+                        <p className="text-md text-black font-medium">
+                          Resume /CV*
+                        </p>
+                        <AttachOptions attachmentType={"cv"} />
+                      </div>
 
-                    <button type="submit">Submit</button>
+                      <div className="flex flex-row gap-4 mt-4">
+                        <p className="text-md text-black font-medium">
+                          Cover Letter
+                        </p>
+                        <AttachOptions attachmentType={"letter"} />
+                      </div>
+                    </div>
+
+                    <div
+                      className={`flex flex-row justify-between  border-b border-black mt-10 mb-10`}
+                    />
+
+                    <div>
+                      <Field
+                        name="website"
+                        label="WEBSITE"
+                        placeholder=""
+                        component={InputField}
+                      />
+
+                      <Field
+                        name="instagram"
+                        label="INSTAGRAM"
+                        placeholder=""
+                        component={InputField}
+                      />
+
+                      <Field
+                        name="linkedIn"
+                        label="LINKEDIN"
+                        placeholder=""
+                        component={InputField}
+                      />
+                    </div>
+
+                    <CustomButton
+                      type="submit"
+                      buttonText1="Submit"
+                      buttonText2="Submit"
+                      borderColor="border-black"
+                    />
                   </div>
                 </Form>
               )}

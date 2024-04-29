@@ -39,7 +39,14 @@ const ListWithButton = ({ label }: ListProps) => {
       >
         {label}
       </p>
-      <Link href={"/team"}>
+      <Link
+        href={{
+          pathname: "/team",
+          query: {
+            jobType: label,
+          },
+        }}
+      >
         <button>
           <p
             className={`${

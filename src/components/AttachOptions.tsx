@@ -1,75 +1,87 @@
 import { useFormikContext } from "formik";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import useDrivePicker from "react-google-drive-picker";
 
-const AttachOptions = () => {
+const AttachOptions = ({
+  attachmentType,
+}: {
+  attachmentType: "cv" | "letter";
+}) => {
   const { setFieldValue } = useFormikContext();
   const [openPicker, authResponse] = useDrivePicker();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null); // State to store the selected file
+  const [googleDriveSelected, setGoogleDriveSelected] =
+    useState<boolean>(false); // State to track if Google Drive file is selected
 
-  //   const handleDropboxUpload = async () => {
-  //     const dropbox = new Dropbox({ accessToken: "YOUR_ACCESS_TOKEN" });
-  //     try {
-  //       const response = await dropbox.filesListFolder({ path: "" });
-  //       console.log(response.result.entries);
-  //       // Process the list of files/folders and allow the user to select a file
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+  console.log(googleDriveSelected);
 
   const handleGoogleDriveUpload = () => {
-    openPicker({
-      clientId: `${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`,
-      developerKey: `key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`,
-      viewId: "DOCS",
-      // token: token, // pass oauth token in case you already have one
-      showUploadView: true,
-      showUploadFolders: true,
-      supportDrives: true,
-      multiselect: true,
-      // customViews: customViewsArray, // custom view
-      callbackFunction: (data) => {
-        if (data.action === "cancel") {
-          console.log("User clicked cancel/close button");
-        }
-        console.log(data);
-      },
-    });
+    // openPicker({
+    //   clientId: `${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`,
+    //   developerKey: `key=${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`,
+    //   viewId: "DOCS",
+    //   showUploadView: true,
+    //   showUploadFolders: true,
+    //   supportDrives: true,
+    //   multiselect: false, // Allow only one file to be selected
+    //   callbackFunction: (data) => {
+    //     if (data.action === "cancel") {
+    //       console.log("User clicked cancel/close button");
+    //     } else if (data.action === "picked") {
+    //       const selectedDriveFile = data.docsSelected[0]; // Get the first selected file
+    //       setSelectedFile(selectedDriveFile);
+    //       setGoogleDriveSelected(true); // Set Google Drive file selected flag
+    //       setFieldValue(attachmentType, selectedDriveFile); // Set formik field value
+    //     }
+    //   },
+    // });
   };
 
-  const handleManualInput = () => {
-    // Implement manual input functionality
+  const handleDocumentPicker = () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = ".pdf,.doc,.docx,.txt,.rtf";
+    fileInput.style.display = "none";
+    fileInput.onchange = (event) => {
+      const files = (event.target as HTMLInputElement).files;
+      if (files && files.length > 0) {
+        setSelectedFile(files[0]); // Set the selected file
+        setGoogleDriveSelected(false); // Clear Google Drive selected flag
+        setFieldValue(attachmentType, files[0]); // Set formik field value
+      }
+    };
+    fileInput.click();
   };
-
-  const onSuccess = useCallback((files: any) => {
-    // Handle successful file selection
-    console.log("Files selected:", files);
-  }, []);
-
-  const onCancel = useCallback(() => {
-    // Handle cancellation
-    console.log("File selection cancelled");
-  }, []);
 
   return (
     <div>
-      <button type="button">
-        Attach
-        <input
-          type="file"
-          style={{
-            position: "absolute",
-            left: "-9999px",
-            top: "-9999px",
-          }}
-        />
-      </button>
-      <button type="button" onClick={handleGoogleDriveUpload}>
-        Google Drive
-      </button>
-      <button type="button" onClick={handleManualInput}>
-        Enter Manually
-      </button>
+      <div className="flex flex-row gap-4">
+        <button
+          onClick={handleDocumentPicker}
+          className="text-sm text-blue-700 font-bold"
+          type="button"
+        >
+          Attach
+        </button>
+        <button
+          className="text-sm text-blue-700 font-bold"
+          type="button"
+          onClick={handleGoogleDriveUpload}
+        >
+          Google Drive
+        </button>
+      </div>
+      {selectedFile && (
+        <div>
+          {/* Display the name of the selected file */}
+          <p>Selected File: {selectedFile.name}</p>
+        </div>
+      )}
+      <div>
+        <p className="text-gray-400 text-xs font-bold">
+          (File types: pdf, doc, docx, txt, rtf)
+        </p>
+      </div>
     </div>
   );
 };
