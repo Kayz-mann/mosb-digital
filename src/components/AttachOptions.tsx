@@ -53,8 +53,19 @@ const AttachOptions = () => {
 
   return (
     <div>
+      <button type="button">
+        Attach
+        <input
+          type="file"
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            top: "-9999px",
+          }}
+        />
+      </button>
       <button type="button" onClick={handleGoogleDriveUpload}>
-        Attach from Google Drive
+        Google Drive
       </button>
       <button type="button" onClick={handleManualInput}>
         Enter Manually
