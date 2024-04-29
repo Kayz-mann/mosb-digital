@@ -19,8 +19,8 @@ const AttachOptions = () => {
 
   const handleGoogleDriveUpload = () => {
     openPicker({
-      clientId: `944794798911-209eeb45av65hort0fpjtod478t1dpub.apps.googleusercontent.com`,
-      developerKey: `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`,
+      clientId: `${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`,
+      developerKey: `${process.env.NEXT_PUBLIC_GOOGLE_API_KEY}`,
       viewId: "DOCS",
       // token: token, // pass oauth token in case you already have one
       showUploadView: true,
