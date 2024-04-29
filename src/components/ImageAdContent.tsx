@@ -13,7 +13,7 @@ const ImageAdContent = () => {
     >
       <div>
         <p
-          style={{ fontSize: isMobileOrTablet ? "16px" : "40px" }}
+          style={{ fontSize: isMobileOrTablet ? "18px" : "40px" }}
           className="text-white italic font-bold pt-8"
         >
           What's Your Next Bold Move?

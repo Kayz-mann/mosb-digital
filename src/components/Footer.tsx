@@ -26,7 +26,9 @@ const Footer = () => {
       >
         <div className="flex flex-row">
           <SmallLogoIcon />
-          <p className="text-xl font-semibold">Mosb Digital</p>
+          <p className={`text-xl font-semibold ${isMobileOrTablet && "mb-4"}`}>
+            Mosb Digital
+          </p>
         </div>
 
         <button className="border-black border-2 rounded-lg px-2 py-2 cursor-pointer ">
@@ -39,7 +41,7 @@ const Footer = () => {
           </button>
         )} */}
 
-        <div className="flex flex-row gap-4">
+        <div className={`flex flex-row gap-4 ${isMobileOrTablet && "mt-6"}`}>
           <a>
             <Image
               className="cursor-pointer"
@@ -75,8 +77,10 @@ const Footer = () => {
       </div>
       <div
         className={`w-full border-t-2 border-spcaing-1 ${
-          isMobileOrTablet ? "border-black" : "border-white"
-        }  mt-20 mb-10 `}
+          isMobileOrTablet
+            ? "border-black mt-10 mb-10"
+            : "border-white mt-20 mb-10"
+        }   `}
       ></div>
 
       <div className="flex flex-row justify-between">
@@ -122,29 +126,8 @@ const Footer = () => {
         </div>
 
         <div>
-          {/* <p
-            className={`text-2xl font-semibold ${
-              isMobileOrTablet ? "text-black" : "text-white"
-            } `}
-          >
-            Want to talk?
-          </p>
-
-          <li className="list-none">
-            <a
-              href="#"
-              className={`${
-                isMobileOrTablet
-                  ? " text-black hover:text-black"
-                  : "text-white hover:text-white"
-              } cursor-pointer underline hover:no-underline list-none`}
-            >
-              Get in contact with us
-            </a>
-          </li> */}
-
           <div className="mt-14">
-            <p className="text-base font-semibold text-black">
+            <p className="text-xs font-semibold text-black">
               ©2024 Mosb Digital LLC
             </p>
           </div>

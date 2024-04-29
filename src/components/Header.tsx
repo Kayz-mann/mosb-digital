@@ -5,7 +5,7 @@ import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import CustomButton from "./module/CustomButton";
 import Link from "next/link";
 
-const colors = ["#ff0000", "#1E07AA", "#15721F", "#721515", "#9747FF"];
+const colors = ["#1E07AA", "#15721F", "#721515", "#9747FF"];
 
 const Header = () => {
   // const aboutUsText = `About us`;

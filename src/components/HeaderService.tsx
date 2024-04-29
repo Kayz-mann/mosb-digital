@@ -14,7 +14,7 @@ const HeaderService = () => {
   const isSmallScreen = useMobileOrTablet(420);
 
   const serviceData = [
-    "Social Media branding and Management",
+    "Social Media Branding and Management",
     "Online Reputation Management",
     "Insight, foresight & trends",
     "Graphics & Motion Design",

@@ -50,7 +50,7 @@ const BottomContent = ({
         style={{ width: isMd ? "80%" : "75%" }}
       >
         {staticText ||
-          " We bring the best minds together to create content that move"}
+          " We bring the best minds together to create content that move "}
         <motion.span
           key={index}
           initial={{ y: "100%" }}

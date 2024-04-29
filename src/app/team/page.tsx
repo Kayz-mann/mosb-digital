@@ -36,17 +36,19 @@ const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
   };
 
   const handleSubmit = async (values: any, { setSubmitting }: any) => {
+    const formData = new FormData(values);
     try {
       const response = await fetch("/api/sendEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: formData,
       });
 
       if (response.ok) {
         console.log("Email sent successfully");
+        console.log(response);
         // Reset form values if needed
       } else {
         console.error("Error sending email:", response.statusText);
