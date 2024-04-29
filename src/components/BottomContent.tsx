@@ -47,10 +47,10 @@ const BottomContent = ({
             ? "text-left"
             : "w-2/3 text-3xl text-center"
         } py-10`}
-        style={{ width: isMd ? "80%" : "75%" }}
+        style={{ width: isMd ? "80%" : "75%", position: "relative" }}
       >
         {staticText ||
-          " We bring the best minds together to create content that move "}
+          " We bring the best minds together to create content that move"}
         <motion.span
           key={index}
           initial={{ y: "100%" }}
@@ -63,6 +63,9 @@ const BottomContent = ({
             backgroundImage: "linear-gradient(90deg, #FF1322, #FCB000)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
+            width: "34%",
+            justifyContent: "flex-start",
+            textAlign: "start",
           }}
         >
           {words[index]}

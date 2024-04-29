@@ -58,7 +58,7 @@ const HeaderService = () => {
           width: "100%",
         }}
       >
-        {isMobileOrTablet && (
+        {/* {isMobileOrTablet && (
           <div>
             <Link href="/services">
               <div className="mt-8 px-2 py-1 bg-white rounded-full items-center justify-center cursor-pointer">
@@ -80,21 +80,54 @@ const HeaderService = () => {
               </div>
             </div>
           </div>
-        )}
-        {!isMobileOrTablet && (
-          <>
-            <div
-              style={{
-                marginTop: isMobileOrTablet ? 34 : 0,
-                textAlign: "center",
-              }}
+        )} */}
+        <div
+          className={`${
+            isMobileOrTablet ? "flex flex-col items-center" : "flex gap-12"
+          }`}
+        >
+          <div
+            style={{
+              marginTop: isMobileOrTablet ? 34 : 0,
+              textAlign: "left",
+              justifyContent: "flex-start",
+            }}
+          >
+            <p
+              className="text-white mb-2"
+              style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
             >
-              <p
-                className="text-white mb-2"
-                style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
-              >
-                Got a project?
-              </p>
+              Got a project?
+            </p>
+            <button
+              className={`bg-white ${
+                isMdScreen
+                  ? "px-4 py-1"
+                  : isMobileOrTablet
+                  ? "px-4 py-1"
+                  : "px-4 py-2"
+              } flex justify-between text-black items-center rounded-md hover:border hover:border-white hover:bg-black hover:text-white`}
+              style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
+            >
+              <p className={`mr-2`}>Let's Talk</p>
+              <ArrowRightIcon height={15} />
+            </button>
+          </div>
+
+          <div
+            style={{
+              marginTop: isMobileOrTablet ? 34 : 0,
+              textAlign: "left",
+              justifyContent: "flex-start",
+            }}
+          >
+            <p
+              className="text-white mb-2"
+              style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
+            >
+              Work with us
+            </p>
+            <Link href={"/services"}>
               <button
                 className={`bg-white ${
                   isMdScreen
@@ -102,44 +135,15 @@ const HeaderService = () => {
                     : isMobileOrTablet
                     ? "px-4 py-1"
                     : "px-4 py-2"
-                } flex justify-between text-black items-center rounded-md`}
+                } flex justify-between text-black items-center rounded-md hover:border hover:border-white hover:bg-black hover:text-white`}
                 style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
               >
-                <p className={`mr-2`}>FIND OUT MORE</p>
+                <p className={`mr-2`}>Let's Talk</p>
                 <ArrowRightIcon height={15} />
               </button>
-            </div>
-
-            <div
-              style={{
-                marginTop: isMobileOrTablet ? 34 : 0,
-                textAlign: "center",
-              }}
-            >
-              <p
-                className="text-white mb-2"
-                style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
-              >
-                Work with us
-              </p>
-              <Link href={"/services"}>
-                <button
-                  className={`bg-white ${
-                    isMdScreen
-                      ? "px-4 py-1"
-                      : isMobileOrTablet
-                      ? "px-4 py-1"
-                      : "px-4 py-2"
-                  } flex justify-between text-black items-center rounded-md`}
-                  style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
-                >
-                  <p className={`mr-2`}>FIND OUT MORE</p>
-                  <ArrowRightIcon height={15} />
-                </button>
-              </Link>
-            </div>
-          </>
-        )}
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

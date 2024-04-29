@@ -31,7 +31,7 @@ const ImageAdContent = () => {
         </p>
 
         <div className="flex items-center justify-center pt-2 pb-8">
-          <div className="rounded-full border border-[#FAB005] px-4 py-1 mx-2 cursor-pointer">
+          <div className="rounded-full border border-[#FAB005] px-4 py-1 mx-2 cursor-pointer hover:bg-[#FAB005] ">
             <p style={{ fontSize: "12px" }} className="text-white">
               Let's Talk
             </p>

@@ -36,7 +36,7 @@ const About = ({
 
       <BottomContent
         bgColor="bg-[#D9D9D9] "
-        staticText="Our style goes beyond the pretty words; we create content that evokes "
+        staticText="Our style goes beyond pretty words; we create content that evokes  "
         alternateWords={["emotion.", "clicks.", "sales."]}
       />
 

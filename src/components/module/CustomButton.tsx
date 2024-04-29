@@ -1,5 +1,6 @@
 "use client";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
+import ArrowRightIcon from "@heroicons/react/20/solid/ArrowRightIcon";
 import React, { ButtonHTMLAttributes, useState } from "react";
 
 interface ButtonProps {
@@ -49,7 +50,7 @@ const CustomButton = ({
 
        ${textColor || "text-white "}
        ${textColorHover || "hover:text-black"}
-       overflow-hidden relative`}
+       overflow-hidden relative flex flex-row`}
       // style={{ border: borderColor || "1px solid-red" }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

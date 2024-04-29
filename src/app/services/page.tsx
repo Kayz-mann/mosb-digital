@@ -21,7 +21,7 @@ const Service = ({
 
   return (
     <div
-      className={`h-full w-full bg-[#fff] 
+      className={`h-full w-full bg-gray-300 
     `}
     >
       <div
@@ -40,7 +40,7 @@ const Service = ({
           className={` font-normal text-black mb-10 ${
             isMobileOrTablet
               ? "justify-start items-start text-left text-1xl"
-              : "items-center justify-center text-center text-5xl"
+              : "items-center justify-center text-left text-3xl"
           }`}
         >
           We’re team of smart minds and imaginative creators dedicated to

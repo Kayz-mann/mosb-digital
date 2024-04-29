@@ -77,7 +77,7 @@ const AboutContent = () => {
             <CustomButton
               buttonText1="Learn More"
               buttonText2="Learn More"
-              borderColor="1px solid-black"
+              borderColor="border-black"
             />
             <CustomButton
               bgColor={"bg-[#fff]"}
