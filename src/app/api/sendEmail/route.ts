@@ -27,7 +27,7 @@ interface FormData {
     attachments?: any[]; // Add attachments property
 }
 
-export default async function POST(req: Request, res: NextResponse ) {
+export default async function sendEmail(req: Request, res: NextResponse ) {
     if (req.method === 'POST') {
         const { firstName, lastName, email, phone, location, website, instagram, linkedIn }: any = req.json();
 
