@@ -13,20 +13,6 @@ interface FormData {
     attachments?: any[]; // Add attachments property
 }
 
-
-
-interface FormData {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    location: string;
-    website?: string;
-    instagram?: string;
-    linkedIn?: string;
-    attachments?: any[]; // Add attachments property
-}
-
 export default async function sendEmail(req: Request, res: NextResponse ) {
     if (req.method === 'POST') {
         const { firstName, lastName, email, phone, location, website, instagram, linkedIn }: any = req.json();
