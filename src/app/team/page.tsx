@@ -9,6 +9,8 @@ import InputField from "@/components/module/Input";
 import AttachOptions from "@/components/AttachOptions";
 import CustomButton from "@/components/module/CustomButton";
 import LinkedInIcon from "@/components/svgs/LinkedInIcon";
+import { emailSender } from "../helper/emailSender";
+import { sendJobDetails } from "@/lib/api";
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("First name is required"),
@@ -49,42 +51,14 @@ const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
     linkedIn: "",
   };
 
-  const handleSubmit = async (values: FormData, { setSubmitting }: any) => {
-    console.log("VALUE INFO", values);
-    try {
-      const response = await fetch("/api/sendEmail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: values.firstName,
-          lastName: values.lastName,
-          email: values.email,
-          phone: values.phone,
-          location: values.location,
-          website: values.website,
-          instagram: values.instagram,
-          linkedIn: values.linkedIn,
-          cv: values.cv,
-          letter: values.letter,
-        }), // Directly send the form values
-      });
-
-      if (response.ok) {
-        console.log("Email sent successfully");
-        console.log(response);
-        // Reset form values if needed
-      } else {
-        console.error("Error sending email:", response.statusText);
-        // Handle error
-      }
-    } catch (error) {
-      console.error("Error sending email:", error);
-      // Handle error
-    } finally {
-      setSubmitting(false); // Set submitting to false after form submission
-    }
+  const handleSubmit = async (
+    values: HTMLFormElement | any,
+    { setSubmitting }: any
+  ) => {
+    const formData = values;
+    console.log(formData);
+    await sendJobDetails(formData);
+    setSubmitting(false);
   };
 
   return (

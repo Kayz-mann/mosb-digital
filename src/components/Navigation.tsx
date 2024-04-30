@@ -29,8 +29,6 @@ const Navigation = ({ bgColor }: NavProps) => {
     url: item.path,
   }));
 
-  console.log(navItems);
-
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const buttonText1 = "Contact us";
