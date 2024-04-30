@@ -13,7 +13,7 @@ interface EmailProps {
     // }[];
 }
 
-export const emailSender = async ({ from, subject, email, textBody, attachments }: EmailProps) => {
+export const emailSender = async ({ from, subject, email, textBody }: EmailProps) => {
     // Create a Nodemailer transporter
     const transporter = nodemailer.createTransport({
         host: 'smtp.jeramiah.amjad@foodfarms.net',

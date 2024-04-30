@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React from "react";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
