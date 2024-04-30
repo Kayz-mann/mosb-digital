@@ -18,9 +18,11 @@
     "@types/react-slick": "^0.23.13",
     "bootstrap": "^5.3.3",
     "dropbox": "^10.34.0",
+    "express": "^4.19.2",
     "formik": "^2.4.6",
     "framer-motion": "^11.0.28",
     "install": "^0.13.0",
+    "multer": "^1.4.5-lts.1",
     "next": "14.1.4",
     "nodemailer": "6.9.13",
     "react": "^18",
@@ -37,6 +39,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/multer": "^1.4.11",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.14",
     "@types/react": "^18",

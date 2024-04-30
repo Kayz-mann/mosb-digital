@@ -40,7 +40,7 @@ const BottomContent = ({
       }`}
     >
       <p
-        className={`font-bold   ${
+        className={`font-bold text-wrap ${
           isMobileOrTablet
             ? "w-10/14 text-xl text-left pl-6 -pt-20"
             : isMd
@@ -50,7 +50,7 @@ const BottomContent = ({
         style={{ width: isMd ? "80%" : "75%", position: "relative" }}
       >
         {staticText ||
-          " We bring the best minds together to create content that move"}
+          "We bring the best minds together to create content that move "}
         <motion.span
           key={index}
           initial={{ y: "100%" }}
@@ -59,11 +59,11 @@ const BottomContent = ({
           transition={{ duration: 0.5 }}
           style={{
             display: "inline-block",
-            whiteSpace: "nowrap",
+            whiteSpace: "normal", // Allow text wrapping
             backgroundImage: "linear-gradient(90deg, #FF1322, #FCB000)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            width: "34%",
+            width: !isMobileOrTablet ? "38%" : "auto", // Adjust the width to allow content to determine size
             justifyContent: "flex-start",
             textAlign: "start",
           }}

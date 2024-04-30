@@ -126,7 +126,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <div className="mt-[58px]">
+          <div className="mt-[63px]">
             <p className="text-xs font-semibold text-black">
               ©2024 Mosb Digital LLC
             </p>

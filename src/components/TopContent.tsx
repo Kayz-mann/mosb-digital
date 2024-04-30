@@ -101,7 +101,7 @@ const TopContent = ({
                   : isMobileOrTablet
                   ? "px-2 py-2 rounded-0"
                   : "px-4 py-3"
-              } flex justify-between text-white items-center rounded-md hover:bg-white hover:text-black hover:border-black hover:border`}
+              } flex justify-between text-white items-center border border-black rounded-md hover:bg-white hover:text-black hover:border-black hover:border`}
             >
               <p
                 style={{

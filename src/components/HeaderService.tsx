@@ -32,7 +32,7 @@ const HeaderService = () => {
         isMobileOrTablet ? "px-70 items-center" : "px-40"
       }`}
     >
-      <p className="text-white text-2xl">{ourServices}</p>
+      <p className="text-white text-2xl px-4">{ourServices}</p>
 
       <div
         className={`${
@@ -84,7 +84,7 @@ const HeaderService = () => {
         )} */}
         <div
           className={`${
-            isMobileOrTablet ? "flex flex-col items-center" : "flex gap-12"
+            isMobileOrTablet ? "flex flex-col items-center" : "flex gap-12 mt-4"
           }`}
         >
           <div
@@ -107,7 +107,7 @@ const HeaderService = () => {
                   : isMobileOrTablet
                   ? "px-4 py-1"
                   : "px-4 py-2"
-              } flex justify-between text-black items-center rounded-md hover:border hover:border-white hover:bg-black hover:text-white`}
+              } flex justify-between text-black items-center rounded-md border border-white hover:border hover:border-white hover:bg-black hover:text-white`}
               style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
             >
               <p className={`mr-2`}>Let's Talk</p>
@@ -136,7 +136,7 @@ const HeaderService = () => {
                     : isMobileOrTablet
                     ? "px-4 py-1"
                     : "px-4 py-2"
-                } flex justify-between text-black items-center rounded-md hover:border hover:border-white hover:bg-black hover:text-white`}
+                } flex justify-between text-black items-center rounded-md hover:border border border-white hover:border-white hover:bg-black hover:text-white`}
                 style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
               >
                 <p className={`mr-2`}>Let's Talk</p>

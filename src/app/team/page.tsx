@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import InputField from "@/components/module/Input";
 import AttachOptions from "@/components/AttachOptions";
 import CustomButton from "@/components/module/CustomButton";
-import { emailSender } from "../helper/emailSender";
+import LinkedInIcon from "@/components/svgs/LinkedInIcon";
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("First name is required"),
@@ -20,6 +20,20 @@ const validationSchema = Yup.object().shape({
   instagram: Yup.string(),
   linkedIn: Yup.string(),
 });
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  location: string;
+  website?: string;
+  instagram?: string;
+  linkedIn?: string;
+  letter?: any;
+  cv?: any;
+  attachments?: any[]; // Add attachments property
+}
 
 const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
   const isMobileOrTablet = useMobileOrTablet(900);
@@ -35,15 +49,26 @@ const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
     linkedIn: "",
   };
 
-  const handleSubmit = async (values: any, { setSubmitting }: any) => {
-    const formData = new FormData(values);
+  const handleSubmit = async (values: FormData, { setSubmitting }: any) => {
+    console.log("VALUE INFO", values);
     try {
       const response = await fetch("/api/sendEmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: formData,
+        body: JSON.stringify({
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          phone: values.phone,
+          location: values.location,
+          website: values.website,
+          instagram: values.instagram,
+          linkedIn: values.linkedIn,
+          cv: values.cv,
+          letter: values.letter,
+        }), // Directly send the form values
       });
 
       if (response.ok) {

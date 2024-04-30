@@ -78,6 +78,9 @@ const AboutContent = () => {
               buttonText1="Learn More"
               buttonText2="Learn More"
               borderColor="border-black"
+              borderColorHover="hover:border-white"
+              bgColorHover={"hover:bg-[#FA0505]"}
+              textColorHover={"hover:text-white"}
             />
             <CustomButton
               bgColor={"bg-[#fff]"}
