@@ -9,6 +9,7 @@ import InputField from "@/components/module/Input";
 import AttachOptions from "@/components/AttachOptions";
 import CustomButton from "@/components/module/CustomButton";
 import { emailSender } from "../helper/emailSender";
+import { sendJobDetails } from "@/lib/api";
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("First name is required"),
@@ -35,31 +36,14 @@ const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
     linkedIn: "",
   };
 
-  const handleSubmit = async (values: any, { setSubmitting }: any) => {
-    const formData = new FormData(values);
-    try {
-      const response = await fetch("/api/sendEmail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: formData,
-      });
-
-      if (response.ok) {
-        console.log("Email sent successfully");
-        console.log(response);
-        // Reset form values if needed
-      } else {
-        console.error("Error sending email:", response.statusText);
-        // Handle error
-      }
-    } catch (error) {
-      console.error("Error sending email:", error);
-      // Handle error
-    } finally {
-      setSubmitting(false); // Set submitting to false after form submission
-    }
+  const handleSubmit = async (
+    values: HTMLFormElement | any,
+    { setSubmitting }: any
+  ) => {
+    const formData = values;
+    console.log(formData);
+    await sendJobDetails(formData);
+    setSubmitting(false);
   };
 
   return (
