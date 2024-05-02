@@ -32,7 +32,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <Link href={"/form"}>
+        <Link href={"/contact"}>
           <button className="border-black border-2 rounded-lg px-2 py-2 cursor-pointer ">
             GET IN CONTACT
           </button>

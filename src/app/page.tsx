@@ -6,10 +6,12 @@ import ServicesContent from "@/components/ServicesContent";
 import SponsorContent from "@/components/SponsorContent";
 import SliderContent from "@/components/SliderContent";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 export default function Home() {
   return (
     <main>
+      <Toaster />
       <Header />
       <Content />
       <ServicesContent />
