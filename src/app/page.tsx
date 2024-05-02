@@ -10,7 +10,7 @@ import SliderContent from "@/components/SliderContent";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  const isMobileOrTablet = useMobileOrTablet(768);
+  useMobileOrTablet();
 
   return (
     <main>

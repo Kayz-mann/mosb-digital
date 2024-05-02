@@ -15,7 +15,7 @@ const BottomContent = ({
   staticText,
 }: BottomProps) => {
   const [index, setIndex] = useState(0);
-  const [width, setWidth] = useState(window.innerWidth);
+
   const words = alternateWords ?? [
     "businesses",
     "people",

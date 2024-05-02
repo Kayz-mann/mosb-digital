@@ -1,6 +1,7 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
+import { toast } from "react-hot-toast";
 import { Formik, Form, Field } from "formik";
 import useMobileOrTablet from "../hooks/useMobileOrTablet";
 import Navigation from "@/components/Navigation";
@@ -8,8 +9,7 @@ import Footer from "@/components/Footer";
 import InputField from "@/components/module/Input";
 import AttachOptions from "@/components/AttachOptions";
 import CustomButton from "@/components/module/CustomButton";
-import LinkedInIcon from "@/components/svgs/LinkedInIcon";
-import { emailSender } from "../helper/emailSender";
+import { Jelly } from "@uiball/loaders";
 import { sendJobDetails } from "@/lib/api";
 
 const validationSchema = Yup.object().shape({
@@ -26,6 +26,7 @@ const validationSchema = Yup.object().shape({
 
 const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
   const isMobileOrTablet = useMobileOrTablet(900);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const initialValues = {
     jobTitle: searchParams.jobType || "",
@@ -41,16 +42,29 @@ const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
 
   const handleSubmit = async (
     values: HTMLFormElement | any,
-    { setSubmitting }: any
+    { setSubmitting, resetForm }: any
   ) => {
+    setIsLoading(true);
+    const notification = toast.loading("Posting job application...");
     const formData = values;
     console.log(formData);
     await sendJobDetails(formData);
     setSubmitting(false);
+    setIsLoading(false);
+    resetForm();
+    toast.success("Job Successfully Posted!", {
+      id: notification,
+    });
   };
 
   return (
     <div className={`h-full w-full "bg-[#fff]"`}>
+      {isLoading && (
+        <div className="flex w-full items-center justify-center p-18 text-xl">
+          <Jelly size={50} color="#FAB005" />
+        </div>
+      )}
+
       <div
         className={`mx-auto ${isMobileOrTablet ? "py-0" : "py-8"} ${
           isMobileOrTablet ? "w-full" : "w-4/5"
