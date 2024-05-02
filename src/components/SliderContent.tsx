@@ -1,3 +1,4 @@
+"use client";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
