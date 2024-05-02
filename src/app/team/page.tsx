@@ -23,20 +23,6 @@ const validationSchema = Yup.object().shape({
   linkedIn: Yup.string(),
 });
 
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  location: string;
-  website?: string;
-  instagram?: string;
-  linkedIn?: string;
-  letter?: any;
-  cv?: any;
-  attachments?: any[]; // Add attachments property
-}
-
 const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
   const isMobileOrTablet = useMobileOrTablet(900);
 

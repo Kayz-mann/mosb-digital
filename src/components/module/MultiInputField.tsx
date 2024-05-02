@@ -9,14 +9,14 @@ interface InputFieldProps extends FieldProps {
   multiple?: boolean; // Added multiple
 }
 
-const InputField: React.FC<InputFieldProps> = ({
+const MultiInputField: React.FC<InputFieldProps> = ({
   field,
   form: { touched, errors },
   label,
   multiple,
   placeholder,
   type = "text", // Default value for type prop
-  height = "h-[50px]", // Default value for height prop
+  height = "h-[200px]", // Default value for height prop
 }) => {
   const [value, setValue] = useState<string>("");
 
@@ -34,7 +34,7 @@ const InputField: React.FC<InputFieldProps> = ({
         type={type} // Set input type from prop
         name={field.name} // Add the name attribute
         className={`w-full px-3 py-2 border border-black hover:border-[#FAB005] bg-transparent rounded-md text-gray-700 focus:outline-none focus:border-[#FAB005] ${
-          height || "h-[50px]"
+          height || "h-[200px]"
         }`} // Dynamic height class
         placeholder={placeholder}
         value={field.value} // Use field value instead of local state
@@ -49,4 +49,4 @@ const InputField: React.FC<InputFieldProps> = ({
   );
 };
 
-export default InputField;
+export default MultiInputField;

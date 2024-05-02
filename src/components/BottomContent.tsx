@@ -15,15 +15,38 @@ const BottomContent = ({
   staticText,
 }: BottomProps) => {
   const [index, setIndex] = useState(0);
+  const [width, setWidth] = useState(window.innerWidth);
   const words = alternateWords ?? [
     "businesses",
     "people",
     "the world forward.",
   ];
 
+  const useScreenWidth = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setWidth(window.innerWidth);
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+
+    return width;
+  };
+
   const isMd = useMobileOrTablet(768);
   const isMobileOrTablet = useMobileOrTablet(900);
   const isSmallerPhone = useMobileOrTablet(340);
+  const isXl = useMobileOrTablet(2560);
+  const screenWidth = useScreenWidth();
+  const isLargeScreen = screenWidth >= 1440;
+  const isLargerScreen = screenWidth >= 2550;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -41,13 +64,18 @@ const BottomContent = ({
     >
       <p
         className={`font-bold text-wrap ${
-          isMobileOrTablet
+          isSmallerPhone
+            ? "w-10/14 text-md text-left pl-6 -pt-20"
+            : isMobileOrTablet
             ? "w-10/14 text-xl text-left pl-6 -pt-20"
             : isMd
             ? "text-left"
             : "w-2/3 text-3xl text-center"
         } py-10`}
-        style={{ width: isMd ? "80%" : "75%", position: "relative" }}
+        style={{
+          width: isMd ? "80%" : "75%",
+          position: "relative",
+        }}
       >
         {staticText ||
           "We bring the best minds together to create content that move "}
@@ -63,9 +91,10 @@ const BottomContent = ({
             backgroundImage: "linear-gradient(90deg, #FF1322, #FCB000)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            width: !isMobileOrTablet ? "38%" : "auto", // Adjust the width to allow content to determine size
+            width: isMobileOrTablet ? "auto" : "40%", // Adjust the width to allow content to determine size
             justifyContent: "flex-start",
-            textAlign: "start",
+            textAlign: isLargeScreen ? "center" : "start",
+            marginLeft: isLargerScreen ? "-295px" : "0px",
           }}
         >
           {words[index]}

@@ -7,6 +7,7 @@ import instagramImage from "../../public/assets/images/instagram.png";
 import facebookImage from "../../public/assets/images/facebook.png";
 import linkedInImage from "../../public/assets/images/linkedIn.png";
 import twitterImage from "../../public/assets/images/twitter.png";
+import Link from "next/link";
 
 const Footer = () => {
   const isMobileOrTablet = useMobileOrTablet(900);
@@ -31,9 +32,11 @@ const Footer = () => {
           </p>
         </div>
 
-        <button className="border-black border-2 rounded-lg px-2 py-2 cursor-pointer ">
-          GET IN CONTACT
-        </button>
+        <Link href={"/form"}>
+          <button className="border-black border-2 rounded-lg px-2 py-2 cursor-pointer ">
+            GET IN CONTACT
+          </button>
+        </Link>
 
         {/* {isMobileOrTablet && (
           <button className="border-black border-2 rounded-lg px-2 py-2 cursor-pointer mb-4">

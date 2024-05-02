@@ -87,7 +87,8 @@ const HeaderService = () => {
             isMobileOrTablet ? "flex flex-col items-center" : "flex gap-12 mt-4"
           }`}
         >
-          <div
+          <Link
+            href="/form"
             style={{
               marginTop: isMobileOrTablet ? 34 : 0,
               textAlign: "left",
@@ -113,7 +114,7 @@ const HeaderService = () => {
               <p className={`mr-2`}>Let's Talk</p>
               <ArrowRightIcon height={15} />
             </button>
-          </div>
+          </Link>
 
           <div
             style={{
@@ -128,7 +129,7 @@ const HeaderService = () => {
             >
               Work with us
             </p>
-            <Link href={"/services"}>
+            <Link href={"/team"}>
               <button
                 className={`bg-white ${
                   isMdScreen

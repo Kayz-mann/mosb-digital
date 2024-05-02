@@ -55,7 +55,7 @@ const Service = ({
       <TopContent
         px="px-44"
         buttonText="ABOUT US"
-        href={"/"}
+        href={"/about"}
         width={isMobileOrTablet ? "100%" : "65%"}
         leftContent="We collaborate with the best
 minds to bring you the
