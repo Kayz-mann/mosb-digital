@@ -1,13 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import useMobileOrTablet from "../hooks/useMobileOrTablet";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
-import ArticleCard from "@/components/blogs/ArticleCard";
 import blogImage from "../../../public/assets/images/blogImage.png";
 import Image from "next/image";
 import Quotes from "@/components/svgs/Quotes";

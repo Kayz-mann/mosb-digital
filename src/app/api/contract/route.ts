@@ -1,7 +1,7 @@
 import { transport } from "@/lib/nodemailer";
 import { NextResponse } from "next/server";
 import Handlebars from "handlebars";
-import { mailTemplate } from "../mailTemplate";
+
 
 interface FormData {
   fullName: string;

@@ -8,8 +8,6 @@ import Footer from "@/components/Footer";
 
 import ContactLine from "@/components/ContactLine";
 import ListWithButton, { jobData } from "@/components/module/ListWithButton";
-import Input from "@/components/module/Input";
-import InputField from "@/components/module/Input";
 
 const Contact = ({
   searchParams,
