@@ -1,7 +1,6 @@
-import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
-
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 
 interface BottomProps {
   bgColor?: string;
@@ -15,6 +14,7 @@ const BottomContent = ({
   staticText,
 }: BottomProps) => {
   const [index, setIndex] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const words = alternateWords ?? [
     "businesses",
@@ -22,29 +22,22 @@ const BottomContent = ({
     "the world forward.",
   ];
 
-  const useScreenWidth = () => {
-    const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
 
-    useEffect(() => {
-      const handleResize = () => {
-        setWidth(window.innerWidth);
-      };
+    window.addEventListener("resize", handleResize);
 
-      window.addEventListener("resize", handleResize);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }, []);
-
-    return width;
-  };
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const isMd = useMobileOrTablet(768);
   const isMobileOrTablet = useMobileOrTablet(900);
   const isSmallerPhone = useMobileOrTablet(340);
   const isXl = useMobileOrTablet(2560);
-  const screenWidth = useScreenWidth();
   const isLargeScreen = screenWidth >= 1440;
   const isLargerScreen = screenWidth >= 2550;
 
@@ -54,8 +47,8 @@ const BottomContent = ({
     }, 3000);
 
     return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [words.length]);
+
   return (
     <div
       className={`h-1/8 ${bgColor || "bg-white"} ${
