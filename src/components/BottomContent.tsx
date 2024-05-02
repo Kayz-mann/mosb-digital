@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
@@ -14,7 +15,9 @@ const BottomContent = ({
   staticText,
 }: BottomProps) => {
   const [index, setIndex] = useState(0);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState<any>(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
 
   const words = alternateWords ?? [
     "businesses",
@@ -27,11 +30,13 @@ const BottomContent = ({
       setScreenWidth(window.innerWidth);
     };
 
-    window.addEventListener("resize", handleResize);
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   }, []);
 
   const isMd = useMobileOrTablet(768);
