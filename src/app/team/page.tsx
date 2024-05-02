@@ -21,12 +21,14 @@ const validationSchema = Yup.object().shape({
   website: Yup.string(),
   instagram: Yup.string(),
   linkedIn: Yup.string(),
+  jobTitle: Yup.string(),
 });
 
 const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
   const isMobileOrTablet = useMobileOrTablet(900);
 
   const initialValues = {
+    jobTitle: searchParams.jobType || "",
     firstName: "",
     lastName: "",
     email: "",
@@ -71,6 +73,16 @@ const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
               {({ errors, touched }) => (
                 <Form>
                   <div className="mt-8">
+                    <Field
+                      name="jobTitle"
+                      label="JOB TITLE*"
+                      placeholder=""
+                      component={InputField}
+                    />
+                    {errors.jobTitle && touched.jobTitle && (
+                      <div className="text-red-500">{errors.jobTitle}</div>
+                    )}
+
                     <Field
                       name="firstName"
                       label="FIRST NAME*"

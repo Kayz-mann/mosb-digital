@@ -159,7 +159,7 @@ const Navigation = ({ bgColor }: NavProps) => {
             href={"/contact"}
             className="text-gray-600 hover:text-black transition duration-300 uppercase text-xl font-bold mb-4"
           >
-            Contact Us
+            Contact
           </Link>
         </nav>
       )}

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React from "react";
 import * as Yup from "yup";
@@ -6,18 +7,16 @@ import useMobileOrTablet from "../hooks/useMobileOrTablet";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import InputField from "@/components/module/Input";
-import AttachOptions from "@/components/AttachOptions";
 import CustomButton from "@/components/module/CustomButton";
-import LinkedInIcon from "@/components/svgs/LinkedInIcon";
-import { emailSender } from "../helper/emailSender";
-import { sendJobDetails } from "@/lib/api";
+
 import MultiInputField from "@/components/module/MultiInputField";
+import { sendContract } from "@/lib/contractApi";
 
 const validationSchema = Yup.object().shape({
   fullName: Yup.string().required("Full name is required"),
   jobTitle: Yup.string().required("Job title is required"),
   companyName: Yup.string(),
-  phoneNumber: Yup.string().required("Phone number is required"),
+  phoneNumber: Yup.string(),
   email: Yup.string().email("Invalid email").required("Email is required"),
   country: Yup.string(),
   message: Yup.string(),
@@ -28,7 +27,7 @@ const Page = ({ searchParams }: { searchParams: { jobType: string } }) => {
 
   const initialValues = {
     fullName: "",
-    jobTitle: "",
+    jobTitle: searchParams.jobType || "",
     companyName: "",
     phone: "",
     email: "",
@@ -36,13 +35,14 @@ const Page = ({ searchParams }: { searchParams: { jobType: string } }) => {
     message: "",
   };
 
-  const handleSubmit = async (
+  const handleFormSubmit = async (
     values: HTMLFormElement | any,
     { setSubmitting }: any
   ) => {
+    console.log(values);
     const formData = values;
-    console.log(formData);
-    await sendJobDetails(formData);
+    console.log("form", formData);
+    await sendContract(formData);
     setSubmitting(false);
   };
 
@@ -65,7 +65,7 @@ const Page = ({ searchParams }: { searchParams: { jobType: string } }) => {
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
-              onSubmit={handleSubmit} // Using the handleSubmit function
+              onSubmit={handleFormSubmit} // Using the handleSubmit function
             >
               {({ errors, touched }) => (
                 <Form>
@@ -200,8 +200,8 @@ const Page = ({ searchParams }: { searchParams: { jobType: string } }) => {
                     <div className="pb-8">
                       <CustomButton
                         type="submit"
-                        buttonText1="Submit"
-                        buttonText2="Submit"
+                        buttonText1="Send Now"
+                        buttonText2="Send Now"
                         borderColor="border-black"
                       />
                     </div>

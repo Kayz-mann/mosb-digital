@@ -3,6 +3,7 @@ import { emailSender } from '@/app/helper/emailSender';
 import { NextResponse } from "next/server";
 
 interface FormData {
+    jobTitle?: string;
     firstName: string;
     lastName: string;
     email: string;

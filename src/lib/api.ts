@@ -10,22 +10,4 @@ export const sendJobDetails = async (data: object) => {
   });
 };
 
-export const sendDetails = async (formData: object) => {
-  try {
-    const response = await fetch("/api/job", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    if (response.ok) {
-      console.log("Email sent successfully");
-      console.log(response);
-    } else {
-      console.error("Error sending email:", response.statusText);
-    }
-  } catch (error) {
-    console.error("Error sending email:", error);
-  }
-};
+

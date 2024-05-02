@@ -40,11 +40,11 @@ const InputField: React.FC<InputFieldProps> = ({
         value={field.value} // Use field value instead of local state
         onChange={handleChange}
       />
-      {touched[field.name] &&
+      {/* {touched[field.name] &&
         errors[field.name] &&
         typeof errors[field.name] === "string" && (
           <div className="text-red-500">{errors[field.name] as any}</div>
-        )}
+        )} */}
     </div>
   );
 };
