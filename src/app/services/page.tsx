@@ -40,7 +40,7 @@ const Service = ({
           className={` font-normal text-black mb-10 ${
             isMobileOrTablet
               ? "justify-start items-start text-left text-1xl"
-              : "items-center justify-center text-left text-3xl"
+              : "items-center justify-center text-left text-3xl px-8"
           }`}
         >
           We’re team of smart minds and imaginative creators dedicated to

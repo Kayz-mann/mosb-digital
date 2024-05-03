@@ -3,6 +3,7 @@ import categoryImage from "../../../public/assets/images/slider-image.png";
 import Image from "next/image";
 import { TruncatedText } from "../module/TruncatedText";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
+import { urlFor } from "@/sanity";
 
 interface CategoryProps {
   id?: string;
@@ -21,6 +22,8 @@ const CategoryCard = ({
 }: CategoryProps) => {
   const isMobileOrTablet = useMobileOrTablet(1024);
 
+  const imageUrl = urlFor(image).quality(100).url();
+
   return (
     <div className="">
       <div
@@ -29,9 +32,14 @@ const CategoryCard = ({
       >
         <Image
           alt="category"
-          src={image || categoryImage}
+          src={imageUrl}
           height={350}
           width={285}
+          objectFit="cover" // Use "cover" to fill the entire container with the image
+          quality={100}
+          // priority
+          loading="lazy"
+          className=" object-cover object-center md:w-[26rem] w-[46rem]  md:h-[25rem] h-[25rem]"
         />
 
         <TruncatedText

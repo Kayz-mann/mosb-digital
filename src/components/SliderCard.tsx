@@ -3,6 +3,8 @@ import React from "react";
 import CustomButton from "./module/CustomButton";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import Link from "next/link";
+import { urlFor } from "@/sanity";
+import { TruncatedText } from "./module/TruncatedText";
 
 interface SliderProps {
   id: string;
@@ -17,6 +19,12 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
   const isMobileOrTablet = useMobileOrTablet(900);
   const isSmallScreen = useMobileOrTablet(500);
 
+  const imageUrl = urlFor(image)
+    .width(200) // Set the desired width
+    .height(200) // Set the desired height
+    .quality(100) // Set the desired quality (optional)
+    .url();
+
   return (
     <div className={`${isMobileOrTablet ? "flex flex-col" : "flex flex-row"} `}>
       <div style={{ flex: 0.48 }}>
@@ -30,16 +38,16 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
           {title}
         </p>
 
-        <p
+        <TruncatedText
+          text={description}
+          maxLength={485}
+          className="italic text-white"
           style={{
             fontSize: 14,
             fontWeight: "300",
             marginTop: isSmallScreen ? 10 : 0,
           }}
-          className="italic text-white"
-        >
-          {description}
-        </p>
+        />
         <button
           style={{
             fontSize: "12px",
@@ -76,9 +84,13 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
       >
         <Image
           alt="mosb-about"
-          src={image}
-          style={{ height: "100%", width: "100%" }}
-          objectFit="contain"
+          src={imageUrl}
+          layout="fixed"
+          width={800}
+          height={400} // Set the height to the desired value
+          objectFit="cover" // Use "cover" to fill the entire container with the image
+          quality={100}
+          priority
         />
       </div>
     </div>

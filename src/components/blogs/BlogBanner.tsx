@@ -3,6 +3,7 @@ import React from "react";
 import { TruncatedText } from "../module/TruncatedText";
 import CustomButton from "../module/CustomButton";
 import Image from "next/image";
+import { urlFor } from "@/sanity";
 import blogImage from "../../../public/assets/images/blogImage.png";
 
 interface BlogBannerProps {
@@ -19,6 +20,7 @@ const BlogBanner = ({
   onButtonClick,
 }: BlogBannerProps) => {
   const isMobileOrTablet = useMobileOrTablet(1024);
+  const imageUrl = image && urlFor(image).quality(100);
 
   return (
     <div
@@ -51,7 +53,6 @@ const BlogBanner = ({
 
         <div className="mt-4">
           <button
-            onClick={() => {}}
             style={{
               fontSize: "12px",
             }}
@@ -82,11 +83,12 @@ const BlogBanner = ({
       >
         <Image
           alt="blog"
-          src={image || blogImage}
-          width={isMobileOrTablet ? 403 : 600}
-          height={300}
+          src={image}
+          width={isMobileOrTablet ? 403 : 300}
+          height={100}
           loading="lazy"
-          quality={75}
+          quality={100}
+          className="rounded-md object-cover object-center md:w-[26rem] w-full md:h-[25rem] h-[20rem]"
         />
       </div>
     </div>

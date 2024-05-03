@@ -1,4 +1,6 @@
 "use client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import AboutContent from "@/components/AboutContent";
 import Content from "@/components/Content";
 import Header from "@/components/Header";
@@ -14,17 +16,21 @@ export default function Home() {
   const isMb = useMobileOrTablet(768);
 
   console.log(isMb);
+  const queryClient = new QueryClient();
+
   return (
     <main>
-      <Toaster />
-      <Header />
-      <Content />
-      <ServicesContent />
-      <AboutContent />
-      <ImageAdContent />
-      <SponsorContent />
-      <SliderContent />
-      <Footer />
+      <QueryClientProvider client={queryClient}>
+        <Toaster />
+        <Header />
+        <Content />
+        <ServicesContent />
+        <AboutContent />
+        <ImageAdContent />
+        <SponsorContent />
+        <SliderContent />
+        <Footer />
+      </QueryClientProvider>
     </main>
   );
 }

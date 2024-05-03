@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CategoryCard from "./CategoryCard";
 import { categoryData } from "./data";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
+import useBlogPosts from "@/app/hooks/useBlogPosts";
 
 type GroupedCategories = {
   [category: string]: {
@@ -14,19 +15,38 @@ type GroupedCategories = {
 };
 
 // Define the CategoryItem type
-type CategoryItem = {
+export type CategoryItem = {
   id: number;
+  createdAt: string;
+  image: any;
+  authorImage?: string;
+  authorName?: string;
+  authorJobRole?: string;
+  companyPosition?: string;
+  companyName?: string;
   category: string;
   title: string;
   description: string;
+  headline: string;
+  quote: string;
+  quoteAuthor: string;
+  footerDescription: string;
 };
 
 const CategoryList = () => {
   const isMobile = useMobileOrTablet(768);
+  const { data } = useBlogPosts();
+  const containerRefs = useRef<{
+    [category: string]: React.RefObject<HTMLDivElement | any>;
+  }>({});
   const [groupedCategories, setGroupedCategories] = useState<GroupedCategories>(
-    () => {
-      const initialGroupedCategories: GroupedCategories = {};
-      categoryData.forEach((item) => {
+    {}
+  );
+
+  useEffect(() => {
+    const initialGroupedCategories: GroupedCategories = {};
+    data &&
+      data.forEach((item: CategoryItem) => {
         if (!initialGroupedCategories[item.category]) {
           initialGroupedCategories[item.category] = {
             items: [],
@@ -35,29 +55,17 @@ const CategoryList = () => {
         }
         initialGroupedCategories[item.category].items.push(item);
       });
-      return initialGroupedCategories;
-    }
-  );
-
-  const containerRefs = useRef<{
-    [category: string]: React.RefObject<HTMLDivElement>;
-  }>({});
-
-  // Initialize container refs for each category
-  Object.keys(groupedCategories).forEach((category) => {
-    containerRefs.current[category] = useRef<HTMLDivElement>(null);
-  });
+    console.log("Initial Grouped Categories:", initialGroupedCategories);
+    setGroupedCategories(initialGroupedCategories);
+  }, [data]);
 
   const handleScroll = (scrollOffset: number, category: string) => {
     const container = containerRefs.current[category]?.current;
     if (container) {
-      // Smooth scroll transition
       container.scrollTo({
         left: container.scrollLeft + scrollOffset,
         behavior: "smooth",
       });
-
-      // Update groupedCategories safely
       setGroupedCategories((prevGroupedCategories) => ({
         ...prevGroupedCategories,
         [category]: {
@@ -85,114 +93,73 @@ const CategoryList = () => {
                 {category}
               </p>
             </Link>
-
-            <div style={{ overflowX: "hidden", position: "relative" }}>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                {!isMobile && (
-                  <button
-                    onClick={() => handleScroll(-100, category)}
-                    className="bg-black rounded-full p-4 items-center justify-center text-white"
-                    style={{
-                      width: "32px",
-                      height: "32px",
-                      lineHeight: "32px",
-                      position: "absolute",
-                      left: 0,
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      marginTop: "2px",
-                    }}
-                  >
-                    <ChevronLeftIcon
-                      color="white"
-                      height={24}
-                      style={{ marginTop: -12, marginLeft: -12 }}
-                    />
-                  </button>
-                )}
-                <div
-                  ref={containerRefs.current[category]}
-                  style={{
-                    overflowX: "auto",
-                    display: "flex",
-                    scrollBehavior: "smooth", // Apply smooth scroll transition
-                  }}
-                >
-                  {items.map((item: CategoryItem) => (
-                    <div
-                      key={item.id}
-                      style={{ flex: "0 0 auto", margin: "0 8px" }}
-                      className="mr-4 mb-4"
-                    >
-                      <Link
-                        href={{
-                          pathname: "/view",
-                          query: {
-                            id: item.id,
-                          },
-                        }}
-                      >
-                        <CategoryCard
-                          title={item.title}
-                          description={item.description}
-                          onClick={() => {}}
-                        />
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-                {!isMobile && (
-                  <button
-                    onClick={() => handleScroll(+100, category)}
-                    className="bg-black rounded-full p-4 items-center justify-center text-white"
-                    style={{
-                      width: "32px",
-                      height: "32px",
-                      lineHeight: "32px",
-                      position: "absolute",
-                      right: 0,
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      marginTop: "2px",
-                    }}
-                  >
-                    <ChevronRightIcon
-                      color="white"
-                      height={24}
-                      style={{ marginTop: -12, marginLeft: -12 }}
-                    />
-                  </button>
-                )}
-              </div>
-            </div>
-            {/* Display dots indicating number of items */}
-            {/* <div
+            <div
               style={{
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: "100%", // Adjusted to be just below the content
-                transform: "translateY(-50%)",
+                overflowX: "hidden",
+                position: "relative",
                 display: "flex",
-                justifyContent: "center",
-                width: "100%",
+                justifyContent: items.length <= 4 ? "center" : "unset",
               }}
             >
-              {items.map((_, index) => (
-                <span
-                  key={index}
+              <div
+                ref={(ref: any) =>
+                  (containerRefs.current[category] = ref
+                    ? ref
+                    : { current: null })
+                }
+                style={{
+                  overflowX: "auto",
+                  display: "flex",
+                  scrollBehavior: "smooth",
+                }}
+              >
+                {items.map((item: CategoryItem) => (
+                  <div
+                    key={item.id}
+                    style={{ flex: "0 0 auto", margin: "0 8px" }}
+                    className="mr-4 mb-4"
+                  >
+                    <Link
+                      href={{
+                        pathname: "/view",
+                        query: {
+                          id: item.id,
+                        },
+                      }}
+                    >
+                      <CategoryCard
+                        image={item.image}
+                        title={item.title}
+                        description={item.description}
+                        onClick={() => {}}
+                      />
+                    </Link>
+                  </div>
+                ))}
+              </div>
+              {!isMobile && (
+                <button
+                  onClick={() => handleScroll(+100, category)}
+                  className="bg-black rounded-full p-4 items-center justify-center text-white"
                   style={{
-                    width: "9px",
-                    height: "9px",
-                    backgroundColor:
-                      scrollPosition >= index ? "#000" : "transparent",
-                    borderRadius: "50%",
-                    marginRight: "18px",
-                    border: "2px solid #000",
+                    width: "32px",
+                    height: "32px",
+                    lineHeight: "32px",
+                    position: "absolute",
+                    right: 0,
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    marginTop: "2px",
                   }}
-                />
-              ))}
-            </div> */}
+                >
+                  <ChevronRightIcon
+                    color="white"
+                    height={24}
+                    style={{ marginTop: -12, marginLeft: -12 }}
+                  />
+                </button>
+              )}
+            </div>
           </div>
         )
       )}

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useMobileOrTablet from "../hooks/useMobileOrTablet";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -10,6 +10,10 @@ import Link from "next/link";
 import blogImage from "../../../public/assets/images/blogImage.png";
 import Image from "next/image";
 import Quotes from "@/components/svgs/Quotes";
+import useBlogPostById, { fetchBlogPostById } from "../hooks/useBlogPostById";
+import { CategoryItem } from "@/components/blogs/CategoryList";
+import { Jelly } from "@uiball/loaders";
+import FeaturedList from "@/components/blogs/FeaturedList";
 
 const View = ({
   searchParams,
@@ -18,8 +22,38 @@ const View = ({
     id: string;
   };
 }) => {
+  const [data, setData] = useState<CategoryItem[]>([]);
+
+  let blogId = searchParams.id;
+
+  const fetchData = async () => {
+    try {
+      const dataInfo: CategoryItem | any = await fetchBlogPostById(blogId);
+      console.log("MY DATA", data);
+      setData(dataInfo);
+      // Now you can use the data here
+    } catch (error) {
+      console.error("Error fetching blog post:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  console.log("this data", data[0]?.category);
+
   const isMobileOrTablet = useMobileOrTablet(900);
   console.log(searchParams.id);
+
+  if (!data) {
+    return (
+      <div className="flex w-full items-center justify-center p-18 text-xl mt-98">
+        <Jelly size={50} color="#FAB005" />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -58,7 +92,7 @@ const View = ({
                 style={{ fontSize: "10px", width: "80px" }}
                 className="text-[#FAB005] text-center font-bold"
               >
-                Tech
+                {data[0]?.category}
               </p>
             </button>
 
@@ -67,7 +101,7 @@ const View = ({
                 isMobileOrTablet ? "text-xs" : "text-lg"
               } font-bold uppercase text-gray-600`}
             >
-              JAN 20TH 2024
+              {data[0]?.createdAt}
             </p>
           </div>
 
@@ -77,13 +111,13 @@ const View = ({
             } text-black font-bold mt-8 text-left`}
             style={{ width: isMobileOrTablet ? "100%" : "80%" }}
           >
-            Mosb Digital core business -brand consultancy and digital marketing
+            {data[0]?.title}
           </h1>
 
           <div className="mt-8 flex flex-row items-center gap-2">
             <Image
               alt="blog"
-              src={blogImage}
+              src={data[0]?.authorImage as any}
               width={isMobileOrTablet ? 64 : 64}
               height={64}
               loading="lazy"
@@ -95,10 +129,10 @@ const View = ({
 
             <div>
               <p className="font-bold text-base text-black">
-                Firstname Lastname
+                {data[0]?.authorName}
               </p>
               <p className="font-light text-base text-gray-400">
-                Position @ Company
+                {data[0]?.authorJobRole} @ {data[0]?.companyName}
               </p>
             </div>
           </div>
@@ -106,94 +140,90 @@ const View = ({
           <div className="mt-8 items-center w-full justify-center">
             <Image
               alt="blog"
-              src={blogImage}
+              src={data[0]?.image || blogImage}
               width={1026}
               height={626}
               loading="lazy"
               quality={75}
               objectFit="cover"
+              className="rounded-md object-cover object-center md:w-full w-full md:h-[10rem] h-[10rem]"
               style={{ width: "100%", height: "40%", alignItems: "center" }}
             />
           </div>
 
           {/* headline */}
           <div className="mt-4">
-            <p
-              className="text-base font-bold text-black"
-              style={{
-                fontFamily: "Merriweather",
-              }}
-            >
-              By meticulously crafting brand strategies, Mosb Digital ensure
-              that every interaction a customer has with a brand is purposeful
-              and leaves a lasting impression. From establishing brand
-              guidelines to developing a constant tone across all channels, Mosb
-              digital helps businesses create a cohesive and compelling brand
-              narrative.
-            </p>
+            {data[0]?.headline && (
+              <p
+                className="text-base font-bold text-black"
+                style={{
+                  fontFamily: "Merriweather",
+                }}
+              >
+                {data[0]?.headline}
+              </p>
+            )}
 
-            <p
-              className="text-base font-normal text-gray-700 mt-8"
-              style={{
-                fontFamily: "Merriweather",
-              }}
-            >
-              What sets Mosb Digital apart is its commitment to innovation. In a
-              rapidly evolving digital landscape, staying ahead of the curve is
-              crucial. Mosb Digital doesn’t just follow trends; it sets them.
-              From immersive storytelling through interactive content to
-              harnessing the power of data analytics for informed
-              decision-making, Mosb Digital embraces creativity and technology
-              to deliver unparalleled results. The success of Mosb Digital is
-              intricately woven with the success of its clients. The agency
-              adopts a client-centric approach, considering each collaboration
-              as a partnership. Through transparent communication, strategic
-              planning, and a relentless pursuit of excellence, Mosb Digital
-              ensures that the goals of its clients are not just met but
-              exceeded.
-            </p>
+            {data[0]?.description && (
+              <p
+                className="text-base font-normal text-gray-700 mt-8"
+                style={{
+                  fontFamily: "Merriweather",
+                }}
+              >
+                {data[0]?.description}
+              </p>
+            )}
           </div>
 
           {/* quotes */}
-          <div className="bg-[#F3F3F3] px-6 py-8 rounded-md mt-4">
-            {/* <p className="text-4xl text-gray-700"></p> */}
-            <Quotes />
+          {data[0]?.quote && (
+            <div className="bg-[#F3F3F3] px-6 py-8 rounded-md mt-4">
+              {/* <p className="text-4xl text-gray-700"></p> */}
+              <Quotes />
 
-            <p
-              className="mt-2 text-3xl text-gray-500 italic"
-              style={{
-                fontFamily: "Merriweather",
-                fontWeight: 400,
-                fontStyle: "normal",
-              }}
-            >
-              In the symphony of business, Mosb Digital conducts a harmonious
-              blend of brand consultancy and digital marketing, orchestrating
-              success through innovative strategies that resonate in the hearts
-              of audiences.
-            </p>
-          </div>
+              <p
+                className="mt-2 text-3xl text-gray-500 italic"
+                style={{
+                  fontFamily: "Merriweather",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                }}
+              >
+                {data[0]?.quote}
+              </p>
+              <p
+                className="mt-2 text-sm text-gray-500 italic"
+                style={{
+                  fontFamily: "Merriweather",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                }}
+              >
+                {data[0]?.quoteAuthor}
+              </p>
+            </div>
+          )}
 
           {/* footer description */}
-          <p
-            className="text-base font-normal text-gray-700 mt-8 pb-10"
-            style={{
-              fontFamily: "Merriweather",
-            }}
-          >
-            As we step into the future, Mosb Digital stands poised at the
-            intersection of tradition and innovation. The core principles of
-            brand consultancy and digital marketing will continue to guide its
-            endeavors, shaping the narratives of businesses and leaving an
-            indelible mark on the digital landscape. In the dynamic world of
-            business, where change is the only constant, Mosb Digital remains a
-            beacon of stability and growth. With a focus on building powerful
-            brands and executing effective digital strategies, Mosb Digital is
-            not just a service provider; it is a partner in the journey of
-            success for businesses ready to embrace the limitless potential of
-            the digital age.
-          </p>
+          {data[0]?.footerDescription && (
+            <p
+              className="text-base font-normal text-gray-700 mt-8 pb-10"
+              style={{
+                fontFamily: "Merriweather",
+              }}
+            >
+              {data[0]?.footerDescription}
+            </p>
+          )}
         </div>
+      </div>
+
+      <div className="bg-[#F3F3F3] mt-10 w-full items-center py-20  px-20">
+        <p className="text-16 font-bold text-black mb-8 mt-8 px-4">
+          Featured List
+        </p>
+        <FeaturedList />
       </div>
 
       <Footer />

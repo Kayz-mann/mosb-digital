@@ -7,6 +7,9 @@ import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import ArticleCard from "@/components/blogs/ArticleCard";
 import { categoryData } from "@/components/blogs/data";
+import useBlogPosts from "../hooks/useBlogPosts";
+import { CategoryItem } from "@/components/blogs/CategoryList";
+import { Jelly } from "@uiball/loaders";
 
 const Categories = ({
   searchParams,
@@ -15,6 +18,7 @@ const Categories = ({
     category: string;
   };
 }) => {
+  const { data } = useBlogPosts();
   const isMobileOrTablet = useMobileOrTablet(900);
   console.log(searchParams.category);
 
@@ -55,18 +59,36 @@ const Categories = ({
             All articles
           </p>
         </button>
-        <div className="mb-96 mt-8  gap-12 z-50 flex flex-wrap items-center w-full justify-center">
-          {categoryData.map((item, id) => (
-            <div key={id}>
-              <ArticleCard
-                key={id}
-                id={item.id}
-                imageSrc={item.image}
-                tag={searchParams.category}
-                title={item.title}
-              />
+        <div className="mb-96 mt-8 gap-12 z-50 flex flex-wrap items-center w-full justify-center">
+          {data ? (
+            data
+              .filter(
+                (item: CategoryItem) => item.category === searchParams.category
+              ) // Filter the data based on the searchParams
+              .map((item: CategoryItem, id: string | number) => (
+                <Link
+                  href={{
+                    pathname: "/view",
+                    query: {
+                      id: item.id,
+                    },
+                  }}
+                  key={id}
+                >
+                  <ArticleCard
+                    key={id}
+                    id={item.id}
+                    imageSrc={item.image}
+                    tag={searchParams.category}
+                    title={item.title}
+                  />
+                </Link>
+              ))
+          ) : (
+            <div className="flex w-full items-center justify-center p-18 text-xl">
+              <Jelly size={50} color="#FAB005" />
             </div>
-          ))}
+          )}
         </div>
       </div>
       <Footer />

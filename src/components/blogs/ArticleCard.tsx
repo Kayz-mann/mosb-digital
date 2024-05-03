@@ -32,11 +32,13 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
         // style={{ backgroundImage: imageSrc?.src }}
       ></div> */}
       <Image
-        className="h-[58%] bg-cover bg-center relative"
+        className="h-[58%] bg-cover bg-center relative object-cover object-center"
         alt="blog"
         src={imageSrc}
         height={600}
+        width={400}
         loading="lazy"
+        objectFit="contain"
         quality={75}
       />
       <div className="bg-white absolute bottom-0 left-0 right-0 top-[46%] rounded-lg border-black px-2 py-3 z-10">
@@ -62,14 +64,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
           />
         </div>
 
-        <Link href={`/article/${id}`}>
-          <p
-            className="text-sm underline text-[#C0BCBC] mt-2 font-bold"
-            style={{ fontSize: "12px" }} // Adjust font size inline
-          >
-            Read Now
-          </p>
-        </Link>
+        <p
+          className="text-sm underline text-[#C0BCBC] mt-2 font-bold"
+          style={{ fontSize: "12px" }} // Adjust font size inline
+        >
+          Read Now
+        </p>
       </div>
     </div>
   );
