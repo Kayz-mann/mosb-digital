@@ -27,7 +27,7 @@ const ContactLine = ({
     <div
       className={`flex ${
         isMobileOrTablet ? "flex-col" : "flex-row justify-between"
-      } mt-10  `}
+      } py-20 `}
       style={{ width: "80%" }}
     >
       <p
@@ -36,8 +36,8 @@ const ContactLine = ({
           isMobileOrTablet
             ? " text-black text-xl justify-left text-left font-semibold"
             : isTablet
-            ? "text-2xl text-white text"
-            : "text-3xl text-white "
+              ? "text-2xl text-white text"
+              : "text-3xl text-white "
         }`}
       >
         {country}

@@ -10,6 +10,7 @@ const ImageAdContent = () => {
       className={`h-screen/3 w-full bg-black flex items-center justify-center text-center ${
         isMobileOrTablet ? "px-10" : "px-40"
       }`}
+      style={{ zIndex: 0 }}
     >
       <div>
         <p
@@ -31,8 +32,11 @@ const ImageAdContent = () => {
         </p>
 
         <div className="flex items-center justify-center pt-2 pb-8">
-          <div className="rounded-full border border-[#FAB005] px-4 py-1 mx-2 cursor-pointer hover:bg-[#FAB005] ">
-            <p style={{ fontSize: "12px" }} className="text-white">
+          <div className="rounded-full border border-[#FAB005] px-6 py-2 mx-2 cursor-pointer hover:bg-[#FAB005] ">
+            <p
+              style={{ fontSize: "12px" }}
+              className="text-white uppercase font-bold"
+            >
               Let's Talk
             </p>
           </div>

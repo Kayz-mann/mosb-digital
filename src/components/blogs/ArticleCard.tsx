@@ -23,7 +23,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   return (
     <div
       className={`w-[255px] ${
-        isMobileOrTablet ? "h-[52vh]" : "h-[48vh]"
+        isMobileOrTablet ? "h-[45vh]" : "h-[48vh]"
       } rounded-lg overflow-hidden relative shadow-lg flex mb-8`}
     >
       {/* <div

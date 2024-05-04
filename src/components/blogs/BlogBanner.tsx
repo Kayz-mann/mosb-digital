@@ -33,7 +33,7 @@ const BlogBanner = ({
       <div
         style={{
           // flex: 0.4,
-          marginLeft: isMobileOrTablet ? 20 : 20,
+          marginLeft: isMobileOrTablet ? 0 : 20,
           width: isMobileOrTablet ? "90%" : "50%",
         }}
       >
@@ -88,7 +88,7 @@ const BlogBanner = ({
           height={100}
           loading="lazy"
           quality={100}
-          className="rounded-md object-cover object-center md:w-[26rem] w-full md:h-[25rem] h-[20rem]"
+          className={`rounded-md object-cover object-center  ${isMobileOrTablet ? "w-full" : "w-[33rem]"}  md:h-[25rem] h-[20rem]`}
         />
       </div>
     </div>

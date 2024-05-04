@@ -75,24 +75,26 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
         </div> */}
       </div>
 
-      <div
+      <span
         style={{
           flex: 0.49,
           marginTop: isMobileOrTablet ? "20px" : "0px",
           marginLeft: isMobileOrTablet ? "0px" : "14px",
+          zIndex: 0,
         }}
       >
         <Image
           alt="mosb-about"
           src={imageUrl}
-          layout="fixed"
+          // layout="fixed"
           width={800}
           height={400} // Set the height to the desired value
-          objectFit="cover" // Use "cover" to fill the entire container with the image
-          quality={100}
-          priority
+          objectFit="contain" // Use "cover" to fill the entire container with the image
+          // quality={100}
+          // priority
+          style={{ height: "100%", width: "100%" }}
         />
-      </div>
+      </span>
     </div>
   );
 };

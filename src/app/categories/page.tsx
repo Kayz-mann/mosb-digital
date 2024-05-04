@@ -10,6 +10,7 @@ import { categoryData } from "@/components/blogs/data";
 import useBlogPosts from "../hooks/useBlogPosts";
 import { CategoryItem } from "@/components/blogs/CategoryList";
 import { Jelly } from "@uiball/loaders";
+import useScroll from "../hooks/useScroll";
 
 const Categories = ({
   searchParams,
@@ -18,6 +19,7 @@ const Categories = ({
     category: string;
   };
 }) => {
+  const isScrolled = useScroll();
   const { data } = useBlogPosts();
   const isMobileOrTablet = useMobileOrTablet(900);
   console.log(searchParams.category);
@@ -29,37 +31,47 @@ const Categories = ({
     `}
     >
       <div
-        className={`mx-auto ${isMobileOrTablet ? "py-0" : "py-8"} ${
-          isMobileOrTablet ? "w-full" : "w-4/5"
-        }`}
+        className={`ease-in-out transition-padding duration-500 ${
+          isScrolled ? "py-14" : "py-0"
+        } ${isMobileOrTablet ? "w-full" : "w-4/5"}`}
+        style={{
+          scrollBehavior: "smooth", // Enable smooth scrolling behavior
+        }}
       >
-        <Navigation
-          bgColor={`${isMobileOrTablet ? "bg-white" : "bg-[#FAB005]"}`}
-        />
+        <span
+          className={`fixed left-1/2 transform -translate-x-1/2 z-50 ${
+            isScrolled ? "w-[80%]" : "w-full"
+          } transition-width duration-500`}
+        >
+          <Navigation
+            isScrolled={isScrolled}
+            bgColor={`${isMobileOrTablet ? "bg-white" : "bg-[#FAB005]"}`}
+          />
+        </span>
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-2" : "px-32"} mt-4 `}>
+      <div className={`${isMobileOrTablet ? "px-2" : "px-32"} `}>
         <Link
           href="/blog"
-          className="flex flex-row gap-1 items-center cursor-pointer"
+          className="flex flex-row gap-1 items-center cursor-pointer pt-20"
         >
           <ArrowLeftIcon color="gray" height={20} />
           <p className="text-lg underline text-gray-500">Back</p>
         </Link>
 
-        <div className="items center w-full font-bold text-center">
+        <div className="items center w-full font-bold text-center mt-10">
           <h1 style={{ fontSize: "32px" }}>{searchParams?.category} Blog</h1>
         </div>
 
-        <button className="bg-[#C0BCBC] py-2 px-4 rounded-full mt-8">
+        <button className="bg-[#C0BCBC] py-2 px-4 rounded-full my-12">
           <p
             style={{ fontSize: "14px", width: "80px" }}
-            className="text-black text-center font-bold"
+            className="text-black text-center font-bold "
           >
             All articles
           </p>
         </button>
-        <div className="mb-96 mt-8 gap-12 z-50 flex flex-wrap items-center w-full justify-center">
+        <div className="mb-8 gap-12 z-50 flex flex-wrap items-center w-full justify-center">
           {data ? (
             data
               .filter(

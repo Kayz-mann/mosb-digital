@@ -114,8 +114,8 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                href="/contact"
                 className={`${
                   isMobileOrTablet
                     ? " text-black hover:text-black"
@@ -123,7 +123,7 @@ const Footer = () => {
                 } cursor-pointer underline hover:no-underline `}
               >
                 Locations
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

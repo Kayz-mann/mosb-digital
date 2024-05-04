@@ -13,7 +13,7 @@ const SponsorContent = () => {
   ];
 
   return (
-    <div className="w-full max-w-screen-lg">
+    <div className="w-full max-w-screen-lg" style={{ zIndex: 0 }}>
       <SponsorSlider images={sponsorImages} />
     </div>
   );

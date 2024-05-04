@@ -11,30 +11,38 @@ import CategoryList from "@/components/blogs/CategoryList";
 import Footer from "@/components/Footer";
 import useBlogPosts from "../hooks/useBlogPosts";
 import Link from "next/link";
+import useScroll from "../hooks/useScroll";
 
 const Blog = () => {
+  const isScrolled = useScroll();
   const isMobileOrTablet = useMobileOrTablet(900);
   const { data } = useBlogPosts();
 
   console.log("blog", data);
 
   return (
-    <div
-      className={`h-full w-full bg-[#F3F3F3] 
-
-      `}
-    >
+    <div className={`h-full w-full bg-[#F3F3F3]`}>
       <div
-        className={`mx-auto ${isMobileOrTablet ? "py-0" : "py-8"} ${
-          isMobileOrTablet ? "w-full" : "w-4/5"
-        }`}
+        className={`ease-in-out transition-padding duration-500 pb-28 ${
+          isScrolled ? "py-14" : "py-0"
+        } ${isMobileOrTablet ? "w-full" : "w-4/5"}`}
+        style={{
+          scrollBehavior: "smooth", // Enable smooth scrolling behavior
+        }}
       >
-        <Navigation
-          bgColor={`${isMobileOrTablet ? "bg-white" : "bg-[#FAB005]"}`}
-        />
+        <span
+          className={`fixed left-1/2 transform -translate-x-1/2 z-50 ${
+            isScrolled ? "w-[80%]" : "w-full"
+          } transition-width duration-500`}
+        >
+          <Navigation
+            isScrolled={isScrolled}
+            bgColor={`${isMobileOrTablet ? "bg-white" : "bg-[#FAB005]"}`}
+          />
+        </span>
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-2 mt-10" : "px-32 mt-24"} `}>
+      <div className={`${isMobileOrTablet ? "px-2 " : "px-32 "} `}>
         <h1 className="text-4xl font-bold">Blog</h1>
 
         {data && data.length >= 1 ? (

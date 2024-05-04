@@ -14,6 +14,7 @@ import useBlogPostById, { fetchBlogPostById } from "../hooks/useBlogPostById";
 import { CategoryItem } from "@/components/blogs/CategoryList";
 import { Jelly } from "@uiball/loaders";
 import FeaturedList from "@/components/blogs/FeaturedList";
+import useScroll from "../hooks/useScroll";
 
 const View = ({
   searchParams,
@@ -22,6 +23,7 @@ const View = ({
     id: string;
   };
 }) => {
+  const isScrolled = useScroll();
   const [data, setData] = useState<CategoryItem[]>([]);
 
   let blogId = searchParams.id;
@@ -61,16 +63,26 @@ const View = ({
     `}
     >
       <div
-        className={`mx-auto ${isMobileOrTablet ? "py-0" : "py-8"} ${
-          isMobileOrTablet ? "w-full" : "w-4/5"
-        }`}
+        className={`ease-in-out transition-padding duration-500 ${
+          isScrolled ? "py-14" : "py-0"
+        } ${isMobileOrTablet ? "w-full" : "w-4/5"}`}
+        style={{
+          scrollBehavior: "smooth", // Enable smooth scrolling behavior
+        }}
       >
-        <Navigation
-          bgColor={`${isMobileOrTablet ? "bg-white" : "bg-[#FAB005]"}`}
-        />
+        <span
+          className={`fixed left-1/2 transform -translate-x-1/2 z-50 ${
+            isScrolled ? "w-[80%]" : "w-full"
+          } transition-width duration-500`}
+        >
+          <Navigation
+            isScrolled={isScrolled}
+            bgColor={`${isMobileOrTablet ? "bg-white" : "bg-[#FAB005]"}`}
+          />
+        </span>
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-6" : "px-32"} mt-4 `}>
+      <div className={`${isMobileOrTablet ? "px-6" : "px-32"}  `}>
         <Link
           href="/blog"
           className="flex flex-row gap-1 items-center cursor-pointer"

@@ -28,7 +28,9 @@ export default function Home() {
         <AboutContent />
         <ImageAdContent />
         <SponsorContent />
-        <SliderContent />
+        <div style={{ zIndex: 0 }}>
+          <SliderContent />
+        </div>
         <Footer />
       </QueryClientProvider>
     </main>

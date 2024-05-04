@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 
 import TopContent from "@/components/TopContent";
 import BottomContent from "@/components/BottomContent";
+import useScroll from "../hooks/useScroll";
 
 const About = ({
   searchParams,
@@ -16,6 +17,7 @@ const About = ({
     id: string;
   };
 }) => {
+  const isScrolled = useScroll();
   const isMobileOrTablet = useMobileOrTablet(900);
   console.log(searchParams.id);
 
@@ -24,14 +26,31 @@ const About = ({
       className={`h-full w-full bg-[#D9D9D9] 
     `}
     >
-      <div
-        className={`mx-auto ${isMobileOrTablet ? "py-0" : "py-8"} ${
-          isMobileOrTablet ? "w-full" : "w-4/5"
-        }`}
-      >
+      {/* //${isMobileOrTablet ? "py-0" : "py-8"} */}
+      {/* <div className={`mx-auto  ${isMobileOrTablet ? "w-full" : "w-4/5"}`}>
         <Navigation
           bgColor={`${isMobileOrTablet ? "bg-white" : "bg-[#FAB005]"}`}
         />
+      </div> */}
+
+      <div
+        className={`ease-in-out transition-padding duration-500 ${
+          isScrolled ? "py-14" : "py-0"
+        } ${isMobileOrTablet ? "w-full" : "w-4/5"}`}
+        style={{
+          scrollBehavior: "smooth", // Enable smooth scrolling behavior
+        }}
+      >
+        <span
+          className={`fixed left-1/2 transform -translate-x-1/2 z-50 ${
+            isScrolled ? "w-[80%]" : "w-full"
+          } transition-width duration-500`}
+        >
+          <Navigation
+            isScrolled={isScrolled}
+            bgColor={`${isMobileOrTablet ? "bg-white" : "bg-[#FAB005]"}`}
+          />
+        </span>
       </div>
 
       <BottomContent

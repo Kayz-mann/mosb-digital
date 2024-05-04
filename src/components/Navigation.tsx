@@ -1,11 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import LogoIcon from "./svgs/LogoIcon";
-import {
-  Bars3Icon,
-  LockClosedIcon,
-  XMarkIcon,
-} from "@heroicons/react/20/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import CustomButton from "./module/CustomButton";
 import Link from "next/link";
@@ -18,9 +14,10 @@ const items = [
 
 interface NavProps {
   bgColor?: string;
+  isScrolled?: boolean;
 }
 
-const Navigation = ({ bgColor }: NavProps) => {
+const Navigation = ({ bgColor, isScrolled }: NavProps) => {
   const isMobileOrTablet = useMobileOrTablet(768);
   const isSmallMobile = useMobileOrTablet(380);
   const navItems = items.map((item, index) => ({
@@ -40,32 +37,36 @@ const Navigation = ({ bgColor }: NavProps) => {
 
   return (
     <div
-      className={`${bgColor || "bg-white"} sticky top 0 z-50 ${
-        isMobileOrTablet ? "rounded-none flex px-2" : "rounded-full flex px-6"
-      }  items-center h-20 justify-between `}
+      className={`${isScrolled ? "bg-[#DADADA] opacity-90" : `${bgColor || "bg-white"}`} sticky top 0 z-999 ${isScrolled ? "rounded-full" : ""}  fixed${
+        isMobileOrTablet ? "rounded-none flex px-4" : " flex px-6"
+      } ${isMobileOrTablet ? "h-16" : "h-20"} items-center  justify-between`}
+      style={{ zIndex: 999 }} // Ensure the zIndex is set to 999 for the Navigation component
     >
       {/* logo */}
-      <div className="flex items-center">
+      <div className="flex items-center" style={{ zIndex: 999 }}>
         <Link href={"/"} className="flex items-center cursor-pointer">
-          <span className="-mt-2">
+          <span className="-mt-2" style={{ zIndex: 999 }}>
             <LogoIcon />
           </span>
           <h2
             className={`font-bold  ${
               isSmallMobile
-                ? "text-2xl"
+                ? "text-sm"
                 : isMobileOrTablet
-                ? "text-3xl"
-                : "text-3xl"
+                  ? "text-2xl"
+                  : "text-3xl"
             } align-baseline `}
           >
-            MOSB DIGITAL
+            Mosb Digital
           </h2>
         </Link>
 
         {/* nav link */}
         {!isMobileOrTablet && (
-          <nav className="flex items-center  space-x-6 capitalize ml-4">
+          <nav
+            className="flex items-center  space-x-6 capitalize ml-4"
+            style={{ zIndex: 999 }}
+          >
             {navItems.map((item) => (
               <div key={item.id}>
                 <Link
@@ -82,7 +83,7 @@ const Navigation = ({ bgColor }: NavProps) => {
 
       {/* contact button */}
       {!isMobileOrTablet && (
-        <Link href={"/contact"} className="relative">
+        <Link href={"/contact"} className="relative" style={{ zIndex: 999 }}>
           <div
             className="bg-black px-12 py-6 uppercase rounded-full cursor-pointer transition duration-100 hover:bg-white hover:border-2 border-black text-white hover:text-black overflow-hidden relative"
             onMouseEnter={() => setIsHovered(true)}
@@ -90,7 +91,7 @@ const Navigation = ({ bgColor }: NavProps) => {
           >
             <a href="#" className="flex items-center font-bold px-4 py-1">
               <span
-                className={`transition-all duration-300 absolute left-2 top-4 bottom-0 ${
+                className={`transition-all duration-300 absolute left-2 top-4 bottom-0 z-50 ${
                   isHovered ? "-translate-y-full" : "translate-y-0"
                 }`}
                 style={{ animationName: isHovered ? "fadeOutUp" : "fadeIn" }}
@@ -111,39 +112,56 @@ const Navigation = ({ bgColor }: NavProps) => {
               </span>
             </a>
           </div>
-          {/* 
-          <CustomButton
-            buttonText={[buttonText1, buttonText2]}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            style={{
-              backgroundColor: isHovered ? "white" : "black",
-              border: isHovered ? "2px solid black" : "none",
-              color: isHovered ? "black" : "white",
-              borderRadius: "999px",
-              cursor: "pointer",
-              padding: "6px 48px",
-              textTransform: "uppercase",
-              transition: "all 100ms",
-              height: 48,
-            }}
-          /> */}
         </Link>
       )}
 
       {isMobileOrTablet && (
-        <div className="ml-5 cursor-pointer flex items-center lg:hidden z-50">
+        <div className="ml-5 cursor-pointer flex items-center ">
           {isMobileNavOpen ? (
-            <XMarkIcon className="icon" height={40} onClick={toggleMobileNav} />
+            <XMarkIcon
+              color="#000"
+              className="icon"
+              height={40}
+              onClick={toggleMobileNav}
+            />
           ) : (
-            <Bars3Icon className="icon" height={40} onClick={toggleMobileNav} />
+            <Bars3Icon
+              color="#000"
+              className="icon"
+              height={isSmallMobile ? 30 : isMobileOrTablet ? 35 : 40}
+              onClick={toggleMobileNav}
+            />
           )}
         </div>
       )}
 
       {/* Mobile Navbar */}
       {isMobileNavOpen && (
-        <nav className="fixed top-0 left-0 w-full h-full bg-white flex flex-col  items-center z-10  py-28">
+        <nav
+          className="fixed top-0 left-0 w-full  bg-white flex flex-col  items-center z-50  h-[300px] pt-10"
+          style={{
+            zIndex: 999,
+            borderBottomLeftRadius: 20,
+            borderBottomRightRadius: 20,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          }}
+        >
+          {isMobileNavOpen === true && (
+            <div
+              className="flex justify-between items-center w-full"
+              style={{ marginTop: -30, marginRight: 20 }}
+            >
+              {/* Empty div to push the close icon to the right */}
+              <div></div>
+              <XMarkIcon
+                color="#000"
+                className="icon cursor-pointer"
+                height={40}
+                onClick={toggleMobileNav}
+              />
+            </div>
+          )}
           {navItems.map((item) => (
             <div key={item.id} className="mb-8">
               <a
