@@ -231,7 +231,9 @@ const View = ({
         </div>
       </div>
 
-      <div className="bg-[#F3F3F3] mt-10 w-full items-center py-20  px-20">
+      <div
+        className={`bg-[#F3F3F3] mt-10 w-full items-center py-20  ${isMobileOrTablet ? "px-2" : "px-20"}`}
+      >
         <p className="text-16 font-bold text-black mb-8 mt-8 px-4">
           Featured List
         </p>
