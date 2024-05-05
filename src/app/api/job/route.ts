@@ -106,12 +106,13 @@ export async function POST(req: Request, res: NextResponse) {
         to: process.env.NEXT_PUBLIC_EMAIL,
         subject: emailContent.subject,
         html: emailContent.html,
-        // attachments: [
-        //   {
-        //     filename: data.cv.name,
-        //     contentType: data.cv.type,
-        //   },
-        // ],
+        attachments: [
+          {
+            filename: data.cv.name,
+            path:  data.cv.name.replace(/ /g, ""),
+        }
+        ],
+    
       });
 
       return NextResponse.json({ success: true }, { status: 200 });

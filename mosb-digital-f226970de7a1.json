@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "mosb-digital",
+  "private_key_id": "f226970de7a17d795dcda2209d3d91179c2c7cc3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCj06aa5r4qKNO6\njsqALPqe1mieXJOtZOeE3/3rt6bEfm3loBu/NG+SwBLFyxRuVcFS2dvFboAJD/0R\njugwF+F7h/A5J1o0ocdvgbNdh11uFm9QEnSpB3RG9S0dJ0AaSjmw8oNx2OchI46N\nxEyJXim5okiYRgESefW6j1/cmwhAja0Ro6XzVfINJia1/XTKksY/8UABUwMGZMo7\nJdYL2Od+UZ9KqbweIxGduHkI6weqEebT3rgSez82M2Fp+o9Ta1TohI9MVeoH4/QA\n4LVJctbkNkRetj+bixCWpvdHbKLxkJndWmQTGTTWXT8mWmXQqeKPX6PiEFc2bvsu\nW9ahXUkPAgMBAAECggEAFuuYpplbx6g4nyQ1HqOsWKaksms/WgYBAi0YaG8kTN9n\nXrX8y855Qa3Pso6MCDfFOWMzhTbFgP8Up+03fOsKZ+8H4+cmjrCHp4kc4Bv9LVbE\nMg6y9acOVJMewbJpHIR/98qmKzpuc8t2uUzabGmZKtiSkYNRyRT5FSXUAphKGkW+\nwCAbgIwUr2bZPKthgmd+92GAF3D1Jk+XMokgmS9GYnxPG9xdqAJT9PpTcUhH8j4N\njuG9e1wgrIBsbJ++BS8jfdhZ8wQPLruL5aHjnxbPV0BDo7d4aT8DptKXRvkzxQq2\niZIYgdkqSVj84+hVq70uLETCRIypyH5SnKNrDElTYQKBgQDNMdc3fe6FvKHy+uEB\nfUI0F2vy80supqVmLpr4scsRLP27uplixWuSTwKh6G6Td5ucwJ0sXQreEa/L6sTs\nwfK9YCnF2/fiWPxt7jTVeaAoEC3UsJF4973CGfoRsWLIH/j1TdIdyPbXJ0jVM9DO\nVb+kbzor0oM1+SSk3jzPNfT3XwKBgQDMY7mt9W36VLerRUVSDhpziIZuumiHTo5Z\nS9QRTXALX2hzEVIrmlRhtBvD33fBxcv7Xr5sJ/p4vtqc+mqjLz5U4z05o8vHVUKj\nN3K+FbkYlpBTpiCj4xzwEMj7UfSrp51n90s9KUgGyDNCTb8SE1XZdfmQQki+ez4F\nfDTQwpd8UQKBgF4MWA5RJAAcI0ZRAsxB8xQZIBsss+rf6rNY7SLLqr1ml61xq1gA\nEHvwxs4a0IO6sJI6Hk/1HUQHa0HViwjRJEb0SnErjwQpsRlZstGde3ChacAwZZzC\nQDE04s81NIdxUBRu5L1OHQUkNlex9iR8XOgrKshnJkiYttjyG4EFxA+VAoGBAL3E\nGbGaHfI+lgk+143H6mc6axaDnGmEVkYyUUN/Ung8rQ2pF1HEiHPudZj28onGzA0n\nekWRGMzi5ra5CilYw9as5TuPCLSaRLSl1rMGGETsBjSkGcoQI94At5ogDbsSdOMC\nh6jRmz4wwubcqHpv2VV+Y6e84y13363YFHF/OocBAoGBAIcyJzutYT6vyRc7FGBO\niFS2uVRjS6+81pM+AruHutkOJtEs9vQiDp42beJixYVsTy0b3hd4PDSN3miA1EAk\nW8aNln9gkrSwRLGM53StFbpqpooJvd5Rk992glgYdh1batnjCS4+9pqJVR3iSg04\nW431tE/dT6N9atV+uz8173Ub\n-----END PRIVATE KEY-----\n",
+  "client_email": "mosb-drive-upload@mosb-digital.iam.gserviceaccount.com",
+  "client_id": "114726380552802077610",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mosb-drive-upload%40mosb-digital.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

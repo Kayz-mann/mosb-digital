@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 
 
-import { SanityTextInput } from '@/components/module/SanityTextInput';
+// import { SanityTextInput } from '@/components/module/SanityTextInput';
 import {uuid} from '@sanity/uuid'
 
 const id = uuid()
@@ -86,9 +86,9 @@ export default {
         title: "Description",
         type: "string",
         validation: (Rule: { required: () => any; }) => Rule.required(),
-        components: {
-          input: SanityTextInput
-        }
+        // components: {
+        //   input: SanityTextInput
+        // }
       },
       {
         name: "headline",

@@ -40,6 +40,7 @@ const AttachOptions = ({
   const handleDocumentPicker = () => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
+    fileInput.src = "source";
     fileInput.accept = ".pdf,.doc,.docx,.txt,.rtf";
     fileInput.style.display = "none";
     fileInput.onchange = (event) => {
