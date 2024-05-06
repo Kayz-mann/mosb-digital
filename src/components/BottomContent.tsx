@@ -65,10 +65,10 @@ const BottomContent = ({
           isSmallerPhone
             ? "w-10/14 text-md text-left pl-6 -pt-20"
             : isMobileOrTablet
-            ? "w-10/14 text-xl text-left pl-6 -pt-20"
-            : isMd
-            ? "text-left"
-            : "w-2/3 text-3xl text-center"
+              ? "w-10/14 text-xl text-left pl-6 -pt-20"
+              : isMd
+                ? "text-left"
+                : "w-2/3 text-3xl text-center"
         } py-10`}
         style={{
           width: isMd ? "80%" : "75%",
@@ -76,7 +76,7 @@ const BottomContent = ({
         }}
       >
         {staticText ||
-          "We bring the best minds together to create content that move "}
+          `We bring the best minds together to create content that move `}
         <motion.span
           key={index}
           initial={{ y: "100%" }}

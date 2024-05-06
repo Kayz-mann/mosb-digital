@@ -53,11 +53,13 @@ const About = ({
         </span>
       </div>
 
-      <BottomContent
-        bgColor="bg-[#D9D9D9] "
-        staticText="Our style goes beyond pretty words; we create content that evokes  "
-        alternateWords={["emotion.", "clicks.", "sales."]}
-      />
+      <div className="pt-16">
+        <BottomContent
+          bgColor="bg-[#D9D9D9] "
+          staticText="Our style goes beyond pretty words; we create content that evokes  "
+          alternateWords={["emotion.", "clicks.", "sales."]}
+        />
+      </div>
 
       {/* <div className={`${isMobileOrTablet ? "px-6" : "px-32"} mt-4 `}>
   

@@ -9,6 +9,8 @@ import Footer from "@/components/Footer";
 import ContactLine from "@/components/ContactLine";
 import ListWithButton, { jobData } from "@/components/module/ListWithButton";
 import useScroll from "../hooks/useScroll";
+import Link from "next/link";
+import ArrowRightIcon from "@heroicons/react/20/solid/ArrowRightIcon";
 
 const Contact = ({
   searchParams,
@@ -18,6 +20,7 @@ const Contact = ({
   };
 }) => {
   const isScrolled = useScroll();
+  const isMdScreen = useMobileOrTablet(1024);
   const isTablet = useMobileOrTablet(1024);
   const isMobileOrTablet = useMobileOrTablet(900);
   console.log(searchParams.id);
@@ -60,11 +63,11 @@ const Contact = ({
 
         <div
           className={`flex flex-row justify-between  border-b-2 ${
-            isMobileOrTablet ? "border-black mt-10 mb-10" : "border-white mt-10"
+            isMobileOrTablet ? "border-black" : "border-white mt-10"
           } `}
         />
 
-        <div className={`${isMobileOrTablet ? " mb-10" : ""}`}>
+        <div className={`${isMobileOrTablet ? "" : ""}`}>
           <ContactLine
             country={"Lagos"}
             firstTitle={"Find Us"}
@@ -72,6 +75,75 @@ const Contact = ({
             phoneAddress={"Email: Info@mosbdigital.com\nTel: +234 810 9333 263"}
             address={"75b Ogunnusi Rd,\nIsheri 101233"}
           />
+        </div>
+
+        <div className="flex items-center justify-center w-full">
+          <div
+            className={`${
+              isMobileOrTablet
+                ? "flex flex-col items-center"
+                : "flex gap-12 mt-4 items-center"
+            } pb-10`}
+          >
+            <Link
+              href="/form"
+              style={{
+                marginTop: isMobileOrTablet ? 34 : 0,
+                textAlign: "left",
+                justifyContent: "flex-start",
+              }}
+            >
+              <p
+                className={` ${isMobileOrTablet ? "text-black" : "text-white"} mb-2`}
+                style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
+              >
+                Got a project?
+              </p>
+              <button
+                className={`bg-white ${
+                  isMdScreen
+                    ? "px-4 py-1"
+                    : isMobileOrTablet
+                      ? "px-4 py-1"
+                      : "px-4 py-2"
+                } flex justify-between text-black items-center  rounded-md border border-black hover:border hover:border-white hover:bg-black hover:text-white`}
+                style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
+              >
+                <p className={`mr-2`}>Let's Talk</p>
+                <ArrowRightIcon height={15} />
+              </button>
+            </Link>
+
+            <div
+              style={{
+                marginTop: isMobileOrTablet ? 34 : 0,
+                textAlign: "left",
+                justifyContent: "flex-start",
+              }}
+            >
+              <p
+                className={` ${isMobileOrTablet ? "text-black" : "text-white"} mb-2`}
+                style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
+              >
+                Work with us
+              </p>
+              <Link href={"/team"}>
+                <button
+                  className={`bg-white ${
+                    isMdScreen
+                      ? "px-4 py-1"
+                      : isMobileOrTablet
+                        ? "px-4 py-1"
+                        : "px-4 py-2"
+                  } flex justify-between text-black items-center rounded-md hover:border border border-black hover:border-white hover:bg-black hover:text-white`}
+                  style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
+                >
+                  <p className={`mr-2`}>Let's Talk</p>
+                  <ArrowRightIcon height={15} />
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -81,8 +153,7 @@ const Contact = ({
             isMobileOrTablet ? "text-xl" : "text-4xl"
           } font-normal`}
         >
-          Our door is always open for creative
-          <br />
+          Our door is always open for creative {!isMobileOrTablet && <br />}
           minds to join our team.
         </h2>
 

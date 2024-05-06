@@ -26,8 +26,8 @@ const ContactLine = ({
   return (
     <div
       className={`flex ${
-        isMobileOrTablet ? "flex-col" : "flex-row justify-between"
-      } py-20 `}
+        isMobileOrTablet ? "flex-col py-10" : "flex-row justify-between py-20"
+      }  `}
       style={{ width: "80%" }}
     >
       <p

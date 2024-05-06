@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import useMobileOrTablet from "../hooks/useMobileOrTablet";
 import Navigation from "@/components/Navigation";
@@ -82,7 +83,7 @@ const View = ({
         </span>
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-6" : "px-32"}  `}>
+      <div className={`${isMobileOrTablet ? "px-6" : "px-32"} pt-24 `}>
         <Link
           href="/blog"
           className="flex flex-row gap-1 items-center cursor-pointer"
@@ -113,18 +114,22 @@ const View = ({
                 isMobileOrTablet ? "text-xs" : "text-lg"
               } font-bold uppercase text-gray-600`}
             >
-              {data[0]?.createdAt}
+              {moment(data[0]?.createdAt).format("MMMM Do YYYY, h:mm a")}
             </p>
           </div>
 
-          <h1
-            className={`${
-              isMobileOrTablet ? "text-3xl" : "text-5xl"
-            } text-black font-bold mt-8 text-left`}
-            style={{ width: isMobileOrTablet ? "100%" : "80%" }}
-          >
-            {data[0]?.title}
-          </h1>
+          {/* section */}
+
+          {data[0]?.title && (
+            <h1
+              className={`${
+                isMobileOrTablet ? "text-3xl" : "text-5xl"
+              } text-black font-bold mt-8 text-left`}
+              style={{ width: isMobileOrTablet ? "100%" : "80%" }}
+            >
+              {data[0]?.title}
+            </h1>
+          )}
 
           <div className="mt-8 flex flex-row items-center gap-2">
             <Image
@@ -149,19 +154,21 @@ const View = ({
             </div>
           </div>
 
-          <div className="mt-8 items-center w-full justify-center">
-            <Image
-              alt="blog"
-              src={data[0]?.image || blogImage}
-              width={1026}
-              height={626}
-              loading="lazy"
-              quality={75}
-              objectFit="cover"
-              className="rounded-md object-cover object-center md:w-full w-full md:h-[10rem] h-[10rem]"
-              style={{ width: "100%", height: "40%", alignItems: "center" }}
-            />
-          </div>
+          {data[0]?.image && (
+            <div className="mt-8 items-center w-full justify-center">
+              <Image
+                alt="blog"
+                src={data[0]?.image || blogImage}
+                width={1026}
+                height={626}
+                loading="lazy"
+                quality={75}
+                objectFit="cover"
+                className="rounded-md object-cover object-center md:w-full w-full md:h-[10rem] h-[10rem]"
+                style={{ width: "100%", height: "40%", alignItems: "center" }}
+              />
+            </div>
+          )}
 
           {/* headline */}
           <div className="mt-4">
@@ -232,10 +239,10 @@ const View = ({
       </div>
 
       <div
-        className={`bg-[#F3F3F3] mt-10 w-full items-center py-20  ${isMobileOrTablet ? "px-2" : "px-20"}`}
+        className={`bg-[#F3F3F3] mt-4 w-full items-center py-20  ${isMobileOrTablet ? "px-2" : "px-20"}`}
       >
         <p className="text-16 font-bold text-black mb-8 mt-8 px-4">
-          Featured List
+          Featured Article
         </p>
         <FeaturedList />
       </div>

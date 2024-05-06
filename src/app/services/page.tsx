@@ -46,7 +46,7 @@ const Service = ({
         </span>
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-6" : "px-32"} `}>
+      <div className={`${isMobileOrTablet ? "px-6" : "px-32"} pt-24 `}>
         <p
           style={{ lineHeight: 1.2 }}
           className={` font-normal text-black mb-10 ${
