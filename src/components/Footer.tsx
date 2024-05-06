@@ -45,7 +45,10 @@ const Footer = () => {
         )} */}
 
         <div className={`flex flex-row gap-4 ${isMobileOrTablet && "mt-6"}`}>
-          <a href="https://www.instagram.com/mosbdigital?igsh=d3JpeXN5bmZtcHds&utm_source=qr">
+          <a
+            target="blank"
+            href="https://www.instagram.com/mosbdigital?igsh=d3JpeXN5bmZtcHds&utm_source=qr"
+          >
             <Image
               className="cursor-pointer"
               width={40}
@@ -55,7 +58,10 @@ const Footer = () => {
             />
           </a>
 
-          <a href="https://www.facebook.com/mosbdigital?mibextid=LQQJ4d">
+          <a
+            target="blank"
+            href="https://www.facebook.com/mosbdigital?mibextid=LQQJ4d"
+          >
             <Image
               className="cursor-pointer"
               width={40}
@@ -65,7 +71,10 @@ const Footer = () => {
             />
           </a>
 
-          <a href="https://www.linkedin.com/in/mosb-digital-776b68211?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
+          <a
+            target="blank"
+            href="https://www.linkedin.com/in/mosb-digital-776b68211?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+          >
             <Image
               className="cursor-pointer"
               width={40}
@@ -75,7 +84,10 @@ const Footer = () => {
             />
           </a>
 
-          <a href="https://x.com/mosbdigital?s=21&t=SMrdTLM5SScNBEF_0up6lw">
+          <a
+            target="blank"
+            href="https://x.com/mosbdigital?s=21&t=SMrdTLM5SScNBEF_0up6lw"
+          >
             <Image
               className="cursor-pointer"
               width={40}
