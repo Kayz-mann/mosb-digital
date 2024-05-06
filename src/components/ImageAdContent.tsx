@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
+import Link from "next/link";
 
 const ImageAdContent = () => {
   const isMobileOrTablet = useMobileOrTablet(768);
@@ -31,7 +32,10 @@ const ImageAdContent = () => {
           spectacular brand
         </p>
 
-        <div className="flex items-center justify-center pt-2 pb-8">
+        <Link
+          href="/form"
+          className="flex items-center justify-center pt-2 pb-8"
+        >
           <div className="rounded-full border border-[#FAB005] px-6 py-2 mx-2 cursor-pointer hover:bg-[#FAB005] ">
             <p
               style={{ fontSize: "12px" }}
@@ -40,7 +44,7 @@ const ImageAdContent = () => {
               Let's Talk
             </p>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
