@@ -25,7 +25,7 @@ export const ReactQueryClientProvider = ({
   );
   return (
     <QueryClientProvider client={queryClient}>
-      <Toaster />
+     
       <DndProvider backend={HTML5Backend}>{children}</DndProvider>
     </QueryClientProvider>
   );
