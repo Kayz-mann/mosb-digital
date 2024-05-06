@@ -64,13 +64,13 @@ const AttachOptions = ({
         >
           Attach
         </button>
-        <button
+        {/* <button
           className="text-sm text-blue-700 font-bold"
           type="button"
           onClick={handleGoogleDriveUpload}
         >
           Google Drive
-        </button>
+        </button> */}
       </div>
       {selectedFile && (
         <div>
