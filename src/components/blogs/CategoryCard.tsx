@@ -39,7 +39,7 @@ const CategoryCard = ({
           quality={100}
           // priority
           loading="lazy"
-          className=" object-cover object-center md:w-[26rem] w-[46rem]  md:h-[25rem] h-[25rem]"
+          className=" object-cover object-center md:w-[26rem] w-[46rem]  md:h-[25rem] h-[20rem]"
         />
 
         <TruncatedText
