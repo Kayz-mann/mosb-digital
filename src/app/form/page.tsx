@@ -53,7 +53,7 @@ const Page = ({ searchParams }: { searchParams: { jobType: string } }) => {
     setSubmitting(false);
     setIsLoading(false);
     resetForm();
-    toast.success("Job Successfully Posted!", {
+    toast.success("Enquiry Successfully Submitted!", {
       id: notification,
     });
   };
