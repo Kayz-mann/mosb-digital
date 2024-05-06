@@ -161,7 +161,7 @@ const Page = ({ searchParams }: { searchParams: { jobType: string } }) => {
                     >
                       <Field
                         name="phone"
-                        label="PHONE NUMBER"
+                        label="PHONE NUMBER*"
                         placeholder=""
                         component={InputField}
                       />
