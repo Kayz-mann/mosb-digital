@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
   fullName: Yup.string().required("Full name is required"),
   jobTitle: Yup.string().required("Job title is required"),
   companyName: Yup.string(),
-  phoneNumber: Yup.string(),
+  phoneNumber: Yup.string().required("Phone number is required"),
   email: Yup.string().email("Invalid email").required("Email is required"),
   country: Yup.string(),
   message: Yup.string(),
