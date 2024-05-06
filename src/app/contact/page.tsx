@@ -58,7 +58,7 @@ const Contact = ({
           firstTitle={"Find Us"}
           secondTitle="Contact"
           phoneAddress={"Email: Info@mosbdigital.com\nTel: (1) 404-551-7978"}
-          address={"30 Satelite Blvd\nDurluth, GA. 30096"}
+          address={"30 Satelite Blvd\nDuluth, GA. 30096"}
         />
 
         <div
@@ -76,29 +76,56 @@ const Contact = ({
             address={"75b Ogunnusi Rd,\nIsheri 101233"}
           />
         </div>
-
-        <div className="flex items-center justify-center w-full">
-          <div
-            className={`${
-              isMobileOrTablet
-                ? "flex flex-col items-center"
-                : "flex gap-12 mt-4 items-center"
-            } pb-10`}
+      </div>
+      <div className="flex items-center justify-center w-full bg-black pb-10">
+        <div
+          className={`${
+            isMobileOrTablet ? "flex flex-col items-center" : "flex gap-12"
+          }`}
+        >
+          <Link
+            href="/form"
+            style={{
+              marginTop: isMobileOrTablet ? 34 : 0,
+              textAlign: "left",
+              justifyContent: "flex-start",
+            }}
           >
-            <Link
-              href="/form"
-              style={{
-                marginTop: isMobileOrTablet ? 34 : 0,
-                textAlign: "left",
-                justifyContent: "flex-start",
-              }}
+            <p
+              className="text-white mb-2"
+              style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
             >
-              <p
-                className={` ${isMobileOrTablet ? "text-black" : "text-white"} mb-2`}
-                style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
-              >
-                Got a project?
-              </p>
+              Got a project?
+            </p>
+            <button
+              className={`bg-white ${
+                isMdScreen
+                  ? "px-4 py-1"
+                  : isMobileOrTablet
+                    ? "px-4 py-1"
+                    : "px-4 py-2"
+              } flex justify-between text-black items-center rounded-md border border-white hover:border hover:border-white hover:bg-black hover:text-white`}
+              style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
+            >
+              <p className={`mr-2`}>Let's Talk</p>
+              <ArrowRightIcon height={15} />
+            </button>
+          </Link>
+
+          <div
+            style={{
+              marginTop: isMobileOrTablet ? 34 : 0,
+              textAlign: "left",
+              justifyContent: "flex-start",
+            }}
+          >
+            <p
+              className="text-white mb-2"
+              style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
+            >
+              Work with us
+            </p>
+            <Link href={"/form"}>
               <button
                 className={`bg-white ${
                   isMdScreen
@@ -106,43 +133,13 @@ const Contact = ({
                     : isMobileOrTablet
                       ? "px-4 py-1"
                       : "px-4 py-2"
-                } flex justify-between text-black items-center  rounded-md border border-black hover:border hover:border-white hover:bg-black hover:text-white`}
+                } flex justify-between text-black items-center rounded-md hover:border border border-white hover:border-white hover:bg-black hover:text-white`}
                 style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
               >
                 <p className={`mr-2`}>Let's Talk</p>
                 <ArrowRightIcon height={15} />
               </button>
             </Link>
-
-            <div
-              style={{
-                marginTop: isMobileOrTablet ? 34 : 0,
-                textAlign: "left",
-                justifyContent: "flex-start",
-              }}
-            >
-              <p
-                className={` ${isMobileOrTablet ? "text-black" : "text-white"} mb-2`}
-                style={{ fontSize: isMobileOrTablet ? "18px" : "18px" }}
-              >
-                Work with us
-              </p>
-              <Link href={"/team"}>
-                <button
-                  className={`bg-white ${
-                    isMdScreen
-                      ? "px-4 py-1"
-                      : isMobileOrTablet
-                        ? "px-4 py-1"
-                        : "px-4 py-2"
-                  } flex justify-between text-black items-center rounded-md hover:border border border-black hover:border-white hover:bg-black hover:text-white`}
-                  style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
-                >
-                  <p className={`mr-2`}>Let's Talk</p>
-                  <ArrowRightIcon height={15} />
-                </button>
-              </Link>
-            </div>
           </div>
         </div>
       </div>

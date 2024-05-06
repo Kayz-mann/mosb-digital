@@ -2,6 +2,8 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 export const ReactQueryClientProvider = ({
   children,
@@ -21,6 +23,8 @@ export const ReactQueryClientProvider = ({
       })
   );
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <DndProvider backend={HTML5Backend}>{children}</DndProvider>
+    </QueryClientProvider>
   );
 };

@@ -4,8 +4,8 @@ const LogoIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    width={55}
-    height={35}
+    width={props.width || 53}
+    height={props.height || 35}
     fill="none"
     {...props}
   >

@@ -45,7 +45,7 @@ const Footer = () => {
         )} */}
 
         <div className={`flex flex-row gap-4 ${isMobileOrTablet && "mt-6"}`}>
-          <a>
+          <a href="https://www.instagram.com/mosbdigital?igsh=d3JpeXN5bmZtcHds&utm_source=qr">
             <Image
               className="cursor-pointer"
               width={40}
@@ -55,27 +55,35 @@ const Footer = () => {
             />
           </a>
 
-          <Image
-            className="cursor-pointer"
-            width={40}
-            alt="facebook"
-            src={facebookImage}
-            loading="lazy"
-          />
-          <Image
-            className="cursor-pointer"
-            width={40}
-            alt="linkedIn"
-            src={linkedInImage}
-            loading="lazy"
-          />
-          <Image
-            className="cursor-pointer"
-            width={40}
-            alt="twitter"
-            src={twitterImage}
-            loading="lazy"
-          />
+          <a href="https://www.facebook.com/mosbdigital?mibextid=LQQJ4d">
+            <Image
+              className="cursor-pointer"
+              width={40}
+              alt="facebook"
+              src={facebookImage}
+              loading="lazy"
+            />
+          </a>
+
+          <a href="https://www.linkedin.com/in/mosb-digital-776b68211?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
+            <Image
+              className="cursor-pointer"
+              width={40}
+              alt="linkedIn"
+              src={linkedInImage}
+              loading="lazy"
+            />
+          </a>
+
+          <a href="https://x.com/mosbdigital?s=21&t=SMrdTLM5SScNBEF_0up6lw">
+            <Image
+              className="cursor-pointer"
+              width={40}
+              alt="twitter"
+              src={twitterImage}
+              loading="lazy"
+            />
+          </a>
         </div>
       </div>
       <div

@@ -106,8 +106,8 @@ const HeaderService = () => {
                 isMdScreen
                   ? "px-4 py-1"
                   : isMobileOrTablet
-                  ? "px-4 py-1"
-                  : "px-4 py-2"
+                    ? "px-4 py-1"
+                    : "px-4 py-2"
               } flex justify-between text-black items-center rounded-md border border-white hover:border hover:border-white hover:bg-black hover:text-white`}
               style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
             >
@@ -129,14 +129,14 @@ const HeaderService = () => {
             >
               Work with us
             </p>
-            <Link href={"/team"}>
+            <Link href={"/form"}>
               <button
                 className={`bg-white ${
                   isMdScreen
                     ? "px-4 py-1"
                     : isMobileOrTablet
-                    ? "px-4 py-1"
-                    : "px-4 py-2"
+                      ? "px-4 py-1"
+                      : "px-4 py-2"
                 } flex justify-between text-black items-center rounded-md hover:border border border-white hover:border-white hover:bg-black hover:text-white`}
                 style={{ fontSize: isMobileOrTablet ? "14px" : "14px" }}
               >

@@ -68,7 +68,7 @@ const BottomContent = ({
               ? "w-10/14 text-xl text-left pl-6 -pt-20"
               : isMd
                 ? "text-left"
-                : "w-2/3 text-3xl text-center"
+                : "w-2/3 text-2xl text-center"
         } py-10`}
         style={{
           width: isMd ? "80%" : "75%",
@@ -77,26 +77,35 @@ const BottomContent = ({
       >
         {staticText ||
           `We bring the best minds together to create content that move `}
-        <motion.span
-          key={index}
-          initial={{ y: "100%" }}
-          animate={{ y: 0 }}
-          exit={{ y: "-100%" }}
-          transition={{ duration: 0.5 }}
-          style={{
-            display: "inline-block",
-            whiteSpace: "normal", // Allow text wrapping
-            backgroundImage: "linear-gradient(90deg, #FF1322, #FCB000)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            width: isMobileOrTablet ? "auto" : "40%", // Adjust the width to allow content to determine size
-            justifyContent: "flex-start",
-            textAlign: isLargeScreen ? "center" : "start",
-            marginLeft: isLargerScreen ? "-295px" : "0px",
-          }}
-        >
-          {words[index]}
-        </motion.span>
+        {
+          <span
+            className={`${isMobileOrTablet ? "" : "flex items-center justify-center"}`}
+          >
+            <motion.span
+              key={index}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
+              transition={{ duration: 0.5 }}
+              style={{
+                display: "inline-block",
+                whiteSpace: "normal", // Allow text wrapping
+                backgroundImage: "linear-gradient(90deg, #FF1322, #FCB000)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                width: isMobileOrTablet ? "auto" : "40%", // Adjust the width to allow content to determine size
+                justifyContent: isMobileOrTablet ? "flex-start" : "center",
+                textAlign: isLargeScreen
+                  ? "center"
+                  : isMobileOrTablet
+                    ? "start"
+                    : "center",
+              }}
+            >
+              {words[index]}
+            </motion.span>
+          </span>
+        }
       </p>
     </div>
   );

@@ -5,6 +5,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import CustomButton from "./module/CustomButton";
 import Link from "next/link";
+import logo from "../../public/assets/images/m-logo.png";
+import Image from "next/image";
 
 const items = [
   { label: "About", path: "/about" },
@@ -45,8 +47,9 @@ const Navigation = ({ bgColor, isScrolled }: NavProps) => {
       {/* logo */}
       <div className="flex items-center" style={{ zIndex: 999 }}>
         <Link href={"/"} className="flex items-center cursor-pointer">
-          <span className="-mt-2" style={{ zIndex: 999 }}>
-            <LogoIcon />
+          <span className="" style={{ zIndex: 999 }}>
+            {/* <LogoIcon /> */}
+            <Image src={logo} alt={"mosb-digital"} height={54} width={54} />
           </span>
           <h2
             className={`font-bold  ${
