@@ -21,7 +21,6 @@ export default function Home() {
   return (
     <main>
       <QueryClientProvider client={queryClient}>
-        <Toaster />
         <Header />
         <Content />
         <ServicesContent />
