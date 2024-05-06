@@ -124,7 +124,7 @@ const Page = ({ searchParams }: { searchParams: { jobType: string } }) => {
                     >
                       <Field
                         name="jobTitle"
-                        label="JOB TITLE*"
+                        label="SERVICE INQUIRY*"
                         placeholder=""
                         component={InputField}
                       />
@@ -161,7 +161,7 @@ const Page = ({ searchParams }: { searchParams: { jobType: string } }) => {
                     >
                       <Field
                         name="phone"
-                        label="PHONE NUMBER*"
+                        label="PHONE NUMBER"
                         placeholder=""
                         component={InputField}
                       />
@@ -212,7 +212,7 @@ const Page = ({ searchParams }: { searchParams: { jobType: string } }) => {
                   <div>
                     <Field
                       name="message"
-                      label="MESSAGE/COMMENTS*"
+                      label="YOUR MESSAGE"
                       placeholder=""
                       component={MultiInputField}
                     />
