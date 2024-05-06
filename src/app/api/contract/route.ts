@@ -124,7 +124,7 @@ const emailGenerator = (data: FormData) => {
 
   const template = Handlebars.compile(source);
   return {
-    subject: `New Job Application from ${data.email || "Applicant"}`,
+    subject: `Service Inquiry from ${data.email || "Applicant"}`,
     html: template(data),
   };
 };
