@@ -87,7 +87,7 @@ const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
         </span>
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-4" : "px-4"}`}>
+      <div className={`${isMobileOrTablet ? "px-4" : "px-4"} pt-24`}>
         <div className={`${isMobileOrTablet ? "w-[100%]" : "w-[65%]"}`}>
           <p className="text-3xl text-gray-600 font-medium ">Join the team</p>
           <Formik
