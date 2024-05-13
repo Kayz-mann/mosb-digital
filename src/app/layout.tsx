@@ -9,6 +9,14 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Mosb Digital",
   description: "Fuelling Entrepreneurial Successs...",
+  verification: {
+    google: "google",
+    yandex: "yandex",
+    yahoo: "yahoo",
+    other: {
+      me: ["info@mosbdigital.com", "https://www.mosbdigital.com/"],
+    },
+  },
 };
 
 export default function RootLayout({
