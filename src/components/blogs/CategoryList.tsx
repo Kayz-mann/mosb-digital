@@ -42,20 +42,20 @@ const CategoryList = () => {
     const initialGroupedCategories: GroupedCategories = {};
     wp &&
       wp.forEach((item: any) => {
-        const { blogFields } = item;
-        if (!initialGroupedCategories[blogFields.category]) {
-          initialGroupedCategories[blogFields.category] = {
+        const { blog } = item;
+        if (!initialGroupedCategories[blog.category]) {
+          initialGroupedCategories[blog.category] = {
             items: [],
             scrollPosition: 0,
           };
         }
-        initialGroupedCategories[blogFields.category].items.push({
+        initialGroupedCategories[blog.category].items.push({
           id: item.id,
           createdAt: item.createdAt,
-          image: item.blogFields.image,
-          category: item.blogFields.category,
-          title: item.blogFields.title,
-          description: item.blogFields.description,
+          image: item.blog.image,
+          category: item.blog.category,
+          title: item.blog.title,
+          description: item.blog.description,
         });
       });
     console.log("Initial Grouped Categories:", initialGroupedCategories);

@@ -31,7 +31,7 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
     const post = wp.find((post: any) => post.id === searchParams.id);
 
     if (post) {
-      setBlogPost(post.blogFields);
+      setBlogPost(post.blog);
     }
   }, [wp, loading, error, searchParams.id]);
 
