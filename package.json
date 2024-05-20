@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.4",
     "@emailjs/browser": "^4.3.3",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -30,6 +31,7 @@
     "express": "^4.19.2",
     "formik": "^2.4.6",
     "framer-motion": "^11.0.28",
+    "graphql": "^16.8.1",
     "handlebars": "^4.7.8",
     "install": "^0.13.0",
     "moment": "^2.30.1",

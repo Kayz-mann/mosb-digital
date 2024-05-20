@@ -7,8 +7,8 @@ import { urlFor } from "@/sanity";
 import blogImage from "../../../public/assets/images/blogImage.png";
 
 interface BlogBannerProps {
-  title: string;
-  description: string;
+  title: string | React.ReactNode | any;
+  description: string | React.ReactNode | any;
   image: any;
   onButtonClick: () => void;
 }
@@ -20,7 +20,6 @@ const BlogBanner = ({
   onButtonClick,
 }: BlogBannerProps) => {
   const isMobileOrTablet = useMobileOrTablet(1024);
-  const imageUrl = image && urlFor(image).quality(100);
 
   return (
     <div

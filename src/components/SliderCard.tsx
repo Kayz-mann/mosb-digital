@@ -3,12 +3,11 @@ import React from "react";
 import CustomButton from "./module/CustomButton";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import Link from "next/link";
-import { urlFor } from "@/sanity";
 import { TruncatedText } from "./module/TruncatedText";
 
 interface SliderProps {
   id: string;
-  image: any;
+  image: string; // Changed to string to ensure type consistency
   title: string;
   description: string;
   href: any;
@@ -19,12 +18,6 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
   const isMobileOrTablet = useMobileOrTablet(900);
   const isSmallScreen = useMobileOrTablet(500);
 
-  const imageUrl = urlFor(image)
-    .width(200) // Set the desired width
-    .height(200) // Set the desired height
-    .quality(100) // Set the desired quality (optional)
-    .url();
-
   return (
     <div className={`${isMobileOrTablet ? "flex flex-col" : "flex flex-row"} `}>
       <div style={{ flex: 0.48 }}>
@@ -34,9 +27,8 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
             lineHeight: 1.2,
           }}
           className="text-32 font-bold text-white"
-        >
-          {title}
-        </p>
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
 
         <TruncatedText
           text={description}
@@ -56,23 +48,6 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
         >
           <Link href={href}>Read Now</Link>
         </button>
-
-        {/* <div
-          style={{ marginTop: "40px", gap: 8 }}
-          className={`flex ${
-            isMobileOrTablet && "items-center w-full justify-start mb-24"
-          }  `}
-        >
-           <CustomButton
-            bgColor={"bg-[#FAB005]"}
-            bgColorHover={"hover:bg-[#FA0505]"}
-            textColor={"text-black"}
-            textColorHover={"hover:text-white"}
-            buttonText1="Our Services"
-            buttonText2="Our Services"
-            borderColor="border-red-500" // Change the border color to red
-          /> 
-        </div> */}
       </div>
 
       <span
@@ -85,13 +60,10 @@ const SliderCard = ({ image, title, description, href }: SliderProps) => {
       >
         <Image
           alt="mosb-about"
-          src={imageUrl}
-          // layout="fixed"
+          src={image} // Directly using the string URL here
           width={800}
           height={400} // Set the height to the desired value
           objectFit="contain" // Use "cover" to fill the entire container with the image
-          // quality={100}
-          // priority
           style={{ height: "100%", width: "100%" }}
         />
       </span>

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     yahoo: "yahoo",
     other: {
       me: ["info@mosbdigital.com", "https://www.mosbdigital.com/", "mosbdigital", "mosbdigital.com", "mosbdigital/blog"],
+
     },
   },
 };

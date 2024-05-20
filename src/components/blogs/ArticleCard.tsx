@@ -20,21 +20,20 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   title,
 }) => {
   const isMobileOrTablet = useMobileOrTablet(900);
+
+  const getFullImageUrl = (uri: any) =>
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
+
   return (
     <div
       className={`w-[255px] ${
         isMobileOrTablet ? "h-[45vh]" : "h-[48vh]"
       } rounded-lg overflow-hidden relative shadow-lg flex mb-8`}
     >
-      {/* <div
-        className="h-[48%] bg-cover bg-center relative z-10 "
-        style={{ backgroundImage: `url(${imageSrc.src})` }}
-        // style={{ backgroundImage: imageSrc?.src }}
-      ></div> */}
       <Image
         className="h-[58%] bg-cover bg-center relative object-cover object-center"
         alt="blog"
-        src={imageSrc}
+        src={getFullImageUrl(imageSrc)}
         height={600}
         width={400}
         loading="lazy"

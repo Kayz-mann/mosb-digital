@@ -10,6 +10,7 @@ interface CategoryProps {
   image?: any;
   title: string;
   description: string;
+  headline?: string;
   onClick?: () => void;
 }
 
@@ -18,11 +19,10 @@ const CategoryCard = ({
   image,
   title,
   description,
+  headline,
   onClick,
 }: CategoryProps) => {
   const isMobileOrTablet = useMobileOrTablet(1024);
-
-  const imageUrl = urlFor(image).quality(100).url();
 
   return (
     <div className="">
@@ -32,7 +32,7 @@ const CategoryCard = ({
       >
         <Image
           alt="category"
-          src={imageUrl}
+          src={image}
           height={350}
           width={285}
           objectFit="cover" // Use "cover" to fill the entire container with the image

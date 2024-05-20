@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-
-import moment from "moment";
 import React, { useEffect, useState } from "react";
+import moment from "moment";
 import useMobileOrTablet from "../hooks/useMobileOrTablet";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -11,46 +10,32 @@ import Link from "next/link";
 import blogImage from "../../../public/assets/images/blogImage.png";
 import Image from "next/image";
 import Quotes from "@/components/svgs/Quotes";
-import useBlogPostById, { fetchBlogPostById } from "../hooks/useBlogPostById";
-import { CategoryItem } from "@/components/blogs/CategoryList";
+import useApolloBlog from "../hooks/useApolloBlog";
 import { Jelly } from "@uiball/loaders";
 import FeaturedList from "@/components/blogs/FeaturedList";
 import useScroll from "../hooks/useScroll";
 
-const View = ({
-  searchParams,
-}: {
-  searchParams: {
-    id: string;
-  };
-}) => {
+const View = ({ searchParams }: { searchParams: { id: string } }) => {
   const isScrolled = useScroll();
-  const [data, setData] = useState<CategoryItem[]>([]);
+  const [blogPost, setBlogPost] = useState<any>(null);
+  const isMobileOrTablet = useMobileOrTablet(900);
 
-  let blogId = searchParams.id;
+  const { data: wp, loading, error } = useApolloBlog();
 
-  const fetchData = async () => {
-    try {
-      const dataInfo: CategoryItem | any = await fetchBlogPostById(blogId);
-      console.log("MY DATA", data);
-      setData(dataInfo);
-      // Now you can use the data here
-    } catch (error) {
-      console.error("Error fetching blog post:", error);
-    }
-  };
+  const getFullImageUrl = (uri: any) =>
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
 
   useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (!wp || loading || error) return;
 
-  console.log("this data", data[0]?.category);
+    const post = wp.find((post: any) => post.id === searchParams.id);
 
-  const isMobileOrTablet = useMobileOrTablet(900);
-  console.log(searchParams.id);
+    if (post) {
+      setBlogPost(post.blogFields);
+    }
+  }, [wp, loading, error, searchParams.id]);
 
-  if (!data) {
+  if (loading || !blogPost) {
     return (
       <div className="flex w-full items-center justify-center p-18 text-xl mt-98">
         <Jelly size={50} color="#FAB005" />
@@ -59,12 +44,9 @@ const View = ({
   }
 
   return (
-    <div
-      className={`h-full w-full bg-[#fff] 
-    `}
-    >
+    <div className={`h-full w-full bg-[#fff] ${isScrolled ? "py-14" : "py-0"}`}>
       <div
-        className={`ease-in-out transition-padding duration-500 ${
+        className={`ease-in-out transition-padding duration-500 pb-28 ${
           isScrolled ? "py-14" : "py-0"
         } ${isMobileOrTablet ? "w-full" : "w-4/5"}`}
         style={{
@@ -105,7 +87,7 @@ const View = ({
                 style={{ fontSize: "10px", width: "80px" }}
                 className="text-[#FAB005] text-center font-bold"
               >
-                {data[0]?.category}
+                {blogPost.category}
               </p>
             </button>
 
@@ -114,27 +96,26 @@ const View = ({
                 isMobileOrTablet ? "text-xs" : "text-lg"
               } font-bold uppercase text-gray-600`}
             >
-              {moment(data[0]?.createdAt).format("MMMM Do YYYY, h:mm a")}
+              {moment(blogPost.createdAt).format("MMMM Do YYYY, h:mm a")}
             </p>
           </div>
-
           {/* section */}
-
-          {data[0]?.title && (
+          {blogPost.title && (
             <h1
               className={`${
                 isMobileOrTablet ? "text-3xl" : "text-5xl"
               } text-black font-bold mt-8 text-left`}
               style={{ width: isMobileOrTablet ? "100%" : "80%" }}
-            >
-              {data[0]?.title}
-            </h1>
+              dangerouslySetInnerHTML={{ __html: blogPost.title }}
+            />
           )}
+
+          {/* Other content goes here */}
 
           <div className="mt-8 flex flex-row items-center gap-2">
             <Image
               alt="blog"
-              src={data[0]?.authorImage as any}
+              src={blogPost.authorImage?.node.uri || blogImage}
               width={isMobileOrTablet ? 64 : 64}
               height={64}
               loading="lazy"
@@ -146,19 +127,19 @@ const View = ({
 
             <div>
               <p className="font-bold text-base text-black">
-                {data[0]?.authorName}
+                {blogPost.authorname}
               </p>
               <p className="font-light text-base text-gray-400">
-                {data[0]?.authorJobRole} @ {data[0]?.companyName}
+                {blogPost.authorjobrole} @ {blogPost.companyname}
               </p>
             </div>
           </div>
 
-          {data[0]?.image && (
+          {blogPost.image && (
             <div className="mt-8 items-center w-full justify-center">
               <Image
                 alt="blog"
-                src={data[0]?.image || blogImage}
+                src={getFullImageUrl(blogPost.image?.node.uri)}
                 width={1026}
                 height={626}
                 loading="lazy"
@@ -172,33 +153,30 @@ const View = ({
 
           {/* headline */}
           <div className="mt-4">
-            {data[0]?.headline && (
+            {blogPost.headline && (
               <p
                 className="text-base font-bold text-black"
                 style={{
                   fontFamily: "Merriweather",
                 }}
-              >
-                {data[0]?.headline}
-              </p>
+                dangerouslySetInnerHTML={{ __html: blogPost.headline }}
+              />
             )}
 
-            {data[0]?.description && (
+            {blogPost.description && (
               <p
                 className="text-base font-normal text-gray-700 mt-8"
                 style={{
                   fontFamily: "Merriweather",
                 }}
-              >
-                {data[0]?.description}
-              </p>
+                dangerouslySetInnerHTML={{ __html: blogPost.description }}
+              />
             )}
           </div>
 
           {/* quotes */}
-          {data[0]?.quote && (
+          {blogPost.quote && (
             <div className="bg-[#F3F3F3] px-6 py-8 rounded-md mt-4">
-              {/* <p className="text-4xl text-gray-700"></p> */}
               <Quotes />
 
               <p
@@ -208,9 +186,8 @@ const View = ({
                   fontWeight: 400,
                   fontStyle: "normal",
                 }}
-              >
-                {data[0]?.quote}
-              </p>
+                dangerouslySetInnerHTML={{ __html: blogPost.quote }}
+              />
               <p
                 className="mt-2 text-sm text-gray-500 italic"
                 style={{
@@ -219,27 +196,26 @@ const View = ({
                   fontStyle: "normal",
                 }}
               >
-                {data[0]?.quoteAuthor}
+                {blogPost.quoteauthor}
               </p>
             </div>
           )}
 
           {/* footer description */}
-          {data[0]?.footerDescription && (
+          {blogPost.footerdescription && (
             <p
               className="text-base font-normal text-gray-700 mt-8 pb-10"
-              style={{
-                fontFamily: "Merriweather",
-              }}
-            >
-              {data[0]?.footerDescription}
-            </p>
+              style={{ fontFamily: "Merriweather" }}
+              dangerouslySetInnerHTML={{ __html: blogPost.footerdescription }}
+            />
           )}
         </div>
       </div>
 
       <div
-        className={`bg-[#F3F3F3] mt-4 w-full items-center py-20  ${isMobileOrTablet ? "px-2" : "px-20"}`}
+        className={`bg-[#F3F3F3] mt-4 w-full items-center py-20  ${
+          isMobileOrTablet ? "px-2" : "px-20"
+        }`}
       >
         <p className="text-16 font-bold text-black mb-8 mt-8 px-4">
           Featured Article

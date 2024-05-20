@@ -5,20 +5,36 @@ import Navigation from "@/components/Navigation";
 import CustomButton from "@/components/module/CustomButton";
 import Image from "next/image";
 import blogImage from "../../../public/assets/images/blogImage.png";
-import { TruncatedText } from "@/components/module/TruncatedText";
 import BlogBanner from "@/components/blogs/BlogBanner";
 import CategoryList from "@/components/blogs/CategoryList";
 import Footer from "@/components/Footer";
-import useBlogPosts from "../hooks/useBlogPosts";
 import Link from "next/link";
 import useScroll from "../hooks/useScroll";
+import useApolloBlog from "../hooks/useApolloBlog";
+
+const BASE_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
 const Blog = () => {
   const isScrolled = useScroll();
   const isMobileOrTablet = useMobileOrTablet(900);
-  const { data } = useBlogPosts();
+  const { data: wp, loading, error } = useApolloBlog();
 
-  console.log("blog", data);
+  console.log("WP", wp);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  const firstBlog = wp[0]?.blogFields;
+
+  console.log("First Blog:", firstBlog);
+  console.log("First Blog Title:", firstBlog?.title);
+
+  const getFullImageUrl = (uri: any) => (uri ? `${BASE_URL}${uri}` : blogImage);
 
   return (
     <div className={`h-full w-full bg-[#F3F3F3]`}>
@@ -27,7 +43,7 @@ const Blog = () => {
           isScrolled ? "py-14" : "py-0"
         } ${isMobileOrTablet ? "w-full" : "w-4/5"}`}
         style={{
-          scrollBehavior: "smooth", // Enable smooth scrolling behavior
+          scrollBehavior: "smooth",
         }}
       >
         <span
@@ -45,19 +61,22 @@ const Blog = () => {
       <div className={`${isMobileOrTablet ? "px-2 " : "px-32 "} `}>
         <h1 className="text-4xl font-bold">Blog</h1>
 
-        {data && data.length >= 1 ? (
+        {wp && wp.length > 0 ? (
           <Link
             href={{
               pathname: "/view",
               query: {
-                id: data[0].id,
+                id: wp[0]?.id,
               },
             }}
           >
             <BlogBanner
-              title={data[0].title}
-              description={data[0].description}
-              image={data[0].image}
+              title={
+                // <div dangerouslySetInnerHTML={{ __html: firstBlog?.title }} />
+                firstBlog?.title
+              }
+              description={firstBlog?.headline}
+              image={getFullImageUrl(firstBlog?.image?.node?.uri)}
               onButtonClick={() => {}}
             />
           </Link>
