@@ -22,8 +22,6 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
 
   const { data: wp, loading, error } = useApolloBlog();
 
-  console.log("WP", wp[0]?.id);
-
   const getFullImageUrl = (uri: any) =>
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
 
