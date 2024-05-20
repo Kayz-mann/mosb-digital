@@ -15,14 +15,16 @@ export const TruncatedText = ({
   const [truncatedText, setTruncatedText] = useState(text);
 
   useEffect(() => {
-    if (text.length > maxLength) {
+    if (text?.length > maxLength) {
       setTruncatedText(text.slice(0, maxLength) + "...");
     }
   }, [text, maxLength]);
 
   return (
-    <div style={style} className={className}>
-      {truncatedText}
-    </div>
+    <div
+      style={style}
+      className={className}
+      dangerouslySetInnerHTML={{ __html: truncatedText }}
+    />
   );
 };

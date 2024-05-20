@@ -6,11 +6,9 @@ import Footer from "@/components/Footer";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import ArticleCard from "@/components/blogs/ArticleCard";
-import { categoryData } from "@/components/blogs/data";
-import useBlogPosts from "../hooks/useBlogPosts";
-import { CategoryItem } from "@/components/blogs/CategoryList";
 import { Jelly } from "@uiball/loaders";
 import useScroll from "../hooks/useScroll";
+import useApolloBlog from "../hooks/useApolloBlog"; // Import the useApolloBlog hook
 
 const Categories = ({
   searchParams,
@@ -20,16 +18,13 @@ const Categories = ({
   };
 }) => {
   const isScrolled = useScroll();
-  const { data } = useBlogPosts();
+  const { data, loading, error } = useApolloBlog(); // Use useApolloBlog hook to fetch data
   const isMobileOrTablet = useMobileOrTablet(900);
-  console.log(searchParams.category);
+
+  console.log("DS", data);
 
   return (
-    <div
-      className={`h-full w-full bg-[#F3F3F3] 
-
-    `}
-    >
+    <div className={`h-full w-full bg-[#F3F3F3]`}>
       <div
         className={`ease-in-out transition-padding duration-500 ${
           isScrolled ? "py-14" : "py-0"
@@ -72,34 +67,33 @@ const Categories = ({
           </p>
         </button>
         <div className="mb-8 gap-12 z-50 flex flex-wrap items-center w-full justify-center">
-          {data ? (
-            data
-              .filter(
-                (item: CategoryItem) => item.category === searchParams.category
-              ) // Filter the data based on the searchParams
-              .map((item: CategoryItem, id: string | number) => (
-                <Link
-                  href={{
-                    pathname: "/view",
-                    query: {
-                      id: item.id,
-                    },
-                  }}
-                  key={id}
-                >
-                  <ArticleCard
-                    key={id}
-                    id={item.id}
-                    imageSrc={item.image}
-                    tag={searchParams.category}
-                    title={item.title}
-                  />
-                </Link>
-              ))
-          ) : (
+          {loading ? (
             <div className="flex w-full items-center justify-center p-18 text-xl">
               <Jelly size={50} color="#FAB005" />
             </div>
+          ) : error ? (
+            <p>Error fetching data</p>
+          ) : (
+            data &&
+            data.map((item: any, id: string | number) => (
+              <Link
+                href={{
+                  pathname: "/view",
+                  query: {
+                    id: item.id,
+                  },
+                }}
+                key={id}
+              >
+                <ArticleCard
+                  key={id}
+                  id={item.id}
+                  imageSrc={item.blogFields.image.node.uri}
+                  tag={searchParams.category}
+                  title={item.blogFields.title}
+                />
+              </Link>
+            ))
           )}
         </div>
       </div>

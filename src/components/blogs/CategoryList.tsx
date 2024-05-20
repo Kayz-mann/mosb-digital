@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useRef, useState } from "react";
 import CategoryCard from "./CategoryCard";
-import { categoryData } from "./data";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
-import useBlogPosts from "@/app/hooks/useBlogPosts";
+import useApolloBlog from "@/app/hooks/useApolloBlog";
 
 type GroupedCategories = {
   [category: string]: {
@@ -18,24 +17,20 @@ type GroupedCategories = {
 export type CategoryItem = {
   id: number;
   createdAt: string;
-  image: any;
-  authorImage?: string;
-  authorName?: string;
-  authorJobRole?: string;
-  companyPosition?: string;
-  companyName?: string;
+  image: {
+    node: {
+      uri: string;
+    };
+  };
   category: string;
   title: string;
   description: string;
-  headline: string;
-  quote: string;
-  quoteAuthor: string;
-  footerDescription: string;
+  headline?: string;
 };
 
 const CategoryList = () => {
   const isMobile = useMobileOrTablet(768);
-  const { data } = useBlogPosts();
+  const { data: wp } = useApolloBlog();
   const containerRefs = useRef<{
     [category: string]: React.RefObject<HTMLDivElement | any>;
   }>({});
@@ -45,19 +40,27 @@ const CategoryList = () => {
 
   useEffect(() => {
     const initialGroupedCategories: GroupedCategories = {};
-    data &&
-      data.forEach((item: CategoryItem) => {
-        if (!initialGroupedCategories[item.category]) {
-          initialGroupedCategories[item.category] = {
+    wp &&
+      wp.forEach((item: any) => {
+        const { blogFields } = item;
+        if (!initialGroupedCategories[blogFields.category]) {
+          initialGroupedCategories[blogFields.category] = {
             items: [],
             scrollPosition: 0,
           };
         }
-        initialGroupedCategories[item.category].items.push(item);
+        initialGroupedCategories[blogFields.category].items.push({
+          id: item.id,
+          createdAt: item.createdAt,
+          image: item.blogFields.image,
+          category: item.blogFields.category,
+          title: item.blogFields.title,
+          description: item.blogFields.description,
+        });
       });
     console.log("Initial Grouped Categories:", initialGroupedCategories);
     setGroupedCategories(initialGroupedCategories);
-  }, [data]);
+  }, [wp]);
 
   const handleScroll = (scrollOffset: number, category: string) => {
     const container = containerRefs.current[category]?.current;
@@ -75,6 +78,9 @@ const CategoryList = () => {
       }));
     }
   };
+
+  const getFullImageUrl = (uri: any) =>
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
 
   return (
     <div style={{ position: "relative" }}>
@@ -128,9 +134,9 @@ const CategoryList = () => {
                       }}
                     >
                       <CategoryCard
-                        image={item.image}
+                        image={getFullImageUrl(item.image.node.uri)}
                         title={item.title}
-                        description={item.description}
+                        description={item.description as string}
                         onClick={() => {}}
                       />
                     </Link>

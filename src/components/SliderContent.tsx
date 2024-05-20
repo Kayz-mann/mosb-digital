@@ -1,12 +1,10 @@
-"use client";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import sliderImage from "../../public/assets/images/slider-image.png";
 import SliderCard from "./SliderCard";
-import useBlogPosts from "@/app/hooks/useBlogPosts";
+import useApolloBlog from "@/app/hooks/useApolloBlog"; // Import the useApolloBlog hook
 import Link from "next/link";
 
 const SliderContent = () => {
@@ -15,39 +13,23 @@ const SliderContent = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const { data }: any = useApolloBlog();
+
   useEffect(() => {
-    // Set up interval to auto-slide every 5 seconds
+    // Set up interval to auto-slide every 10 seconds
     const intervalId = setInterval(() => {
       setCurrentSlide((prevSlide) =>
         prevSlide === data && data.length - 1 ? 0 : prevSlide + 1
       );
-    }, 10000); // Auto-slide every 5 seconds (5000 milliseconds)
+    }, 10000); // Auto-slide every 10 seconds (10000 milliseconds)
 
     // Clear interval on component unmount
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [data]);
 
-  const { data } = useBlogPosts();
-
+  // Use useApolloBlog hook to fetch data
   console.log("query data", data);
-
-  // const sliderData = [
-  //   {
-  //     id: 1,
-  //     title: "The is a featured article - the most important piece of content",
-  //     description:
-  //       "Very short description of what is being discussed in this article. Maybe the first sentence to provide a preview.",
-  //     image: sliderImage,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "The is a featured article - the most important piece of content",
-  //     description:
-  //       "Very short description of what is being discussed in this article. Maybe the first sentence to provide a preview.",
-  //     image: sliderImage,
-  //   },
-  // ];
 
   const settings = {
     dots: false,
@@ -78,30 +60,39 @@ const SliderContent = () => {
                 data.map(
                   (post: {
                     id: React.Key | null | any;
-                    image: any;
-                    title: string;
-                    description: string;
-                  }) => (
-                    <Link
-                      href={{
-                        pathname: "/view",
-                        query: {
-                          id: post.id,
-                        },
-                      }}
-                      key={post.id}
-                    >
-                      <SliderCard
-                        id={post.id}
-                        image={post.image}
-                        title={post.title}
-                        description={post.description}
-                        href={{ pathname: "/view", query: { id: post.id } }}
-                      />
-                    </Link>
-                  )
+                    blogFields: {
+                      image: {
+                        node: {
+                          uri: string;
+                        };
+                      };
+                      title: string;
+                      description: string;
+                    };
+                  }) => {
+                    const fullImageUrl = `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${post.blogFields.image.node.uri}`;
+                    console.log("fullImageUrl", fullImageUrl);
+                    return (
+                      <Link
+                        href={{
+                          pathname: "/view",
+                          query: {
+                            id: post.id,
+                          },
+                        }}
+                        key={post.id}
+                      >
+                        <SliderCard
+                          id={post.id}
+                          image={fullImageUrl}
+                          title={post.blogFields.title}
+                          description={post.blogFields.description}
+                          href={{ pathname: "/view", query: { id: post.id } }}
+                        />
+                      </Link>
+                    );
+                  }
                 )}
-
               <div />
             </Slider>
           </div>

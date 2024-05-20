@@ -3,26 +3,30 @@ import CategoryCard from "./CategoryCard";
 import Link from "next/link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
-import useBlogPosts from "@/app/hooks/useBlogPosts";
-import { CategoryItem } from "./CategoryList"; // Assuming CategoryItem is exported from CategoryList
+
+import useApolloBlog from "@/app/hooks/useApolloBlog";
 
 const FeaturedList = () => {
   const isMobile = useMobileOrTablet(768);
-  const { data } = useBlogPosts();
+  const { data: wpData } = useApolloBlog(); // Use useApolloBlog hook to fetch data
   const containerRef = useRef<HTMLDivElement>(null);
-  const [items, setItems] = useState<CategoryItem[]>([]);
+  const [items, setItems] = useState<any[]>([]);
   const [scrollPosition, setScrollPosition] = useState<number>(0);
   const cardWidth = "299px"; // Width of the CategoryCard
 
   useEffect(() => {
-    if (data) {
-      const categoryItems: CategoryItem[] = [];
-      data.forEach((item: CategoryItem) => {
-        categoryItems.push(item);
+    if (wpData) {
+      const categoryItems: any[] = wpData.map((item: any) => {
+        return {
+          id: item.id,
+          title: item.blogFields.title,
+          headline: item.blogFields.headline,
+          image: item.blogFields.image,
+        };
       });
       setItems(categoryItems);
     }
-  }, [data]);
+  }, [wpData]);
 
   const handleScroll = (scrollOffset: number) => {
     if (containerRef.current) {
@@ -34,6 +38,9 @@ const FeaturedList = () => {
     }
   };
 
+  const getFullImageUrl = (uri: any) =>
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
+
   return (
     <div style={{ position: "relative" }}>
       <div
@@ -44,10 +51,10 @@ const FeaturedList = () => {
           scrollBehavior: "smooth",
         }}
       >
-        {items.map((item: CategoryItem) => (
+        {items.map((item: any) => (
           <div
             key={item.id}
-            style={{ flex: "0 0 auto", margin: "0 8px", width: cardWidth }} // Set the width here
+            style={{ flex: "0 0 auto", margin: "0 8px", width: cardWidth }}
             className="mr-4 mb-4"
           >
             <Link
@@ -59,9 +66,9 @@ const FeaturedList = () => {
               }}
             >
               <CategoryCard
-                image={item.image}
+                image={getFullImageUrl(item.image?.node?.uri)}
                 title={item.title}
-                description={item.description}
+                description={item.headline as string}
                 onClick={() => {}}
               />
             </Link>
