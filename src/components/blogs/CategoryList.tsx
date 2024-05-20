@@ -20,8 +20,8 @@ export type CategoryItem = {
   image: {
     node: {
       uri: string;
-    };
-  };
+    } | null;
+  } | null;
   category: string;
   title: string;
   description: string;
@@ -79,8 +79,11 @@ const CategoryList = () => {
     }
   };
 
-  const getFullImageUrl = (uri: any) =>
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
+  const getFullImageUrl = (uri: string | null) => {
+    return uri
+      ? `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`
+      : "/path/to/default/image.jpg";
+  };
 
   return (
     <div style={{ position: "relative" }}>
@@ -134,7 +137,7 @@ const CategoryList = () => {
                       }}
                     >
                       <CategoryCard
-                        image={getFullImageUrl(item.image.node.uri)}
+                        image={getFullImageUrl(item.image?.node?.uri || null)}
                         title={item.title}
                         description={item.description as string}
                         onClick={() => {}}
