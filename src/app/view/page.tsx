@@ -115,7 +115,7 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
           <div className="mt-8 flex flex-row items-center gap-2">
             <Image
               alt="blog"
-              src={blogPost.authorimage?.uri || blogImage}
+              src={getFullImageUrl(blogPost.authorimage?.node?.uri) || blogImage}
               width={isMobileOrTablet ? 64 : 64}
               height={64}
               loading="lazy"
