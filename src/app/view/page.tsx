@@ -14,7 +14,7 @@ import useApolloBlog from "../hooks/useApolloBlog";
 import { Jelly } from "@uiball/loaders";
 import FeaturedList from "@/components/blogs/FeaturedList";
 import useScroll from "../hooks/useScroll";
-import Head from "next/head"; // Import Head
+import Head from "next/head";
 
 const View = ({ searchParams }: { searchParams: { id: string } }) => {
   const isScrolled = useScroll();
@@ -56,8 +56,23 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
         <title>{metadata.title}</title> {/* Dynamic title */}
         <meta name="description" content={metadata.description} />{" "}
         {/* Dynamic description */}
+        <meta property="og:title" content={metadata.title} />{" "}
+        {/* Open Graph title */}
+        <meta property="og:description" content={metadata.description} />{" "}
+        {/* Open Graph description */}
         <meta property="og:image" content={metadata.image} />{" "}
-        {/* Dynamic image */}
+        {/* Open Graph image */}
+        <meta property="og:type" content="article" /> {/* Open Graph type */}
+        <meta property="og:url" content={window.location.href} />{" "}
+        {/* Open Graph URL */}
+        <meta name="twitter:card" content="summary_large_image" />{" "}
+        {/* Twitter card */}
+        <meta name="twitter:title" content={metadata.title} />{" "}
+        {/* Twitter title */}
+        <meta name="twitter:description" content={metadata.description} />{" "}
+        {/* Twitter description */}
+        <meta name="twitter:image" content={metadata.image} />{" "}
+        {/* Twitter image */}
       </Head>
       <div
         className={`ease-in-out transition-padding duration-500 pb-28 ${
