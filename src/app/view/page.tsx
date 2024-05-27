@@ -14,6 +14,7 @@ import useApolloBlog from "../hooks/useApolloBlog";
 import { Jelly } from "@uiball/loaders";
 import FeaturedList from "@/components/blogs/FeaturedList";
 import useScroll from "../hooks/useScroll";
+import Head from "next/head"; // Import Head
 
 const View = ({ searchParams }: { searchParams: { id: string } }) => {
   const isScrolled = useScroll();
@@ -43,8 +44,21 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
     );
   }
 
+  const metadata = {
+    title: blogPost.title || "Default Title",
+    description: blogPost.description || "Default Description",
+    image: getFullImageUrl(blogPost.image?.node.uri) || "/default-image.png",
+  };
+
   return (
     <div className={`h-full w-full bg-[#fff] ${isScrolled ? "py-14" : "py-0"}`}>
+      <Head>
+        <title>{metadata.title}</title> {/* Dynamic title */}
+        <meta name="description" content={metadata.description} />{" "}
+        {/* Dynamic description */}
+        <meta property="og:image" content={metadata.image} />{" "}
+        {/* Dynamic image */}
+      </Head>
       <div
         className={`ease-in-out transition-padding duration-500 pb-28 ${
           isScrolled ? "py-14" : "py-0"
@@ -115,7 +129,7 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
           <div className="mt-8 flex flex-row items-center gap-2">
             <Image
               alt="blog"
-              src={getFullImageUrl(blogPost.authorimage?.node?.uri) || blogImage}
+              src={blogPost.authorImage?.node.uri || blogImage}
               width={isMobileOrTablet ? 64 : 64}
               height={64}
               loading="lazy"
