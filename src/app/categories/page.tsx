@@ -88,9 +88,9 @@ const Categories = ({
                 <ArticleCard
                   key={id}
                   id={item.id}
-                  imageSrc={item.blogFields.image.node.uri}
+                  imageSrc={item.blog.image.node.uri}
                   tag={searchParams.category}
-                  title={item.blogFields.title}
+                  title={item.blog.title}
                 />
               </Link>
             ))

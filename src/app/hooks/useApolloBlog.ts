@@ -3,7 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 // Define the interface for the blog post data
 interface BlogPost {
   id: string;
-  blogFields: {
+  blog: {
     authorimage: {
       node: {
         id: string;
@@ -33,10 +33,10 @@ interface BlogPost {
 // Define the GraphQL query
 const GET_BLOG_POSTS = gql`
   query GetBlogPosts {
-    blogs {
+    posts {
       nodes {
         id
-        blogFields {
+        blog {
           authorimage {
             node {
               id
@@ -68,10 +68,10 @@ const GET_BLOG_POSTS = gql`
 
 // Create the custom hook with response type
 const useApolloBlog = () => {
-  const { data, loading, error } = useQuery<{ blogs: { nodes: BlogPost[] } }>(GET_BLOG_POSTS);
+  const { data, loading, error } = useQuery<{ posts: { nodes: BlogPost[] } }>(GET_BLOG_POSTS);
 
   return {
-    data: data ? data.blogs.nodes : [],
+    data: data ? data.posts.nodes : [],
     loading,
     error,
   };

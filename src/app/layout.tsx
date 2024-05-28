@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { ReactQueryClientProvider } from "./ReactQueryClientProvider";
 import { Toaster } from "react-hot-toast";
+import { useMetadata } from "./hooks/useMetaData";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
+export const metadata = {
   title:
     "From Plaid to Figma, here’s why many tech startups are postponing their IPOs until 2025",
   description:

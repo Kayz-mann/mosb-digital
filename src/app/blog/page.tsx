@@ -29,7 +29,7 @@ const Blog = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  const firstBlog = wp[0]?.blogFields;
+  const firstBlog = wp[0]?.blog;
 
   console.log("First Blog:", firstBlog);
   console.log("First Blog Title:", firstBlog?.title);

@@ -20,8 +20,8 @@ export type CategoryItem = {
   image: {
     node: {
       uri: string;
-    };
-  };
+    } | null;
+  } | null;
   category: string;
   title: string;
   description: string;
@@ -42,20 +42,20 @@ const CategoryList = () => {
     const initialGroupedCategories: GroupedCategories = {};
     wp &&
       wp.forEach((item: any) => {
-        const { blogFields } = item;
-        if (!initialGroupedCategories[blogFields.category]) {
-          initialGroupedCategories[blogFields.category] = {
+        const { blog } = item;
+        if (!initialGroupedCategories[blog.category]) {
+          initialGroupedCategories[blog.category] = {
             items: [],
             scrollPosition: 0,
           };
         }
-        initialGroupedCategories[blogFields.category].items.push({
+        initialGroupedCategories[blog.category].items.push({
           id: item.id,
           createdAt: item.createdAt,
-          image: item.blogFields.image,
-          category: item.blogFields.category,
-          title: item.blogFields.title,
-          description: item.blogFields.description,
+          image: item.blog.image,
+          category: item.blog.category,
+          title: item.blog.title,
+          description: item.blog.description,
         });
       });
     console.log("Initial Grouped Categories:", initialGroupedCategories);
@@ -79,8 +79,11 @@ const CategoryList = () => {
     }
   };
 
-  const getFullImageUrl = (uri: any) =>
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
+  const getFullImageUrl = (uri: string | null) => {
+    return uri
+      ? `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`
+      : "/path/to/default/image.jpg";
+  };
 
   return (
     <div style={{ position: "relative" }}>
@@ -134,7 +137,7 @@ const CategoryList = () => {
                       }}
                     >
                       <CategoryCard
-                        image={getFullImageUrl(item.image.node.uri)}
+                        image={getFullImageUrl(item.image?.node?.uri || null)}
                         title={item.title}
                         description={item.description as string}
                         onClick={() => {}}

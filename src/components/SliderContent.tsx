@@ -60,7 +60,7 @@ const SliderContent = () => {
                 data.map(
                   (post: {
                     id: React.Key | null | any;
-                    blogFields: {
+                    blog: {
                       image: {
                         node: {
                           uri: string;
@@ -70,7 +70,9 @@ const SliderContent = () => {
                       description: string;
                     };
                   }) => {
-                    const fullImageUrl = `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${post.blogFields.image.node.uri}`;
+                    const fullImageUrl = post?.blog?.image?.node?.uri
+                      ? `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${post.blog.image.node.uri}`
+                      : "/path/to/default/image.jpg";
                     console.log("fullImageUrl", fullImageUrl);
                     return (
                       <Link
@@ -85,8 +87,8 @@ const SliderContent = () => {
                         <SliderCard
                           id={post.id}
                           image={fullImageUrl}
-                          title={post.blogFields.title}
-                          description={post.blogFields.description}
+                          title={post.blog.title}
+                          description={post.blog.description}
                           href={{ pathname: "/view", query: { id: post.id } }}
                         />
                       </Link>

@@ -14,9 +14,13 @@ import useApolloBlog from "../hooks/useApolloBlog";
 import { Jelly } from "@uiball/loaders";
 import FeaturedList from "@/components/blogs/FeaturedList";
 import useScroll from "../hooks/useScroll";
+import Head from "next/head";
+import { useAppDispatch } from "@/store/hooks";
+import { selectBlogPost } from "@/store/global";
 
 const View = ({ searchParams }: { searchParams: { id: string } }) => {
   const isScrolled = useScroll();
+  const dispatch = useAppDispatch();
   const [blogPost, setBlogPost] = useState<any>(null);
   const isMobileOrTablet = useMobileOrTablet(900);
 
@@ -31,9 +35,11 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
     const post = wp.find((post: any) => post.id === searchParams.id);
 
     if (post) {
-      setBlogPost(post.blogFields);
+      setBlogPost(post.blog);
     }
-  }, [wp, loading, error, searchParams.id]);
+
+    dispatch(selectBlogPost(blogPost));
+  }, [wp, loading, error, searchParams.id, dispatch, blogPost]);
 
   if (loading || !blogPost) {
     return (
@@ -45,6 +51,9 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
 
   return (
     <div className={`h-full w-full bg-[#fff] ${isScrolled ? "py-14" : "py-0"}`}>
+      <Head>
+        <meta property="og:url" content={window.location.href} />
+      </Head>
       <div
         className={`ease-in-out transition-padding duration-500 pb-28 ${
           isScrolled ? "py-14" : "py-0"
@@ -140,18 +149,16 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
               <Image
                 alt="blog"
                 src={getFullImageUrl(blogPost.image?.node.uri)}
-                width={1026}
-                height={626}
+                width={1024}
+                height={600}
                 loading="lazy"
                 quality={75}
                 objectFit="cover"
-                className="rounded-md object-cover object-center md:w-full w-full md:h-[10rem] h-[10rem]"
-                style={{ width: "100%", height: "40%", alignItems: "center" }}
               />
             </div>
           )}
 
-          {/* headline */}
+          {/* Other blog content */}
           <div className="mt-4">
             {blogPost.headline && (
               <p
@@ -222,7 +229,6 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
         </p>
         <FeaturedList />
       </div>
-
       <Footer />
     </div>
   );

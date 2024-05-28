@@ -30,11 +30,6 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
         isMobileOrTablet ? "h-[45vh]" : "h-[48vh]"
       } rounded-lg overflow-hidden relative shadow-lg flex mb-8`}
     >
-      {/* <div
-        className="h-[48%] bg-cover bg-center relative z-10 "
-        style={{ backgroundImage: `url(${imageSrc.src})` }}
-        // style={{ backgroundImage: imageSrc?.src }}
-      ></div> */}
       <Image
         className="h-[58%] bg-cover bg-center relative object-cover object-center"
         alt="blog"

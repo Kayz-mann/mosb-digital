@@ -19,9 +19,9 @@ const FeaturedList = () => {
       const categoryItems: any[] = wpData.map((item: any) => {
         return {
           id: item.id,
-          title: item.blogFields.title,
-          headline: item.blogFields.headline,
-          image: item.blogFields.image,
+          title: item.blog.title,
+          headline: item.blog.headline,
+          image: item.blog.image,
         };
       });
       setItems(categoryItems);
