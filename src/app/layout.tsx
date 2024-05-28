@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <ReactQueryClientProvider>
       <html lang="en">
@@ -50,3 +50,5 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => {
     </ReactQueryClientProvider>
   );
 };
+
+export default RootLayout;
