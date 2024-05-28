@@ -22,8 +22,6 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
 
   const { data: wp, loading, error } = useApolloBlog();
 
-  console.log("WP", wp[0]?.id);
-
   const getFullImageUrl = (uri: any) =>
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
 
@@ -117,7 +115,7 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
           <div className="mt-8 flex flex-row items-center gap-2">
             <Image
               alt="blog"
-              src={blogPost.authorImage?.node.uri || blogImage}
+              src={blogPost.authorimage?.node.uri || blogImage}
               width={isMobileOrTablet ? 64 : 64}
               height={64}
               loading="lazy"
