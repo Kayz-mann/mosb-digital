@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ReactQueryClientProvider } from "./ReactQueryClientProvider";
 import { Toaster } from "react-hot-toast";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,57 +12,40 @@ export default function RootLayout({
   metadata,
 }: {
   children: React.ReactNode;
-  metadata: Metadata;
+  metadata: Metadata | any;
 }) {
   return (
     <ReactQueryClientProvider>
       <html lang="en">
-        <head>
-          <title>{metadata.title as any}</title>
+        <Head>
+          <title>{metadata.title}</title>
+          <meta name="description" content={metadata.description} />
+          <meta property="og:title" content={metadata.openGraph?.title} />
           <meta
-            name="description"
-            content={metadata.description || "Default Description"}
+            property="og:description"
+            content={metadata.openGraph?.description}
           />
-          {metadata.openGraph && (
-            <>
-              <meta
-                property="og:title"
-                content={metadata.openGraph.title as any}
-              />
-              <meta
-                property="og:description"
-                content={
-                  metadata.openGraph.description || "Default Description"
-                }
-              />
-              <meta
-                property="og:image"
-                content={metadata.openGraph.images?.[0]?.url}
-              />
-            </>
+          <meta
+            property="og:image"
+            content={metadata.openGraph?.images.image.url}
+          />
+          <meta property="og:type" content={metadata.openGraph?.type} />
+          <meta property="og:locale" content={metadata.openGraph?.locale} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={metadata.title} />
+          <meta name="twitter:description" content={metadata.description} />
+          <meta
+            name="twitter:image"
+            content={metadata.openGraph?.images.image.url}
+          />
+          {metadata.verification?.google && (
+            <meta
+              name="google-site-verification"
+              content={metadata.verification.google}
+            />
           )}
-          {metadata.twitter && (
-            <>
-              <meta
-                name="twitter:card"
-                content={metadata.twitter.cardType as any}
-              />
-              <meta
-                name="twitter:title"
-                content={metadata.twitter.title as any}
-              />
-              <meta
-                name="twitter:description"
-                content={metadata.twitter.description || "Default Description"}
-              />
-              <meta
-                name="twitter:image"
-                content={metadata.twitter.images?.[0]?.url as any}
-              />
-            </>
-          )}
-          {/* Add more metadata tags as needed */}
-        </head>
+          {/* Add other verification metadata if needed */}
+        </Head>
         <body className={inter.className}>
           <Toaster />
           {children}
