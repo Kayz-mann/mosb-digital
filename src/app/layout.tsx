@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "./globals.css";
 import { ReactQueryClientProvider } from "./ReactQueryClientProvider";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// Define a default metadata object without blogPost information
 export const metadata: Metadata = {
   title:
     "From Plaid to Figma, here’s why many tech startups are postponing their IPOs until 2025",
@@ -40,7 +40,11 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <ReactQueryClientProvider>
       <html lang="en">
@@ -49,6 +53,4 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       </html>
     </ReactQueryClientProvider>
   );
-};
-
-export default RootLayout;
+}
