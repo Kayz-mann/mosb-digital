@@ -14,8 +14,7 @@ import useApolloBlog from "../hooks/useApolloBlog";
 import { Jelly } from "@uiball/loaders";
 import FeaturedList from "@/components/blogs/FeaturedList";
 import useScroll from "../hooks/useScroll";
-import Head from "next/head";
-import RootLayout from "./layout";
+import RootLayout from "../layout";
 
 const View = ({ searchParams }: { searchParams: { id: string } }) => {
   const isScrolled = useScroll();
@@ -48,33 +47,6 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
   const metadata = {
     title: blogPost.title || "Default Title",
     description: blogPost.description || "Default Description",
-    image: getFullImageUrl(blogPost.image?.node.uri) || "/default-image.png",
-  };
-
-  return (
-    <div className={`h-full w-full bg-[#fff] ${isScrolled ? "py-14" : "py-0"}`}>
-      <Head>
-        <title>{metadata.title}</title> {/* Dynamic title */}
-        <meta name="description" content={metadata.description} />{" "}
-        {/* Dynamic description */}
-        <meta property="og:title" content={metadata.title} />{" "}
-        {/* Open Graph title */}
-        <meta property="og:description" content={metadata.description} />{" "}
-        {/* Open Graph description */}
-        <meta property="og:image" content={metadata.image} />{" "}
-        {/* Open Graph image */}
-        <meta property="og:type" content="article" /> {/* Open Graph type */}
-        <meta property="og:url" content={window.location.href} />{" "}
-        {/* Open Graph URL */}
-        <meta name="twitter:card" content="summary_large_image" />{" "}
-        {/* Twitter card */}
-        <meta name="twitter:title" content={metadata.title} />{" "}
-        {/* Twitter title */}
-        <meta name="twitter:description" content={metadata.description} />{" "}
-        {/* Twitter description */}
-        <meta name="twitter:image" content={metadata.image} />{" "}
-        {/* Twitter image */}
-      </Head>
     openGraph: {
       title: blogPost.title || "Default Title",
       description: blogPost.description || "Default Description",
