@@ -15,12 +15,9 @@ import { Jelly } from "@uiball/loaders";
 import FeaturedList from "@/components/blogs/FeaturedList";
 import useScroll from "../hooks/useScroll";
 import Head from "next/head";
-import { useAppDispatch } from "@/store/hooks";
-import { selectBlogPost } from "@/store/global";
 
 const View = ({ searchParams }: { searchParams: { id: string } }) => {
   const isScrolled = useScroll();
-  const dispatch = useAppDispatch();
   const [blogPost, setBlogPost] = useState<any>(null);
   const isMobileOrTablet = useMobileOrTablet(900);
 
@@ -37,9 +34,7 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
     if (post) {
       setBlogPost(post.blog);
     }
-
-    dispatch(selectBlogPost(blogPost));
-  }, [wp, loading, error, searchParams.id, dispatch, blogPost]);
+  }, [wp, loading, error, searchParams.id, blogPost]);
 
   if (loading || !blogPost) {
     return (
