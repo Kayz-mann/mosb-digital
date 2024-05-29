@@ -4,8 +4,8 @@ import { selectBlogPost } from "@/store/global";
 
 export const useMetadata = () => {
   const [metadata, setMetadata] = useState({
-    title: "Default Title",
-    description: "Default Description",
+    title: "Default Title x",
+    description: "Default Description x",
     openGraph: {
       title: "Default Title",
       description: "Default Description",
