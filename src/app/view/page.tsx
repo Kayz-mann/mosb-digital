@@ -46,9 +46,9 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
 
   return (
     <div className={`h-full w-full bg-[#fff] ${isScrolled ? "py-14" : "py-0"}`}>
-      <Head>
+{/*       <Head>
         <meta property="og:url" content={window.location.href} />
-      </Head>
+      </Head> */}
       <div
         className={`ease-in-out transition-padding duration-500 pb-28 ${
           isScrolled ? "py-14" : "py-0"
