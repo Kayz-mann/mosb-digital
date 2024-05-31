@@ -1,16 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import { Metadata } from "next";
-import useApolloBlog from "../hooks/useApolloBlog";
 import { PageTemplate } from "@/components/shared/PageTemplate";
 import { getBlogPostById } from "@/getBlogs";
 
+interface paramProps {
+  params: { id: string };
+}
+
 export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: { id: string };
-}): Promise<Metadata> {
-  const id = searchParams.id;
+  params,
+}: paramProps): Promise<Metadata> {
+  const id = params.id;
   const data = await getBlogPostById(id);
 
   const t = data?.title;
@@ -40,10 +41,8 @@ export async function generateMetadata({
   };
 }; */
 
-const View = ({ searchParams }: { searchParams: { id: string } }) => {
-  console.log("SEARCH", searchParams);
-
-  return <PageTemplate id={searchParams.id} />;
+const View = ({ params }: paramProps) => {
+  return <PageTemplate id={params.id} />;
 };
 
 export default View;
