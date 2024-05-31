@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { Metadata } from "next";
-import useApolloBlog from "../hooks/useApolloBlog";
 import { Jelly } from "@uiball/loaders";
 import FeaturedList from "@/components/blogs/FeaturedList";
 import useScroll from "../hooks/useScroll";
