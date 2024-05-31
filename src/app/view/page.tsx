@@ -1,11 +1,20 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import React, { useEffect, useState } from "react";
 import { Metadata } from "next";
 import useApolloBlog from "../hooks/useApolloBlog";
 import { Jelly } from "@uiball/loaders";
 import FeaturedList from "@/components/blogs/FeaturedList";
 import useScroll from "../hooks/useScroll";
 import Head from "next/head";
+import Navigation from "@/components/Navigation";
+import Link from "next/link";
+import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
+import moment from "moment";
+import Image from "next/image";
+import Quotes from "@/components/Quotes";
+import { PageTemplate } from "@/components/shared/PageTemplate";
+import { getBlogPostById } from "@/getBlogs";
 
 const View = ({ searchParams }: { searchParams: { id: string } }) => {
   const isScrolled = useScroll();
@@ -37,7 +46,7 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
 
   return (
     <div className={`h-full w-full bg-[#fff] ${isScrolled ? "py-14" : "py-0"}`}>
-{/*       <Head>
+      {/* <Head>
         <meta property="og:url" content={window.location.href} />
       </Head> */}
       <div
@@ -60,7 +69,7 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
         </span>
       </div>
 
-      <div className={`${isMobileOrTablet ? "px-6" : "px-32"} pt-24 `}>
+      <div className={`${isMobileOrTablet ? "px-6" : "px-32"} pt-24`}>
         <Link
           href="/blog"
           className="flex flex-row gap-1 items-center cursor-pointer"
@@ -77,7 +86,7 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
                 : "flex-row"
             } gap-2 items-center`}
           >
-            <button className="bg-[#fff] py-2 px-4 rounded-full shadow-md cursor-not-allowed ">
+            <button className="bg-[#fff] py-2 px-4 rounded-full shadow-md cursor-not-allowed">
               <p
                 style={{ fontSize: "10px", width: "80px" }}
                 className="text-[#FAB005] text-center font-bold"
@@ -204,9 +213,9 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
           )}
         </div>
       </div>
-=======
-import { PageTemplate } from "@/components/shared/PageTemplate";
-import { getBlogPostById } from "@/getBlogs";
+    </div>
+  );
+};
 
 export async function generateMetadata({
   searchParams,
@@ -241,25 +250,5 @@ export async function generateMetadata({
     },
   };
 }
-
-/* export const useMetadata = ({
-  searchParams,
-}: {
-  searchParams: { id: string };
-}): Metadata => {
-  const { data: wp } = useApolloBlog();
-  const post = wp.find((post: any) => post.id === searchParams.id);
-
-  console.log("Blog Title:", post?.blog.title);
-  return {
-    title: `${post?.blog.title}` ?? "MOSB-DIGITAL",
-  };
-}; */
-
-const View = ({ searchParams }: { searchParams: { id: string } }) => {
-  console.log("SEARCH", searchParams);
-
-  return <PageTemplate id={searchParams.id} />;
-};
 
 export default View;
