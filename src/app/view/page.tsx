@@ -23,6 +23,19 @@ export async function generateMetadata({
   return {
     title: title || "Default Title",
     description: headline || "Default Description",
+    openGraph: {
+      title: title || "Default Title",
+      description: headline || "Default Description",
+      images: [
+        {
+          url: data.image?.node.uri,
+          width: 800,
+          height: 600,
+        },
+      ],
+      locale: "en_US",
+      type: "article",
+    },
   };
 }
 

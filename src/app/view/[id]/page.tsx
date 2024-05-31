@@ -14,6 +14,8 @@ export async function generateMetadata({
   const id = params.id;
   const data = await getBlogPostById(id);
 
+  console.log(data);
+
   const t = data?.title;
   const h = data?.headline;
 
@@ -24,6 +26,19 @@ export async function generateMetadata({
   return {
     title: title || "Default Title",
     description: headline || "Default Description",
+    openGraph: {
+      title: title || "Default Title",
+      description: headline || "Default Description",
+      images: [
+        {
+          url: data.image?.node.uri,
+          width: 800,
+          height: 600,
+        },
+      ],
+      locale: "en_US",
+      type: "article",
+    },
   };
 }
 
