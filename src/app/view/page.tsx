@@ -10,6 +10,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const id = searchParams.id;
   const data = await getBlogPostById(id);
+  const getFullImageUrl = (uri: any) =>
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
 
   const t = data?.title;
   const h = data?.headline;
@@ -26,7 +28,7 @@ export async function generateMetadata({
       description: headline || "Default Description",
       images: [
         {
-          url: data.image?.node.uri,
+          url: getFullImageUrl(data.image?.node.uri),
           width: 800,
           height: 600,
         },
