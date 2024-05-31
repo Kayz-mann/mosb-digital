@@ -68,7 +68,9 @@ const GET_BLOG_POSTS = gql`
 
 // Create the custom hook with response type
 const useApolloBlog = () => {
-  const { data, loading, error } = useQuery<{ posts: { nodes: BlogPost[] } }>(GET_BLOG_POSTS);
+  const { data, loading, error } = useQuery<{ posts: { nodes: BlogPost[] } }>(
+    GET_BLOG_POSTS
+  );
 
   return {
     data: data ? data.posts.nodes : [],

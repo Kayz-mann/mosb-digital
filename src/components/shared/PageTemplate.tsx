@@ -1,13 +1,26 @@
-/* eslint-disable react/no-unescaped-entities */
+"use client";
 
-import { Metadata } from "next";
-import useApolloBlog from "../hooks/useApolloBlog";
+import { useEffect, useState } from "react";
+import useApolloBlog from "@/app/hooks/useApolloBlog";
+import useScroll from "@/app/hooks/useScroll";
+import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import { Jelly } from "@uiball/loaders";
+import moment from "moment";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { ArrowLeftIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
+import blogImage from "../../../public/assets/images/blogImage.png";
+import Image from "next/image";
+import Quotes from "@/components/svgs/Quotes";
 import FeaturedList from "@/components/blogs/FeaturedList";
-import useScroll from "../hooks/useScroll";
 import Head from "next/head";
 
-const View = ({ searchParams }: { searchParams: { id: string } }) => {
+interface PageTemplateProps {
+  id: string;
+}
+
+export const PageTemplate = ({ id }: PageTemplateProps) => {
   const isScrolled = useScroll();
   const [blogPost, setBlogPost] = useState<any>(null);
   const isMobileOrTablet = useMobileOrTablet(900);
@@ -20,12 +33,12 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
   useEffect(() => {
     if (!wp || loading || error) return;
 
-    const post = wp.find((post: any) => post.id === searchParams.id);
+    const post = wp.find((post: any) => post.id === id);
 
     if (post) {
       setBlogPost(post.blog);
     }
-  }, [wp, loading, error, searchParams.id, blogPost]);
+  }, [wp, loading, error, id, blogPost]);
 
   if (loading || !blogPost) {
     return (
@@ -37,9 +50,9 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
 
   return (
     <div className={`h-full w-full bg-[#fff] ${isScrolled ? "py-14" : "py-0"}`}>
-{/*       <Head>
+      <Head>
         <meta property="og:url" content={window.location.href} />
-      </Head> */}
+      </Head>
       <div
         className={`ease-in-out transition-padding duration-500 pb-28 ${
           isScrolled ? "py-14" : "py-0"
@@ -77,7 +90,10 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
                 : "flex-row"
             } gap-2 items-center`}
           >
-            <button className="bg-[#fff] py-2 px-4 rounded-full shadow-md cursor-not-allowed ">
+            <button
+              type="button"
+              className="bg-[#fff] py-2 px-4 rounded-full shadow-md cursor-not-allowed "
+            >
               <p
                 style={{ fontSize: "10px", width: "80px" }}
                 className="text-[#FAB005] text-center font-bold"
@@ -110,7 +126,7 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
           <div className="mt-8 flex flex-row items-center gap-2">
             <Image
               alt="blog"
-              src={blogPost.authorImage?.node.uri || blogImage}
+              src={blogPost.authorimage?.node.uri || blogImage}
               width={isMobileOrTablet ? 64 : 64}
               height={64}
               loading="lazy"
@@ -204,62 +220,18 @@ const View = ({ searchParams }: { searchParams: { id: string } }) => {
           )}
         </div>
       </div>
-=======
-import { PageTemplate } from "@/components/shared/PageTemplate";
-import { getBlogPostById } from "@/getBlogs";
 
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: { id: string };
-}): Promise<Metadata> {
-  const id = searchParams.id;
-  const data = await getBlogPostById(id);
-
-  const t = data?.title;
-  const h = data?.headline;
-
-  const title = t?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
-  const headline = h?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
-
-  // Return metadata object
-  return {
-    title: title || "Default Title",
-    description: headline || "Default Description",
-    openGraph: {
-      title: title || "Default Title",
-      description: headline || "Default Description",
-      images: [
-        {
-          url: data.image?.node.uri,
-          width: 800,
-          height: 600,
-        },
-      ],
-      locale: "en_US",
-      type: "article",
-    },
-  };
-}
-
-/* export const useMetadata = ({
-  searchParams,
-}: {
-  searchParams: { id: string };
-}): Metadata => {
-  const { data: wp } = useApolloBlog();
-  const post = wp.find((post: any) => post.id === searchParams.id);
-
-  console.log("Blog Title:", post?.blog.title);
-  return {
-    title: `${post?.blog.title}` ?? "MOSB-DIGITAL",
-  };
-}; */
-
-const View = ({ searchParams }: { searchParams: { id: string } }) => {
-  console.log("SEARCH", searchParams);
-
-  return <PageTemplate id={searchParams.id} />;
+      <div
+        className={`bg-[#F3F3F3] mt-4 w-full items-center py-20  ${
+          isMobileOrTablet ? "px-2" : "px-20"
+        }`}
+      >
+        <p className="text-16 font-bold text-black mb-8 mt-8 px-4">
+          Featured Article
+        </p>
+        <FeaturedList />
+      </div>
+      <Footer />
+    </div>
+  );
 };
-
-export default View;
