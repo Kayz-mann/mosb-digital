@@ -28,7 +28,7 @@ export async function generateMetadata({
       description: headline || "Default Description",
       images: [
         {
-          url: getFullImageUrl(data.image?.node.uri),
+          url: getFullImageUrl(data?.image?.node.uri),
           width: 800,
           height: 600,
         },
