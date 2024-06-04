@@ -51,7 +51,7 @@ export async function generateMetadata(id: string) {
   // Return metadata object
   return {
     title: data.title.rendered || "Default Title",
-    description: data.excerpt.rendered || "Default Description",
+    description: data.headline.rendered || "Default Description",
   };
 }
 

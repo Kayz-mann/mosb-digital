@@ -14,7 +14,7 @@ export async function generateMetadata({
   const id = params.id;
   const data = await getBlogPostById(id);
 
-  console.log(data);
+  console.log("All info", data);
 
   const t = data?.title;
   const h = data?.headline;

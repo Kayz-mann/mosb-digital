@@ -42,8 +42,11 @@ export const PageTemplate = ({ id }: PageTemplateProps) => {
 
   if (loading || !blogPost) {
     return (
-      <div className="flex w-full items-center justify-center p-18 text-xl mt-98">
-        <Jelly size={50} color="#FAB005" />
+      <div
+        className="flex w-full items-center justify-center p-18 text-xl mt-98 h-full"
+        style={{ display: "grid", placeItems: "center", marginTop: 400 }}
+      >
+        <Jelly size={80} color="#FAB005" />
       </div>
     );
   }
@@ -126,7 +129,7 @@ export const PageTemplate = ({ id }: PageTemplateProps) => {
           <div className="mt-8 flex flex-row items-center gap-2">
             <Image
               alt="blog"
-              src={blogPost.authorimage?.node.uri || blogImage}
+              src={getFullImageUrl(blogPost.authorimage?.node.uri) || blogImage}
               width={isMobileOrTablet ? 64 : 64}
               height={64}
               loading="lazy"

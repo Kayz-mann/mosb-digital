@@ -10,6 +10,7 @@ type GroupedCategories = {
   [category: string]: {
     items: CategoryItem[];
     scrollPosition: number;
+    displayName?: string;
   };
 };
 
@@ -26,6 +27,7 @@ export type CategoryItem = {
   title: string;
   description: string;
   headline?: string;
+  displayName?: string;
 };
 
 const CategoryList = () => {
@@ -37,23 +39,26 @@ const CategoryList = () => {
   const [groupedCategories, setGroupedCategories] = useState<GroupedCategories>(
     {}
   );
-
   useEffect(() => {
     const initialGroupedCategories: GroupedCategories = {};
     wp &&
       wp.forEach((item: any) => {
         const { blog } = item;
-        if (!initialGroupedCategories[blog.category]) {
-          initialGroupedCategories[blog.category] = {
+        const normalizedCategory = blog.category.trim().toLowerCase(); // Normalize category name
+
+        if (!initialGroupedCategories[normalizedCategory]) {
+          initialGroupedCategories[normalizedCategory] = {
             items: [],
             scrollPosition: 0,
+            displayName: blog.category.trim(), // Store the original category name for display
           };
         }
-        initialGroupedCategories[blog.category].items.push({
+
+        initialGroupedCategories[normalizedCategory].items.push({
           id: item.id,
           createdAt: item.createdAt,
           image: item.blog.image,
-          category: item.blog.category,
+          category: blog.category.trim(), // Use trimmed original category name for display
           title: item.blog.title,
           description: item.blog.description,
         });
@@ -61,6 +66,8 @@ const CategoryList = () => {
     console.log("Initial Grouped Categories:", initialGroupedCategories);
     setGroupedCategories(initialGroupedCategories);
   }, [wp]);
+
+  console.log("data", wp);
 
   const handleScroll = (scrollOffset: number, category: string) => {
     const container = containerRefs.current[category]?.current;

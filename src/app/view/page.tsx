@@ -1,7 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-
 import { Metadata } from "next";
-import useApolloBlog from "../hooks/useApolloBlog";
 import { PageTemplate } from "@/components/shared/PageTemplate";
 import { getBlogPostById } from "@/getBlogs";
 
@@ -19,16 +17,18 @@ export async function generateMetadata({
   const title = t?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
   const headline = h?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
 
+  console.log("dataline", data);
+
   // Return metadata object
   return {
-    title: title || "Default Title",
-    description: headline || "Default Description",
+    title: title,
+    description: headline,
     openGraph: {
       title: title || "Default Title",
       description: headline || "Default Description",
       images: [
         {
-          url: data.image?.node.uri,
+          url: data?.image?.node.uri,
           width: 800,
           height: 600,
         },

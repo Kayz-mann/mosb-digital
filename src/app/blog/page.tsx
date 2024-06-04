@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import useScroll from "../hooks/useScroll";
 import useApolloBlog from "../hooks/useApolloBlog";
+import { Jelly } from "@uiball/loaders";
 
 const BASE_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
@@ -19,10 +20,17 @@ const Blog = () => {
   const isMobileOrTablet = useMobileOrTablet(900);
   const { data: wp, loading, error } = useApolloBlog();
 
-  console.log("WP", wp);
+  // console.log("WP", wp);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        className="flex w-full items-center justify-center p-18 text-xl mt-98 h-full"
+        style={{ display: "grid", placeItems: "center", marginTop: 400 }}
+      >
+        <Jelly size={80} color="#FAB005" />
+      </div>
+    );
   }
 
   if (error) {
@@ -31,8 +39,8 @@ const Blog = () => {
 
   const firstBlog = wp[0]?.blog;
 
-  console.log("First Blog:", firstBlog);
-  console.log("First Blog Title:", firstBlog?.title);
+  // console.log("First Blog:", firstBlog);
+  // console.log("First Blog Title:", firstBlog?.title);
 
   const getFullImageUrl = (uri: any) => (uri ? `${BASE_URL}${uri}` : blogImage);
 
