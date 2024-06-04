@@ -126,7 +126,7 @@ export const PageTemplate = ({ id }: PageTemplateProps) => {
           <div className="mt-8 flex flex-row items-center gap-2">
             <Image
               alt="blog"
-              src={blogPost.authorimage?.node.uri || blogImage}
+              src={getFullImageUrl(blogPost.authorimage?.node.uri) || blogImage}
               width={isMobileOrTablet ? 64 : 64}
               height={64}
               loading="lazy"

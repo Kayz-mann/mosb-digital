@@ -14,7 +14,10 @@ export async function generateMetadata({
   const id = params.id;
   const data = await getBlogPostById(id);
 
-  console.log(data);
+    const getFullImageUrl = (uri: any) =>
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
+
+
 
   const t = data?.title;
   const h = data?.headline;
@@ -31,7 +34,7 @@ export async function generateMetadata({
       description: headline || "Default Description",
       images: [
         {
-          url: data.image?.node.uri,
+          url: getFullImageUrl(data.image?.node.uri),
           width: 800,
           height: 600,
         },

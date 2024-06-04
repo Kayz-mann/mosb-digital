@@ -4,8 +4,8 @@ import { selectBlogPost } from "@/store/global";
 
 export const useMetadata = () => {
   const [metadata, setMetadata] = useState({
-    title:
-    "Lupli From Plaid to Figma, here’s why many tech startups are postponing their IPOs until 2025",
+   title:
+    "From Plaid xoxox to Figma, here’s why many tech startups are postponing their IPOs until 2025",
   description:
     "Last year, investors were hopeful that 2024 would see a lot of companies going public through IPOs (Initial Public Offerings). However, as we near the middle of 2024, those hopes have mostly faded.",
   openGraph: {
