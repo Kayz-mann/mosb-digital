@@ -1,5 +1,5 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Metadata } from "next";
+import Head from "next/head";
 import { PageTemplate } from "@/components/shared/PageTemplate";
 import { getBlogPostById } from "@/getBlogs";
 
@@ -8,24 +8,29 @@ export async function generateMetadata({
 }: {
   searchParams: { id: string };
 }): Promise<Metadata> {
-  const id = searchParams.id;
+  const id = searchParams?.id;
   const data = await getBlogPostById(id);
+
+  console.log(searchParams.id);
+
   const getFullImageUrl = (uri: any) =>
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
 
   const t = data?.title;
   const h = data?.headline;
 
-  const title = t?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
-  const headline = h?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
+  const title = t?.replaceAll(/<\/?[^>]+(>|$)/gi, "") || "Default Title";
+  const headline =
+    h?.replaceAll(/<\/?[^>]+(>|$)/gi, "") || "Default Description";
 
-  // Return metadata object
+  console.log("dataline ++++++", data);
+
   return {
-    title: title || "Default Title",
-    description: headline || "Default Description",
+    title: title,
+    description: headline,
     openGraph: {
-      title: title || "Default Title",
-      description: headline || "Default Description",
+      title: title,
+      description: headline,
       images: [
         {
           url: getFullImageUrl(data?.image?.node.uri),
@@ -39,24 +44,55 @@ export async function generateMetadata({
   };
 }
 
-/* export const useMetadata = ({
-  searchParams,
-}: {
-  searchParams: { id: string };
-}): Metadata => {
-  const { data: wp } = useApolloBlog();
-  const post = wp.find((post: any) => post.id === searchParams.id);
+const View = async ({ searchParams }: { searchParams: { id: string } }) => {
+  const data = await getBlogPostById(searchParams.id);
 
-  console.log("Blog Title:", post?.blog.title);
-  return {
-    title: `${post?.blog.title}` ?? "MOSB-DIGITAL",
-  };
-}; */
+  const getFullImageUrl = (uri: any) =>
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
 
-const View = ({ searchParams }: { searchParams: { id: string } }) => {
-  console.log("SEARCH", searchParams);
+  const t = data?.title;
+  const h = data?.headline;
 
-  return <PageTemplate id={searchParams.id} />;
+  const title1 = t?.replaceAll(/<\/?[^>]+(>|$)/gi, "") || "Default Title";
+  const headline1 =
+    h?.replaceAll(/<\/?[^>]+(>|$)/gi, "") || "Default Description";
+  const imageUrl = getFullImageUrl(data?.image?.node.uri);
+
+  if (!data) {
+    // Handle the case where data is not found
+    return (
+      <>
+        <Head>
+          <title>{title1}</title>
+          <meta name="description" content={headline1} />
+          <meta property="og:title" content={title1} />
+          <meta property="og:description" content={headline1} />
+          <meta property="og:image" content={imageUrl} />
+          <meta property="og:locale" content="en_US" />
+          <meta property="og:type" content="article" />
+        </Head>
+        <PageTemplate id={searchParams.id} />
+      </>
+    );
+  }
+
+  const title = data?.title?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
+  const headline = data?.headline?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
+
+  return (
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={headline} />
+        <meta property="og:title" content={title || "Default Titlewwwwww"} />
+        <meta property="og:description" content={headline || ""} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="article" />
+      </Head>
+      <PageTemplate id={searchParams.id} />
+    </>
+  );
 };
 
 export default View;
