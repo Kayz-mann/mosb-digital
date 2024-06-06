@@ -76,10 +76,8 @@ const View = async ({ searchParams }: { searchParams: { id: string } }) => {
     );
   }
 
-  const title =
-    data?.title?.replaceAll(/<\/?[^>]+(>|$)/gi, "") || "Default Title";
-  const headline =
-    data?.headline?.replaceAll(/<\/?[^>]+(>|$)/gi, "") || "Default Description";
+  const title = data?.title?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
+  const headline = data?.headline?.replaceAll(/<\/?[^>]+(>|$)/gi, "");
 
   return (
     <>
