@@ -15,7 +15,7 @@ export const metadata = {
       "Fuelling Entrepreneurial Success Through Strategic Content Management",
     images: [
       {
-        url: "../../public/assets/images/mosb.jpeg",
+        url: "https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/345655004_6959752834040044_6880955102819334679_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeG7R9QzP7LRe1-jS9Z7NRCOIXgnYDFI3V4heCdgMUjdXhPVFiVcxvTAz5YBeocClrjvDF0nNzcrpN3wfbXGLWO8&_nc_ohc=c4Znrayve80Q7kNvgGhPxSZ&_nc_ht=scontent-los2-1.xx&oh=00_AYA9QTwXMSjWDagqYH7NdFwX5P-eqpj8xvTE0QdP0j4n9w&oe=6668EA23",
         width: 800,
         height: 600,
       },
