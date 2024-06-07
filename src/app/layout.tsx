@@ -6,18 +6,16 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title:
-    "From Plaid to Figma, here’s why many tech startups are postponing their IPOs until 2025",
+  title: "Mosb Digital",
   description:
-    "Last year, investors were hopeful that 2024 would see a lot of companies going public through IPOs (Initial Public Offerings). However, as we near the middle of 2024, those hopes have mostly faded.",
+    "Fuelling Entrepreneurial Success Through Strategic Content Management",
   openGraph: {
-    title:
-      "From Plaid to Figma, here’s why many tech startups are postponing their IPOs until 2025",
+    title: "Mosb Digital",
     description:
-      "Last year, investors were hopeful that 2024 would see a lot of companies going public through IPOs (Initial Public Offerings). However, as we near the middle of 2024, those hopes have mostly faded.",
+      "Fuelling Entrepreneurial Success Through Strategic Content Management",
     images: [
       {
-        url: "https://www.mosbdigital.com/_next/image?url=https%3A%2F%2Fblog.mosbdigital.com%2F2024%2F05%2F25%2Ffrom-plaid-to-figma-heres-why-many-tech-startups-are-postponing-their-ipos-until-2025%2F53200113510_bb815ce7d9_k-jpg%2F&w=3840&q=75",
+        url: "https://www.mosbdigital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fm-logo.d2a15e03.png&w=128&q=75",
         width: 800,
         height: 600,
       },
