@@ -15,7 +15,7 @@ export const metadata = {
       "Fuelling Entrepreneurial Success Through Strategic Content Management",
     images: [
       {
-        url: "https://www.mosbdigital.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fm-logo.d2a15e03.png&w=128&q=75",
+        url: "../../public/assets/images/mosb.jpeg",
         width: 800,
         height: 600,
       },
