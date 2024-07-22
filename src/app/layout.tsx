@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import { ReactQueryClientProvider } from "./ReactQueryClientProvider";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -48,6 +49,7 @@ export default function RootLayout({
     <ReactQueryClientProvider>
       <html lang="en">
         <Toaster />
+        <GoogleAnalytics />
         <body className={inter.className}>{children}</body>
       </html>
     </ReactQueryClientProvider>

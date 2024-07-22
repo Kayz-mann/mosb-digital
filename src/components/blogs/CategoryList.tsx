@@ -5,6 +5,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import useMobileOrTablet from "@/app/hooks/useMobileOrTablet";
 import useApolloBlog from "@/app/hooks/useApolloBlog";
+import { trackEvent } from "@/lib/utils";
 
 type GroupedCategories = {
   [category: string]: {
@@ -147,7 +148,14 @@ const CategoryList = () => {
                         image={getFullImageUrl(item.image?.node?.uri || null)}
                         title={item.title}
                         description={item.description as string}
-                        onClick={() => {}}
+                        onClick={() => {
+                          trackEvent({
+                            action: "viewed categories",
+                            category: item.category,
+                            label: item.title,
+                            value: item.title,
+                          });
+                        }}
                       />
                     </Link>
                   </div>

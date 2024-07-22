@@ -44,8 +44,8 @@ const CustomButton = ({
         ${
           isMobileOrTablet ? "px-10 py-4" : "px-14 py-6"
         } uppercase rounded-md cursor-pointer transition duration-100 border ${
-        borderColor || "border-red-500"
-      }
+          borderColor || "border-red-500"
+        }
       ${borderColorHover}
        ${bgColorHover || "hover:bg-white"}
 

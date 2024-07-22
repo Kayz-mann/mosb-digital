@@ -12,6 +12,7 @@ import Link from "next/link";
 import useScroll from "../hooks/useScroll";
 import useApolloBlog from "../hooks/useApolloBlog";
 import { Jelly } from "@uiball/loaders";
+import { trackEvent } from "@/lib/utils";
 
 const BASE_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL;
 
@@ -85,7 +86,14 @@ const Blog = () => {
               }
               description={firstBlog?.headline}
               image={getFullImageUrl(firstBlog?.image?.node?.uri)}
-              onButtonClick={() => {}}
+              onButtonClick={() => {
+                trackEvent({
+                  action: "view headline blog",
+                  category: wp[0]?.blog.category,
+                  label: firstBlog?.title,
+                  value: firstBlog?.title,
+                });
+              }}
             />
           </Link>
         ) : (
