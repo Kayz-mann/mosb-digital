@@ -46,9 +46,9 @@ const Page = ({ searchParams }: { searchParams: { jobType: string } }) => {
   ) => {
     setIsLoading(true);
     const notification = toast.loading("Posting job application...");
-    console.log(values);
+    // console.log(values);
     const formData = values;
-    console.log("form", formData);
+    // console.log("form", formData);
     await sendContract(formData);
     setSubmitting(false);
     setIsLoading(false);

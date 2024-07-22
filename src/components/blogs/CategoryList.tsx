@@ -64,11 +64,11 @@ const CategoryList = () => {
           description: item.blog.description,
         });
       });
-    console.log("Initial Grouped Categories:", initialGroupedCategories);
+    // console.log("Initial Grouped Categories:", initialGroupedCategories);
     setGroupedCategories(initialGroupedCategories);
   }, [wp]);
 
-  console.log("data", wp);
+  // console.log("data", wp);
 
   const handleScroll = (scrollOffset: number, category: string) => {
     const container = containerRefs.current[category]?.current;

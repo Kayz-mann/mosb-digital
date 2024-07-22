@@ -21,7 +21,7 @@ export const fetchBlogPostById: any = async (id: string | number) => {
 
     const data = await client.fetch(query);
 
-    console.log('ID',data);
+    // console.log('ID',data);
     
     // Check if data array is empty
     if (data.length === 0) {

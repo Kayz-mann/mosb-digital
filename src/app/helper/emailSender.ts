@@ -39,7 +39,7 @@ export const emailSender = async ({ from, subject, email, textBody }: EmailProps
             // })),
         });
 
-        console.log('Message sent: %s', info.messageId);
+        // console.log('Message sent: %s', info.messageId);
     } catch (err) {
         console.error('Error sending email:', err);
     }

@@ -19,7 +19,7 @@ const Service = ({
 }) => {
   const isScrolled = useScroll();
   const isMobileOrTablet = useMobileOrTablet(900);
-  console.log(searchParams.id);
+  // console.log(searchParams.id);
 
   return (
     <div

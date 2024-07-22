@@ -13,7 +13,7 @@ const AttachOptions = ({
   const [googleDriveSelected, setGoogleDriveSelected] =
     useState<boolean>(false); // State to track if Google Drive file is selected
 
-  console.log(googleDriveSelected);
+  // console.log(googleDriveSelected);
 
   const handleGoogleDriveUpload = () => {
     // openPicker({

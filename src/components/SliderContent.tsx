@@ -29,7 +29,7 @@ const SliderContent = () => {
   }, [data]);
 
   // Use useApolloBlog hook to fetch data
-  console.log("query data", data);
+  // console.log("query data", data);
 
   const settings = {
     dots: false,
@@ -73,7 +73,7 @@ const SliderContent = () => {
                     const fullImageUrl = post?.blog?.image?.node?.uri
                       ? `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${post.blog.image.node.uri}`
                       : "/path/to/default/image.jpg";
-                    console.log("fullImageUrl", fullImageUrl);
+                    // console.log("fullImageUrl", fullImageUrl);
                     return (
                       <Link
                         href={{

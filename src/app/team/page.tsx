@@ -49,7 +49,7 @@ const Team = ({ searchParams }: { searchParams: { jobType: string } }) => {
     setIsLoading(true);
     const notification = toast.loading("Posting job application...");
     const formData = values;
-    console.log(formData);
+    // console.log(formData);
     await sendJobDetails(formData);
     setSubmitting(false);
     setIsLoading(false);

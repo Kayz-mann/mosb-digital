@@ -11,7 +11,7 @@ export async function generateMetadata({
   const id = searchParams?.id;
   const data = await getBlogPostById(id);
 
-  console.log(searchParams.id);
+  // console.log(searchParams.id);
 
   const getFullImageUrl = (uri: any) =>
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}${uri}`;
@@ -23,7 +23,7 @@ export async function generateMetadata({
   const headline =
     h?.replaceAll(/<\/?[^>]+(>|$)/gi, "") || "Default Description";
 
-  console.log("dataline ++++++", data);
+  // console.log("dataline ++++++", data);
 
   return {
     title: title,
